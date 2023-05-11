@@ -1,0 +1,32 @@
+<header class="navbar-fixed">
+    <nav class="navbar">
+        <div class="nav-wrapper ">
+            <a class="brand-logo logo light-blue-text text-lighten-1">
+                <img class="flotte responsive-img" src="assets/img/logo-irt.png" alt="logo" srcset="">
+                <span style="line-height: 65px;">IRT CONSULTING</span>
+            </a>
+            <a data-target="mobile-demo" class="sidenav-trigger "><i
+                    class="material-icons light-blue-text text-lighten-1">menu</i></a>
+            <ul class="right hide-on-med-and-down navbar-pers">
+                <li><a class="light-blue-text text-lighten-1">Accueil</a></li>
+                <li><a *ngIf="role==='ADMIN'" routerLink="/sites" routerLinkActive="active" class="light-blue-text text-lighten-1">Sites</a>
+                </li>
+                <li><a routerLink="/map" routerLinkActive="active" class="light-blue-text text-lighten-1">Carte</a></li>
+
+
+                <li><a class="light-blue-text text-lighten-1">À propos</a></li>
+                <li><a routerLink="/login" class="light-blue-text text-lighten-1">Login</a></li>
+                <li><a class="light-blue-text text-lighten-1" (click)="logout()">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<ul class="sidenav" id="mobile-demo">
+    <li><a href="#">Accueil</a></li>
+    <li><a routerLink="/sites" routerLinkActive="active" class="light-blue-text text-lighten-1">Sites</a></li>
+    <li><a routerLink="/map" routerLinkActive="active" class="light-blue-text text-lighten-1">Carte</a></li>
+    <li><a href="#">À propos</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a (click)="logout()">Logout</a></li>
+</ul>

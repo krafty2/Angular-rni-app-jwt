@@ -1,0 +1,146 @@
+<app-navbar></app-navbar>
+<section class="row">
+  <h2 class="orange-text text-darken-1 col s6">Liste des sites</h2>
+  <!-- Modal Trigger -->
+  <a class="waves-effect waves-light  pink darken-1 btn
+   modal-trigger btnExcel col s2 offset-s4 pulse" href="#modal">
+    Charger fichier excel
+  </a>
+
+  <!-- Modal Structure -->
+  <div id="modal" class="modal bottom-sheet">
+    <div class="modal-content center">
+      <h4>Charger le fichier Rni</h4>
+      <small>Seul le format .xlsx est pris en compte pour le moment</small>
+    </div>
+    <form class="formRniExcel" [formGroup]="excelImportForm" (ngSubmit)="onSubmit()">
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>Fichier</span>
+          <!-- <input type="file" id="file" (change)="onFileSelected($event)" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" formControlName="file" multiple> -->
+          <input type="file" id="file" (change)="onFileSelected($event)"
+            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" formControlName="fileRni"
+            multiple>
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Charger le fichier excel">
+        </div>
+        <div *ngIf=" file?.invalid && file?.dirty">
+          <div *ngIf="file?.errors?.['pattern']">
+            <strong class="red-text text-accent-3">Vérifier la conformite de votre fichier</strong>
+          </div>
+          <div *ngIf="file?.errors?.['required']">
+            <strong class="red-text text-accent-3">Vérifier la conformite de votre fichier</strong>
+          </div>
+        </div>
+      </div>
+      <!--boutton de soumission-->
+      <button class="btn waves-effect waves-light pink darken-1" [disabled]="!excelImportForm.valid" type="submit"
+        name="action">Importer
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+  </div>
+</section>
+
+<section class="z-depth-2">
+  <table class="responsive-table highlight">
+    <thead>
+      <tr>
+        <th>Lieu</th>
+        <th>Region</th>
+        <th>Provicne</th>
+        <th>Ville</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let villeSite of siteMesure | paginate: { itemsPerPage: 10, currentPage: p }">
+        <td>{{villeSite.nomSite}}</td>
+        <td>{{villeSite.region}}</td>
+        <td>{{villeSite.province}}</td>
+        <td>{{villeSite.ville}}</td>
+        <td>
+          <!-- Modal Trigger -->
+          <a (click)="detailPourModal(villeSite)" class="light-blue-effect light-blue darken-1 btn modal-trigger"
+            href="#modal1">Voir</a>
+          <!-- <a (click)="allerADetailDuLieu(lieu)" class="waves-effect btn-small waves-light btn actionBtn">Voir</a>             -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="center">
+    <pagination-controls (pageChange)="p=$event" class="pagination"></pagination-controls>
+  </div>
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Details du site</h4>
+      <p>Affiche les informations du lieu ainsi que ses mesures correspondantes</p>
+      <h6>Site</h6>
+      <p>Site: {{site.nomSite}}</p>
+      <p>Region:</p>
+      <p>Province:</p>
+      <p>Localite:</p>
+      <h6>Mesures</h6>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>Longitude</th>
+              <th>Latitude</th>
+              <th>Date de mesure</th>
+              <th>Moyenne Spatiale</th>
+              <th>Option</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let mesure of mesures">
+              <td>{{mesure.longitude}}</td>
+              <td>{{mesure.latitude}}</td>
+              <td>{{mesure.dateMesure|date:'shortDate':'fr-FR'}}</td>
+              <td>{{mesure.moyenneSpatiale}}</td>
+              <td><a (click)="joindreRapport(site,mesure)" class="waves-effect light-blue darken-1 btn-small modal-trigger" href="#modal2">Mettre à jour</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a (close)="fermerModal()" class="modal-close waves-effect waves-green btn-flat">Fermer</a>
+    </div>
+  </div>
+  <!-- Modal Structure Ajout du rapport de mesure-->
+  <div id="modal2" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Ajout du rapport</h4>
+      <small>Joindre le rapport (fichier .pdf) conçernant cette mesure</small>
+      <p>Site: {{site.nomSite}}</p>
+      <p>Ville:  </p>
+      <p>Mesure réalisé le: {{mesure.dateMesure|date:'shortDate':'fr-FR'}}</p>
+      <p>Moyenne Spatiale: {{mesure.moyenneSpatiale}}</p>
+      <section>
+        <form [formGroup]="rapportForm" (ngSubmit)="onSubmit2(mesure)">
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>Fichier PDF</span>
+              <input type="file" id="rapport" (change)="onFileSelected($event)" accept="application/pdf" formControlName="rapport">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
+          <button class="btn waves-effect waves-light pink darken-1" [disabled]="!rapportForm.valid" type="submit"
+        name="action">Transférer
+        <i class="material-icons right">send</i>
+      </button>
+        </form>
+      </section>
+    </div>
+    <div class="modal-footer">
+      <a (close)="fermerModal()" class="modal-close waves-effect waves-green btn-flat">Fermer</a>
+    </div>
+  </div>
+</section>

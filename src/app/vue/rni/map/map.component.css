@@ -1,0 +1,126 @@
+/* @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"); */
+
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+*{
+  box-sizing: border-box;
+}
+
+#map {
+  height: 550px;
+  width: 97%;
+  margin-top: 25px;
+  margin-right: 20px;
+  margin-left: 20px;
+  z-index: 0;
+}
+
+.searchForm{
+  width: 100%;
+  height: 40%;
+  padding: 20px;
+}
+
+.clearfix{
+  /* background-color: #eceff1; */
+  margin-top: 5px;
+}
+
+/* .clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+} */
+
+.box {
+  float: left;
+
+  padding: 50px;
+}
+
+.search-container{
+  background-color: white;
+}
+
+.test{
+  color: red;
+}
+
+#check{
+  
+  display: none;
+}
+
+.checkbtn{
+  cursor: pointer;
+  
+}
+
+.dis {
+   background:white;
+   visibility: hidden;
+   border-radius: 2%;
+   width: 100%;
+   padding: 20px;
+
+   margin-top: 4px;
+   
+}
+
+#check:checked~.dis{
+ visibility: visible;
+ 
+}
+
+i{
+  border-radius: 20%;
+  padding: 2px;
+}
+
+@media(max-width:768px){
+  #map {
+    height: 750px;
+    width: 95%;
+    margin-top: 25px;
+    margin-right: 20px;
+    margin-left: 20px;
+    z-index: 0;
+  }
+}
+
+@media (max-width:390px) {
+  #map {
+    height: 750px;
+    width: 90%;
+    margin-top: 25px;
+    margin-right: 20px;
+    margin-left: 20px;
+    z-index: 0;
+  }
+
+  .checkbtn{
+    cursor: pointer;
+    margin: 0;
+  }
+  
+}
+
+
+/*   .my-icon {
+    width: 32px;
+    height: 32px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 32px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .icon-label {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 4px;
+    color: red;
+  } */

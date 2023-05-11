@@ -1,0 +1,29 @@
+/* @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"); */
+
+section{
+    margin: 2rem;
+  }
+  
+  .formRniExcel{
+    margin: 0 30rem 0 30rem;
+  }
+  button{
+    margin-bottom: 2rem;
+  }
+  
+  .row .col {
+    padding: 0;
+  }
+  
+  .btnExcel{
+    margin: 3.3733333333rem 0 1.424rem 0;
+  }
+  
+  .actionBtn{
+    margin-left: 10px;
+  }
+  
+  .div{
+    margin: 10px;
+  }  

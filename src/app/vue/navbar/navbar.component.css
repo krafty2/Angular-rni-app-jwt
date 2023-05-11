@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+.navbar-pers {
+    margin-left: 210px;
+}
+
+.navbar{
+    background: white;
+}
+
+.logo{
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+.flotte{
+   float: left;
+   width: 30px;
+   height: 30px;
+   margin-top: 20px;
+   margin-right: 5px;
+}
+.dropdown-content{
+    width: auto;
+}
+
+.sidenav{
+    height: 100%;
+}
+ 
+.sidenav-trigger{
+    cursor: pointer;
+}

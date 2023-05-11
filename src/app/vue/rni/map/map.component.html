@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+<div class="clearfix t">
+    <div class=" bordure-div z-depth-2" id="map"></div>
+    <ng-template #searchForm>
+        <section>
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn z-depth-5"> <i class="Tiny material-icons" style="color: black;background: white;">search</i></label>
+            <form class="dis z-depth-3" id="leaflet-form" #search="ngForm" (ngSubmit)="onSubmit()">
+                <h5 class="center">Criteres de Recherches</h5>
+                <div class="row">
+                    <div class="col s6">
+                        <div class="input-field">
+                            <input type="text" id="region" name="region" [(ngModel)]="region" required>
+                            <label for="region">Region</label><br>
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        <div class="input-field">
+                            <input type="text" id="province" name="province" [(ngModel)]="province">
+                            <label for="province">Province</label><br>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col s6">
+                        <div class="input-field">
+                            <input type="text" id="localite" name="localite" [(ngModel)]="localite">
+                            <label for="localite">Localite</label><br>
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        <div class="input-field">
+                            <input type="number" id="annee" name="annee" [(ngModel)]="annee">
+                            <label for="annee">Annee</label><br>
+                        </div>
+                    </div>
+                </div>
+         
+                <!-- [disabled]="!rechercheForm.valid" -->
+                <button class="btn red darken-1 z-depth-1" style="width: 100%;height: 35px;" type="submit">recherche</button>
+            </form>
+        </section>
+
+    </ng-template>
+
+    <ng-template #popupTemplate>
+        <div>
+            <div>
+                <span class="black-text">
+                    <button id="popup-button" (click)="onButtonClick()"
+                        class=" btn waves-effect waves-light">Telecharger</button>
+                </span>
+            </div>
+        </div>
+    </ng-template>
+</div>
