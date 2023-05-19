@@ -12,6 +12,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './vue/navbar/navbar.component';
 import { JwtInterceptor } from './service/jwt-interceptor.interceptor';
+import { RegistrationComponent } from './vue/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { JwtInterceptor } from './service/jwt-interceptor.interceptor';
     LoginComponent,
     MapComponent,
     SiteComponent,
-    NavbarComponent
+    NavbarComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

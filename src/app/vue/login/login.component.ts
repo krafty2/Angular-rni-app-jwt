@@ -23,10 +23,9 @@ export class LoginComponent {
   }
 
   handleLogin(){
-
-    this.errorMessage=undefined;
     let username=this.loginFormGroup.value.username;
     let password=this.loginFormGroup.value.password;
+    console.log(password + " " + username);
     this.authService.login(username,password).subscribe({
       next: response => {
         this.idToken = response;

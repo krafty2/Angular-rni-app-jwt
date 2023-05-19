@@ -19,7 +19,7 @@ export class JwtInterceptor implements HttpInterceptor {
     let authReq = req;
     let url=req.url;
     let token = this.authService.getToken();
-    if (token != null && !url.includes("/auth")) {
+    if (token != null && !url.includes("/public")) {
       authReq = this.addTokenHeader(req, token);
     } 
     return next.handle(authReq);

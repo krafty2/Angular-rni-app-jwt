@@ -1,0 +1,96 @@
+<form class="z-depth-3 container" [formGroup]="registrationFormGroup" (ngSubmit)="registerUser()">
+  <h5 class="center">Formulaire d'Inscription</h5>
+  <div class="container">
+    <!--------------------------------------------------------------------------------------------->
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="text" formControlName="username">
+        <label>Nom d'utilisateur :</label>
+      </div>
+      <div class="col s12">
+        <span class="pink-text text-darken-2"
+          *ngIf="username.errors && (username.valid==false) &&(username['dirty']|| username['touched'])">
+          <span *ngIf="username.errors!['usernameDuplicated']">
+            ce nom d'utilsateur est deja utilise
+          </span>
+          <span *ngIf="username.errors!['required']">
+            nom d'utlisateur necessaire
+          </span>
+        </span>
+      </div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------->
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="text" formControlName="nom">
+        <label>Nom :</label>
+      </div>
+      <div class="col s12">
+        <span class="pink-text text-darken-2" *ngIf="nom.errors && nom.invalid &&(nom['dirty']|| nom['touched'])">
+          <span *ngIf="nom.errors!['required']">nom necessaire</span>
+        </span>
+      </div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------->
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="text" formControlName="prenom">
+        <label>Prenom :</label>
+      </div>
+      <div class="col s12">
+        <span class="pink-text text-darken-2" *ngIf="prenom.errors && prenom.invalid &&(prenom['dirty']|| prenom['touched'])">
+          <span *ngIf="prenom.errors!['required']">prenom necessaire</span>
+        </span>
+      </div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------->
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="email" formControlName="email">
+        <label>Email :</label>
+      </div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------->
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="password" formControlName="password">
+        <label>Password :</label>
+      </div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------->
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="password" formControlName="confirmPassword">
+        <label>Confirm Password :</label>
+      </div>
+      <div class="col s12">
+        <span class="pink-text text-darken-2" *ngIf="confirmPassword.errors && confirmPassword.invalid &&(confirmPassword['dirty']|| confirmPassword['touched'])">
+          <span *ngIf="confirmPassword.errors!['required']">verification de la confirmite de votre mot de passe</span>
+          <span *ngIf="confirmPassword.errors!['valuesNotMatch']">pas identique au mot de passe</span>
+        </span>
+      </div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------->
+    <div>
+      <p>
+        <label>
+          <input formControlName="genre" type="radio" value="HOMME" checked />
+          <span>HOMME</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input formControlName="genre" type="radio" value="FEMME" />
+          <span>FEMME</span>
+        </label>
+      </p>
+    </div>
+
+  </div>
+  <!--------------------------------------------------------------------------------------------------->
+  <div class="center">
+    <button [disabled]="!registrationFormGroup.valid" type="submit">Register</button>
+  </div>
+
+
+</form>

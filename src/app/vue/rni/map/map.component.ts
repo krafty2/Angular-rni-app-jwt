@@ -34,6 +34,8 @@ export class MapComponent implements OnInit{
 
   nom!: String;
 
+  role:boolean=false;
+
   villeMarkers = [
     {
       ville: 'Ouagadougou', lgn: 12.38377, lat: -1.5507
@@ -59,13 +61,13 @@ export class MapComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
-
+    
     this.rniService.dataMap().subscribe(data => {
-
+      
       this.dataM(data);
     });
 
-
+    this.verifieRole$.subscribe();
   }
 
   //chargement de tout les elements de la carte
@@ -202,7 +204,7 @@ export class MapComponent implements OnInit{
     }
     //--------------------------------------------------------------------------------
     let iconMesure = L.icon({
-      iconUrl: 'assets/img/icons8-tour-de-radio-50.png',
+      iconUrl: 'assets/img/telephone-mobile.png',
       iconSize: [25, 25],
       popupAnchor: [0, -20],
     });
@@ -310,7 +312,9 @@ export class MapComponent implements OnInit{
       </script>
       `
     let content = this.generatePopupcontent();
-    div.appendChild(content);
+    //this.role='INVITE'
+    if(this.role)
+      div.appendChild(content);
     return div;
   }
 
@@ -380,5 +384,33 @@ export class MapComponent implements OnInit{
         var test = document.querySelector('.test') as HTMLElement;
         test.style.color = 'orange';
     })
+  });
+
+  /* verify = new Observable(()=>{
+    let role = "ADMIN";
+    let storage = localStorage.getItem('userProfile');
+    let userP;
+    if(storage){
+      userP = JSON.parse(storage);
+    }
+    console.log(userP.scope);
+    this.role = userP.scope;
+     if(userP.scope.includes(role)){
+      this.admin = true
+     }
+  }) */
+
+  verifieRole$=new Observable(()=>{
+
+    let storage = localStorage.getItem('userProfile');
+    let userP;
+    if(storage){
+      userP = JSON.parse(storage);
+    }
+
+    if(userP.scope.includes("INVITE")){
+      this.role=true;
+     }
+    
   })
 }

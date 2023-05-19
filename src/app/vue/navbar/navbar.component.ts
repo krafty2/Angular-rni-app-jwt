@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
   admin:boolean=false;
   constructor(private router: Router,private ngZone:NgZone) { }
   ngOnInit(): void {
+    
     this.verify.subscribe();
       var elems = document.addEventListener('DOMContentLoaded', function () {
         var elems = document.querySelectorAll('.dropdown-trigger');

@@ -5,10 +5,12 @@ import { SiteComponent } from './vue/rni/site/site.component';
 import { AuthorizationGuard } from './guard/authorization.guard';
 import { MapComponent } from './vue/rni/map/map.component';
 import { HasRoleGuard } from './guard/has-role.guard';
+import { RegistrationComponent } from './vue/registration/registration.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'map',pathMatch:'full'},
   {path:'login',component:LoginComponent},
+  {path:'registration',component:RegistrationComponent},
   {path:'map',component:MapComponent},
   {path:'sites',component:SiteComponent,canActivate:[AuthorizationGuard,HasRoleGuard],data:{roles:["ADMIN"]}},
 ];
