@@ -118,6 +118,7 @@ export class SiteComponent {
         fd.append('file', this.fichier, this.fichier.name);
         console.log(fd);
         this.rniService.importerFichierExcel(fd).subscribe();
+        this.router.navigateByUrl("/map");
       } else {
         console.log("le fichier n'est pas autorise");
       }

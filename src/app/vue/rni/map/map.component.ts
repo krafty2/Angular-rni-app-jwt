@@ -7,14 +7,15 @@ import { Site } from 'src/app/models/site';
 import { SiteMesure } from 'src/app/models/site-mesure';
 import { RniService } from 'src/app/service/rni.service';
 import { saveAs } from 'file-saver';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin, merge, mergeAll } from 'rxjs';
+import { Ville } from 'src/app/models/ville';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit{
+export class MapComponent implements OnInit {
 
   @ViewChild('searchForm', { read: TemplateRef })
   searchForm!: TemplateRef<any>;
@@ -28,62 +29,39 @@ export class MapComponent implements OnInit{
   lieu: Site = new Site;
   mesure: Mesure = new Mesure;
 
-  nomRapport!: string;idMesure: number | undefined;
+  nomRapport!: string; idMesure: number | undefined;
 
   map: any; osm: any; mark: any;
 
   nom!: String;
 
-  role:boolean=false;
+  role: boolean = false;
 
-  villeMarkers = [
-    {
-      ville: 'Ouagadougou', lgn: 12.38377, lat: -1.5507
-    },
-    {
-      ville: 'Bobo-Dioulasso', lgn: 11.18127408639855, lat: -4.296483094337233
-    },
-    {
-      ville: 'Tenkodogo', lgn: 11.78697, lat: -0.37691
-    },
-    {
-      ville: 'Koudougou', lgn: 12.250859015968205, lat: -2.367154709028241
-    },
-    {
-      ville: 'Ouahigouya', lgn: 13.577246562901484, lat: -2.4160776060562545
-    },
-    {
-      ville: 'Ziniaré', lgn: 12.61867, lat: -1.31335
-    }
-  ]
+  villes: any;
 
-  constructor(private rniService: RniService, private router: Router
-  ) { }
+  constructor(private rniService: RniService, private router: Router) { }
 
   ngOnInit(): void {
-    
-    this.rniService.dataMap().subscribe(data => {
-      
-      this.dataM(data);
-    });
 
-    this.verifieRole$.subscribe();
+    this.rniService.lesVilles().subscribe((results) => {
+      this.villes = results;
+      this.rniService.dataMap().subscribe(data => {
+        this.mapM(data);
+      });
+    })
   }
 
+
   //chargement de tout les elements de la carte
-  dataM(data: any) {
-    this.idMesure = 1;
+  mapM(data: any) {
+
     this.siteMesure = data;
 
-    // filtrer un element
-    let nbMesureOuaga = this.siteMesure.filter(el => el.ville === 'Ouagadougou').length;
-    let nbMesureBobo = this.siteMesure.filter(el => el.ville === 'Bobo-Dioulasso').length;
-    let nbMesureTenko = this.siteMesure.filter(el => el.ville === 'Tenkodogo').length;
-    let nbMesureKou = this.siteMesure.filter(el => el.ville === 'Koudougou').length;
-    let nbMesureOuahi = this.siteMesure.filter(el => el.ville === 'Ouahigouya').length;
-    let nbMesureZin = this.siteMesure.filter(el => el.ville === 'Ziniaré').length;
-    console.log("nombre de mesure ouga " + nbMesureOuaga);
-    //console.table(this.lieuEtMesure);
+
+    //regroupe les groupes entre eux
+    let shelterVilleMarkers = new L.FeatureGroup();
+
+    //supprime la carte si elle est deja charge
     if (this.map != undefined || this.map != null) {
       this.map.remove();
     }
@@ -104,7 +82,7 @@ export class MapComponent implements OnInit{
     });
 
     //creation de la carte
-    this.map = L.map('map', { layers: [street, osm], zoom: 5 }).setView([12.396745, -1.556532]);
+    this.map = L.map('map', { layers: [street, osm], zoom: 7 }).setView([12.396745, -1.556532]);
 
     //permet de supprimer l'attribution leaflet et de mettre une attribution personnalise
     this.map.attributionControl.setPrefix('IRT CONSULTING');
@@ -124,7 +102,7 @@ export class MapComponent implements OnInit{
 
     serchControl.onAdd = () => {
       let div = L.DomUtil.create('div', 'leaflet-form');
-      L.DomEvent.disableClickPropagation(div);
+      //L.DomEvent.disableClickPropagation(div);
       let template = this.searchForm.createEmbeddedView(null);
       div.appendChild(template.rootNodes[0]);
       return div;
@@ -132,87 +110,61 @@ export class MapComponent implements OnInit{
 
     serchControl.addTo(this.map);
 
-    //recherche les doublons dans un liste==n'est pas utilise dans le code pour le moment
-    let duplicates = this.siteMesure.filter((lieu, index) => {
-      return this.siteMesure.some((p, i) => p.longitude === lieu.longitude && p.latitude === lieu.latitude && i !== index);
-    });
-    console.table(duplicates);
+    //affiche les villes sur la carte
+    this.villes.forEach((_ville: Ville) => {
+      let nbMesure = this.siteMesure.filter(el => el.ville === _ville.ville).length;
+      if(nbMesure!=0){
+        let mark = this.markerVille(_ville.latitudeV, _ville.longitudeV, nbMesure);
+        shelterVilleMarkers.addLayer(mark);
+      }
+    });    
+    /* for (let ville of this.villes) {
+      console.log("hello")
+      console.log(ville);
+      let nbMesure = this.siteMesure.filter(el => el.ville === ville.ville).length;
+      if(nbMesure!=0){
+        let mark = this.markerVille(ville.latitudeV, ville.longitudeV, nbMesure);
+        shelterVilleMarkers.addLayer(mark);
+      }
+    } */
 
-    //a supprimer
+    this.map.addLayer(shelterVilleMarkers);
 
+    //permet d'afficher le marker des villes en fonction du zoom
+    this.map.on('zoomend', () => {
+      let zoomLevel = this.map.getZoom();
+      if (zoomLevel < 10) {
+        if (this.map.hasLayer(shelterVilleMarkers)
 
-
-    //Ajout des makers des villes
-    let shelterVilleMarkers = new L.FeatureGroup();
-    for (let m of this.villeMarkers) {
-      //let mark = L.marker([m.lgn, m.lat], { icon: myIcon });
-      let ville = m.ville;
-      switch (ville) {
-        case 'Ouagadougou':
-          let mark1 = this.markerVille(m.lat, m.lgn, nbMesureOuaga);
-          mark1.addTo(this.map);
-          shelterVilleMarkers.addLayer(mark1);
-          break;
-        case 'Bobo-Dioulasso':
-          let mark2 = this.markerVille(m.lat, m.lgn, nbMesureBobo);
-          mark2.addTo(this.map);
-          shelterVilleMarkers.addLayer(mark2);
-          break;
-        case 'Tenkodogo':
-          let mark3 = this.markerVille(m.lat, m.lgn, nbMesureTenko);
-          mark3.addTo(this.map);
-          shelterVilleMarkers.addLayer(mark3);
-          break;
-        case 'Koudougou':
-          let mark4 = this.markerVille(m.lat, m.lgn, nbMesureKou);
-          mark4.addTo(this.map);
-          shelterVilleMarkers.addLayer(mark4);
-          break;
-        case 'Ouahigouya':
-          let mark5 = this.markerVille(m.lat, m.lgn, nbMesureOuahi);
-          mark5.addTo(this.map);
-          shelterVilleMarkers.addLayer(mark5);
-          break;
-        default:
-          let mark6 = this.markerVille(m.lat, m.lgn, nbMesureZin);
-          mark6.addTo(this.map);
-          shelterVilleMarkers.addLayer(mark6);
+        ) {
+          console.log("point deja present");
+        } else {
+          this.map.addLayer(shelterVilleMarkers);
+        }
       }
 
-      this.map.on('zoomend', () => {
-        let zoomLevel = this.map.getZoom();
-        if (zoomLevel < 10) {
-          if (this.map.hasLayer(shelterVilleMarkers)
+      if (zoomLevel >= 10) {
+        if (this.map.hasLayer(shelterVilleMarkers)
+        ) {
+          this.map.removeLayer(shelterVilleMarkers);
 
-          ) {
-            console.log("point deja present");
-          } else {
-            this.map.addLayer(shelterVilleMarkers);
-          }
+        } else {
+          console.log("point non actif");
         }
+      }
+    });
 
-        if (zoomLevel >= 10) {
-          if (this.map.hasLayer(shelterVilleMarkers)
-          ) {
-            this.map.removeLayer(shelterVilleMarkers);
+    //-------------------------------------------//
 
-          } else {
-            console.log("point non actif");
-          }
-        }
-      });
-    }
-    //--------------------------------------------------------------------------------
     let iconMesure = L.icon({
       iconUrl: 'assets/img/telephone-mobile.png',
       iconSize: [25, 25],
       popupAnchor: [0, -20],
     });
-    //
 
     //groupe les markers des mesures
     let shelterMarkers = new L.FeatureGroup();
-    console.table(this.siteMesure);
+
     //place les points sur la carte
     for (let lm of this.siteMesure) {
 
@@ -226,6 +178,7 @@ export class MapComponent implements OnInit{
 
       //popup.addTo(this.map);
       this.mark.bindTooltip(`${lm.moyenneSpatiale}`, { permanent: false }).openTooltip();
+      //recupere le contenu du marker lorsque l'on click dessus
       this.mark.on('click', this.content$.subscribe());
       //permet d'afficher les points en fonction du zoom
       this.map.on('zoomend', () => {
@@ -246,7 +199,7 @@ export class MapComponent implements OnInit{
   }
 
   //methode de soummission de la zone de recherche au niveau de la carte
-  onSubmit() {
+  zoneDeRecherche() {
     let form = document.getElementById('leaflet-form') as HTMLFormElement;
     if (form) {
       let formData = new FormData(form);
@@ -262,35 +215,30 @@ export class MapComponent implements OnInit{
 
     if (this.region != null && this.province != null && this.localite != null && this.annee != null)
       this.rniService.rechercheAvance1(this.annee, this.region, this.province, this.localite).subscribe((data: any) => {
-        this.dataM(data);
+        this.mapM(data);
       })
   }
 
-
-
-  iconPer(nb: number) {
+  //---> contenu html icone
+  htmlIconeVille(nb: number) {
     return `
       <a class="btn-floating btn text pulse">${nb}</a>
     `;
   }
 
-  //creation de marker avec icon personnalise
+  //---> creation de marker avec icon personnalise pour chaque ville
   markerVille(lat: number, lgn: number, nbMesure: number) {
     let villeIcon = L.divIcon({
       className: 'icon',
-      html: this.iconPer(nbMesure),
+      html: this.htmlIconeVille(nbMesure),
       iconSize: [20, 20],
     });
-    let mark = L.marker([lgn, lat], { icon: villeIcon }).on('click', (e: any) => {
-      this.map.setView(e.latlng, 14);
+    //---> effectue un zoom lors du click
+    let mark = L.marker([lat, lgn], { icon: villeIcon }).on('click', (e: any) => {
+      this.map.setView(e.latlng, 11);
       this.map.removeLayer(mark);
     });
     return mark;
-  }
-
-  onClick() {
-    this.map.setView([12.38377, -1.5507], 14);
-
   }
 
   //creation de la div representant le contenu du popup
@@ -313,7 +261,7 @@ export class MapComponent implements OnInit{
       `
     let content = this.generatePopupcontent();
     //this.role='INVITE'
-    if(this.role)
+    if (this.role)
       div.appendChild(content);
     return div;
   }
@@ -329,36 +277,11 @@ export class MapComponent implements OnInit{
     return content.rootNodes[0];
   }
 
-  //permet de recuperer le contenu du popup
-  contenuPopup(e: any) {
-
-    var popup = e.target.getPopup();
-    //recuperation d'un element htmldivelement
-    var content = popup.getContent();
-
-    let contentString = content.outerHTML;
-
-    //filter une zone/ cible la zone ou se trouve l'id de la mesure
-    let filter = contentString.split("*");
-  
-    let nb = Number(filter[1]);
-    console.log("avant " + this.idMesure)
-    this.idMesure = nb;
-    //this.mesure.idMesure = nb;
-
-    console.log(this.idMesure);
-
-  }
-
-  test(nb: number) {
-    this.idMesure = nb;
-  }
-
   //methode de redirection d'une page vers  la liste des lieux
-  onButtonClick() {
+  telechargeRapport() {
     if (this.idMesure)
       this.rniService.telechargerRapport(this.idMesure).subscribe(
-        (blob:Blob) => saveAs(blob,this.nomRapport)
+        (blob: Blob) => saveAs(blob, this.nomRapport)
       );
   }
 
@@ -374,43 +297,15 @@ export class MapComponent implements OnInit{
       let filterId = contentString.split("*");
 
       let filterNomRapport = contentString.split("~");
-      
-     
+
+
       let nb = Number(filterId[1]);
-      this.nomRapport=filterNomRapport[1];
+      this.nomRapport = filterNomRapport[1];
       console.log(this.nomRapport);
       this.idMesure = nb;
 
-        var test = document.querySelector('.test') as HTMLElement;
-        test.style.color = 'orange';
+      var test = document.querySelector('.test') as HTMLElement;
+      test.style.color = 'orange';
     })
   });
-
-  /* verify = new Observable(()=>{
-    let role = "ADMIN";
-    let storage = localStorage.getItem('userProfile');
-    let userP;
-    if(storage){
-      userP = JSON.parse(storage);
-    }
-    console.log(userP.scope);
-    this.role = userP.scope;
-     if(userP.scope.includes(role)){
-      this.admin = true
-     }
-  }) */
-
-  verifieRole$=new Observable(()=>{
-
-    let storage = localStorage.getItem('userProfile');
-    let userP;
-    if(storage){
-      userP = JSON.parse(storage);
-    }
-
-    if(userP.scope.includes("INVITE")){
-      this.role=true;
-     }
-    
-  })
 }

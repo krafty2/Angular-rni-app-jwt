@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, NG_ASYNC_VALIDATORS, ValidationErrors, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
 import { passwordMatch } from 'src/app/validators/password-match.validators.directive';
@@ -25,7 +26,8 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder, private authService: AuthService,
-    private uniqueUtilisateurValidators: UniqueUtilisateurValidators
+    private uniqueUtilisateurValidators: UniqueUtilisateurValidators,
+    private router:Router
   ) { }
 
   registrationFormGroup = this.fb.group({
@@ -65,7 +67,10 @@ export class RegistrationComponent implements OnInit {
     //this.registrationFormGroup.reset();
     console.log(this.registrationFormGroup?.value);
     this.authService.registerUser(this.registrationFormGroup?.value).subscribe(
-      data => console.log(data)
+      data => {
+        console.log(data)
+        this.router.navigateByUrl("/map");
+      }
     );
   }
 
