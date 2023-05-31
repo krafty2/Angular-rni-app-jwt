@@ -16,60 +16,38 @@ export class SiteComponent {
 
   sites: Site[] = [];
   p: number = 1;
-
   siteMesure: SiteMesure[] = [];
-
   site: Site = new Site();
   mesures: Mesure[] = [];
-  mesure:Mesure=new Mesure();
-
+  mesure: Mesure = new Mesure();
   elems: any;
-
-  //Formgroup
   excelImportForm = new FormGroup({
     fileRni: new FormControl('', [Validators.required, Validators.pattern(/\.xlsx$/)])
   });
 
   rapportForm = new FormGroup({
-    rapport:new FormControl('',[Validators.required,Validators.pattern(/\.pdf$/)])
+    rapport: new FormControl('', [Validators.required, Validators.pattern(/\.pdf$/)])
   });
 
   fichier!: File;
 
   constructor(
-    private rniService: RniService,
-    private router: Router,
+    private rniService: RniService, private router: Router,
     private crf: ChangeDetectorRef
   ) { }
   ngOnInit(): void {
     this.lesLieux();
     this.modal();
   }
- /*  ngAfterViewInit(): void {
-    //this.rniService.modal();
-    //appel de la methode qui affiche tout les lieux
-    this.lesLieux();
-    this.modal();
-  } */
 
+  /**
+   * 
+   */
   lesLieux() {
     this.rniService.tousLesLieux().subscribe(data => {
-      this.siteMesure = data; 
+      this.siteMesure = data;
     });
   }
-
-  /* test(){
-    document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.modal');
-      let options = {
-        
-      };
-      var instance = M.Modal.init(elems, options);
-      
-    }); 
-    
-    this.crf.detectChanges();
-  }*/
 
   detailPourModal(trouveSite: SiteMesure) {
     this.site = new Site();
@@ -79,13 +57,13 @@ export class SiteComponent {
     if (idSite) {
       this.rniService.trouverLieu(idSite).subscribe((data: SiteMesure[]) => {
         site = data;
-        
+
         for (let lm of site) {
           let mesure = new Mesure();
           //recuperation du lieu en question
-          this.site.idSite =  lm.idSite;
+          this.site.idSite = lm.idSite;
           this.site.nomSite = lm.nomSite;
-          
+
           //recuperation des mesures d'un lieu
           mesure.idMesure = lm.idMesure;
           mesure.longitude = lm.longitude;
@@ -95,7 +73,7 @@ export class SiteComponent {
           mesure.moyenneSpatiale = lm.moyenneSpatiale;
           this.mesures.push(mesure);
         }
-        
+
       });
 
     }
@@ -128,20 +106,20 @@ export class SiteComponent {
   get file() { return this.excelImportForm.get('file'); }
 
   //transfert le rapport
-  onSubmit2(mesureR:Mesure){
+  onSubmit2(mesureR: Mesure) {
     console.log("idMesure" + mesureR.idMesure)
     let extension = ["pdf"];
     let fileExtension = this.rapportForm.value.rapport?.split(".").pop();
-    if (fileExtension){
-      if(extension.includes(fileExtension)){
+    if (fileExtension) {
+      if (extension.includes(fileExtension)) {
         console.log("Feliciation! Le format du fichier est correcte");
         console.log(this.fichier);
         const id = mesureR.idMesure;
         let fd = new FormData();
         fd.append('file', this.fichier, this.fichier.name);
-        fd.append('id',id.toString());
+        fd.append('id', id.toString());
         this.rniService.transfertRapport(fd).subscribe();
-      } else{
+      } else {
         console.log("Ce type de fichier n'est pas accepte")
       }
     }
@@ -155,9 +133,9 @@ export class SiteComponent {
   }
 
   //Envoie de mesure pour mise a jour
-  joindreRapport(site:Site,mesure:Mesure){
-      this.site=site;
-      this.mesure=mesure;
+  joindreRapport(site: Site, mesure: Mesure) {
+    this.site = site;
+    this.mesure = mesure;
   }
 
   //redirection vers la page de chargement de rapport

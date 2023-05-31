@@ -15,22 +15,15 @@
   z-index: 0;
 }
 
+#check{
+  display: none;
+}
+
 .searchForm{
   width: 100%;
   height: 40%;
   padding: 20px;
 }
-
-.clearfix{
-  /* background-color: #eceff1; */
-  margin-top: 5px;
-}
-
-/* .clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-} */
 
 .box {
   float: left;
@@ -42,34 +35,29 @@
   background-color: white;
 }
 
-.test{
-  color: red;
-}
-
-#check{
-  
-  display: none;
-}
-
 .checkbtn{
   cursor: pointer;
   
 }
 
-.dis {
+.formulaireDisplay {
    background:white;
-   visibility: hidden;
+   /*visibility: hidden;*/
+   display: none;
    border-radius: 2%;
    width: 100%;
    padding: 20px;
-
-   margin-top: 4px;
-   
+   margin-top: 4px;  
 }
 
-#check:checked~.dis{
- visibility: visible;
- 
+#zoneTitre{
+  padding: 12px;
+  color: red;
+}
+
+#check:checked~.formulaireDisplay{
+ /* visibility: visible; */
+ display: contents;
 }
 
 i{

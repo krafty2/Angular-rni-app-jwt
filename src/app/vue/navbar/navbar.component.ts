@@ -54,15 +54,12 @@ export class NavbarComponent implements OnInit {
     if(storage){
       userP = JSON.parse(storage);
     }
-    console.log(userP.scope);
-    this.role = userP.scope;
      if(userP.scope.includes(role)){
       this.admin = true
      }
   })
 
   logout(){
-    
     localStorage.removeItem('token');
     localStorage.removeItem('userProfile');
     window.location.href="/"

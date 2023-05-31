@@ -9,6 +9,7 @@ import { RniService } from 'src/app/service/rni.service';
 import { saveAs } from 'file-saver';
 import { Observable, forkJoin, merge, mergeAll } from 'rxjs';
 import { Ville } from 'src/app/models/ville';
+import { Target } from '@angular/compiler';
 
 @Component({
   selector: 'app-map',
@@ -23,20 +24,22 @@ export class MapComponent implements OnInit {
   @ViewChild('popupTemplate', { static: true })
   popupTemplate!: TemplateRef<any>;
 
-  region!: any; province!: any; localite!: any; annee!: any;
+  region!: any;
+  province!: any;
+  localite!: any;
+  annee!: any;
 
   siteMesure: SiteMesure[] = [];
   lieu: Site = new Site;
   mesure: Mesure = new Mesure;
+  nomRapport!: string;
+  idMesure!: number;
 
-  nomRapport!: string; idMesure: number | undefined;
-
-  map: any; osm: any; mark: any;
-
+  map: any;
+  osm: any;
+  mark: any;
   nom!: String;
-
   role: boolean = false;
-
   villes: any;
 
   constructor(private rniService: RniService, private router: Router) { }
@@ -48,17 +51,23 @@ export class MapComponent implements OnInit {
       this.rniService.dataMap().subscribe(data => {
         this.mapM(data);
       });
-    })
+    });
   }
 
 
-  //chargement de tout les elements de la carte
+  /**
+   * 
+   * @param {data} resultat de la requete sur les sites et les mesures
+   * charge tout les elements de la carte
+   */
   mapM(data: any) {
 
     this.siteMesure = data;
 
 
-    //regroupe les groupes entre eux
+    /**
+     * regroupe les groupes entre eux
+     */
     let shelterVilleMarkers = new L.FeatureGroup();
 
     //supprime la carte si elle est deja charge
@@ -86,6 +95,7 @@ export class MapComponent implements OnInit {
 
     //permet de supprimer l'attribution leaflet et de mettre une attribution personnalise
     this.map.attributionControl.setPrefix('IRT CONSULTING');
+    //this.map.attributionControl.setPrefix(`<div class="black-text">IRT</div>`);
 
     //regroupe l'ensemble des couches pour pouvoir les inserer a l'interieur de la carte
     let baseMaps = {
@@ -102,7 +112,7 @@ export class MapComponent implements OnInit {
 
     serchControl.onAdd = () => {
       let div = L.DomUtil.create('div', 'leaflet-form');
-      //L.DomEvent.disableClickPropagation(div);
+      L.DomEvent.disableClickPropagation(div);
       let template = this.searchForm.createEmbeddedView(null);
       div.appendChild(template.rootNodes[0]);
       return div;
@@ -113,48 +123,28 @@ export class MapComponent implements OnInit {
     //affiche les villes sur la carte
     this.villes.forEach((_ville: Ville) => {
       let nbMesure = this.siteMesure.filter(el => el.ville === _ville.ville).length;
-      if(nbMesure!=0){
+      if (nbMesure != 0) {
         let mark = this.markerVille(_ville.latitudeV, _ville.longitudeV, nbMesure);
         shelterVilleMarkers.addLayer(mark);
       }
-    });    
-    /* for (let ville of this.villes) {
-      console.log("hello")
-      console.log(ville);
-      let nbMesure = this.siteMesure.filter(el => el.ville === ville.ville).length;
-      if(nbMesure!=0){
-        let mark = this.markerVille(ville.latitudeV, ville.longitudeV, nbMesure);
-        shelterVilleMarkers.addLayer(mark);
-      }
-    } */
+    });
 
     this.map.addLayer(shelterVilleMarkers);
 
-    //permet d'afficher le marker des villes en fonction du zoom
+    //----> permet d'afficher le marker des villes en fonction du zoom
     this.map.on('zoomend', () => {
       let zoomLevel = this.map.getZoom();
       if (zoomLevel < 10) {
-        if (this.map.hasLayer(shelterVilleMarkers)
-
-        ) {
-          console.log("point deja present");
-        } else {
+        if (!this.map.hasLayer(shelterVilleMarkers))
           this.map.addLayer(shelterVilleMarkers);
-        }
       }
 
       if (zoomLevel >= 10) {
-        if (this.map.hasLayer(shelterVilleMarkers)
-        ) {
+        if (this.map.hasLayer(shelterVilleMarkers))
           this.map.removeLayer(shelterVilleMarkers);
 
-        } else {
-          console.log("point non actif");
-        }
       }
     });
-
-    //-------------------------------------------//
 
     let iconMesure = L.icon({
       iconUrl: 'assets/img/telephone-mobile.png',
@@ -162,43 +152,43 @@ export class MapComponent implements OnInit {
       popupAnchor: [0, -20],
     });
 
-    //groupe les markers des mesures
+    //groupe les markers des mesures//
     let shelterMarkers = new L.FeatureGroup();
 
     //place les points sur la carte
-    for (let lm of this.siteMesure) {
 
-      let div = this.divPopup(lm);
-
-      this.mark = L.marker([lm.latitude, lm.longitude], { icon: iconMesure });
-
+    this.siteMesure.forEach((_results) => {
+      let div = this.divPopup(_results);
+      this.mark = L.marker([_results.latitude, _results.longitude], { icon: iconMesure });
       let popup = this.mark.bindPopup(div);
-
       shelterMarkers.addLayer(popup);
-
       //popup.addTo(this.map);
-      this.mark.bindTooltip(`${lm.moyenneSpatiale}`, { permanent: false }).openTooltip();
+      this.mark.bindTooltip(`${_results.moyenneSpatiale}`, { permanent: false }).openTooltip();
       //recupere le contenu du marker lorsque l'on click dessus
       this.mark.on('click', this.content$.subscribe());
-      //permet d'afficher les points en fonction du zoom
-      this.map.on('zoomend', () => {
-        let currentZoom = this.map.getZoom();
-        if (currentZoom < 10) {
-          if (this.map.hasLayer(shelterMarkers)) {
-            this.map.removeLayer(shelterMarkers);
-          }
-        }
-        if (currentZoom >= 10) {
-          if (!this.map.hasLayer(shelterMarkers)) {
-            this.map.addLayer(shelterMarkers);
-          }
-        }
-      });
-    }
+    })
 
+    this.map.on('zoomend', () => {
+      let currentZoom = this.map.getZoom();
+      if (currentZoom < 10) {
+        if (this.map.hasLayer(shelterMarkers)) {
+          this.map.removeLayer(shelterMarkers);
+        }
+      }
+      if (currentZoom >= 10) {
+        if (!this.map.hasLayer(shelterMarkers)) {
+          this.map.addLayer(shelterMarkers);
+        }
+      }
+    });
   }
 
-  //methode de soummission de la zone de recherche au niveau de la carte
+  //
+
+  /**
+   * Effectue la recherche au niveau de la carte
+   * 
+   */
   zoneDeRecherche() {
     let form = document.getElementById('leaflet-form') as HTMLFormElement;
     if (form) {
@@ -208,25 +198,30 @@ export class MapComponent implements OnInit {
       this.localite = formData.get('localite');
       this.annee = formData.get('annee');
     }
-
-    console.log('region : ' + this.region + 'province : ' + this.province
-      + ' localite : ' + this.localite + ' annee : ' + this.annee
-    );
-
-    if (this.region != null && this.province != null && this.localite != null && this.annee != null)
+    if (this.region && this.province && this.localite && this.annee)
       this.rniService.rechercheAvance1(this.annee, this.region, this.province, this.localite).subscribe((data: any) => {
         this.mapM(data);
       })
   }
 
-  //---> contenu html icone
+  /**
+   * 
+   * @param nb 
+   * @returns du html qui sera utilise pour generer l'icone des markers de ville
+   */
   htmlIconeVille(nb: number) {
     return `
       <a class="btn-floating btn text pulse">${nb}</a>
     `;
   }
 
-  //---> creation de marker avec icon personnalise pour chaque ville
+  /**
+   * 
+   * @param {lat} latitude de la ville
+   * @param {lgn} longitude de la ville
+   * @param {nbMesure} nombre de mesure en fonction de la ville 
+   * @returns {mark} marker de la ville generer
+   */
   markerVille(lat: number, lgn: number, nbMesure: number) {
     let villeIcon = L.divIcon({
       className: 'icon',
@@ -241,18 +236,22 @@ export class MapComponent implements OnInit {
     return mark;
   }
 
-  //creation de la div representant le contenu du popup
-  divPopup(lm: SiteMesure) {
+  /**
+   * 
+   * @param {result} un des resultats provenant de la requete recuperant toute les information concernant une mesure
+   * @returns {div} creer pour generer le popup d'un marker de mesure
+   */
+  divPopup(result: SiteMesure) {
     let div = L.DomUtil.create('div', 'card-panel grey lighten-4');
     div.innerHTML = `
-      <span class="baliseLeaflet">*${lm.idMesure}*</span>
-      <span class="baliseLeaflet">~${lm.nomRapport}~</span>
-      <strong class="test">Site : ${lm.nomSite}</strong>
-      <p>Region : ${lm.region}</p>
-      <p>Province : ${lm.province}</p>
-      <p>Localite : ${lm.ville}</p>
-      <p>Mesure réalise le : ${formatDate(lm.dateMesure, 'dd/MM/yyyy', 'en-US')}</p>
-      <p class="light-blue darken-1 white-text z-depth-2 center" style="padding: 5px;" >Moyenne spatiale recupérée : ${lm.moyenneSpatiale}  EV/m</p>
+      <span class="baliseLeaflet">*${result.idMesure}*</span>
+      <span class="baliseLeaflet">~${result.nomRapport}~</span>
+      <strong class="test">Site : ${result.nomSite}</strong>
+      <p>Region : ${result.region}</p>
+      <p>Province : ${result.province}</p>
+      <p>Localite : ${result.ville}</p>
+      <p>Mesure réalise le : ${formatDate(result.dateMesure, 'dd/MM/yyyy', 'en-US')}</p>
+      <p class="light-blue darken-1 white-text z-depth-2 center" style="padding: 5px;" >Moyenne spatiale recupérée : ${result.moyenneSpatiale}  EV/m</p>
 
       <script>
         var test = document.getElementsByClassName('.test');
@@ -266,7 +265,11 @@ export class MapComponent implements OnInit {
     return div;
   }
 
-  //genere le popup des markers
+
+  /**
+   * 
+   * @returns un composants qui sera dynamiquement ajouter a la suite du popup de la map
+   */
   generatePopupcontent() {
     let context = {
       title: 'test',
@@ -277,7 +280,9 @@ export class MapComponent implements OnInit {
     return content.rootNodes[0];
   }
 
-  //methode de redirection d'une page vers  la liste des lieux
+  /**
+   * methode de redirection d'une page vers  la liste des lieux
+   */
   telechargeRapport() {
     if (this.idMesure)
       this.rniService.telechargerRapport(this.idMesure).subscribe(
@@ -285,15 +290,18 @@ export class MapComponent implements OnInit {
       );
   }
 
+  /**
+   * recupere le contenu d'un popup
+   */
   content$ = new Observable(() => {
     this.mark.on('click', (e: { target: { getPopup: () => any; }; }) => {
-      var popup = e.target.getPopup();
+      let popup = e.target.getPopup();
       //recuperation d'un element htmldivelement
-      var content = popup.getContent();
+      let content = popup.getContent();
 
       let contentString = content.outerHTML;
 
-      //filter une zone/ cible la zone ou se trouve l'id de la mesure
+      //filter une zone cible la zone ou se trouve l'id de la mesure
       let filterId = contentString.split("*");
 
       let filterNomRapport = contentString.split("~");
