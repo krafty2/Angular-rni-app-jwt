@@ -13,6 +13,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './vue/navbar/navbar.component';
 import { JwtInterceptor } from './service/jwt-interceptor.interceptor';
 import { RegistrationComponent } from './vue/registration/registration.component';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { RegistrationComponent } from './vue/registration/registration.component
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    AdminModule,
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule

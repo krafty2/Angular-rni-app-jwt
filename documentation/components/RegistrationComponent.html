@@ -8,64 +8,433 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css">
+	    <link rel="stylesheet" href="../styles/style.css">
     </head>
     <body>
 
-        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
             <a href="../" class="navbar-brand">angular-rni-app documentation</a>
-            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+            <div id="book-search-input" role="search">
+                <input type="text" placeholder="Type to search">
+            </div>
+            <nav>
+            
+                <ul class="list">
+            
+                    <li class="title">
+                        <a href="../">angular-rni-app documentation</a>
+                    </li>
+            
+                    <li class="divider"></li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../"><span class="fa fa-home"></span>Getting started</a>
+                        <ul class="links">
+                                <li class="link">
+                                    <a href="../" ><span class="fa fa-file-text-o"></span>README</a>
+                                </li>
+                                <li class="link">
+                                    <a 
+                                        
+                                         href="../overview.html" 
+                                         href="../overview.html" 
+                                        >
+                                        <span class="fa fa-th"></span>Overview
+                                    </a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="./modules.html" >
+                            <span class="fa fa-archive"></span>
+                            <span>Modules</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-modules-links"
+                            ></span>
+                        </a>
+                        <ul class="links collapse in"
+                                id="xs-modules-links"
+                            >
+                                <li class="link">
+                                    <a href="../modules/AdminModule.html" >AdminModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/AppModule.html" >AppModule</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../modules/PublicModule.html" >PublicModule</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-cogs"></span>
+                            <span>Components</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-components-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-components-links"
+                            >
+                                <li class="link">
+                                    <a href="../components/AppComponent.html" >AppComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/CarteComponent.html" >CarteComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/DashbordComponent.html" >DashbordComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/LoginComponent.html" >LoginComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/MapComponent.html" >MapComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/NavbarComponent.html" >NavbarComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/NavbarComponent.html" >NavbarComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/RegistrationComponent.html"  class="active" >RegistrationComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/SiteComponent.html" >SiteComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/SlideBarComponent.html" >SlideBarComponent</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-file-code-o"></span>
+                            <span>Classes</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-classes-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-classes-links"
+                            >
+                                <li class="link">
+                                    <a href="../classes/Mesure.html" >Mesure</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Site.html" >Site</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/SiteMesure.html" >SiteMesure</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/UniqueEmailValidators.html" >UniqueEmailValidators</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../classes/Ville.html" >Ville</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../routes.html" ><span class="fa fa-code-fork"></span>Routes</a>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-long-arrow-down"></span>
+                            <span>Injectables</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-injectables-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-injectables-links"
+                            >
+                                <li class="link">
+                                    <a href="../injectables/AuthService.html" >AuthService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/JwtInterceptor.html" >JwtInterceptor</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/RniService.html" >RniService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../injectables/UniqueUtilisateurValidators.html" >UniqueUtilisateurValidators</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+                    <li class="chapter">
+                        <div class="simple">
+                            <span class="fa fa-info"></span>
+                            <span>Interfaces</span>
+                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                    data-target="#xs-interfaces-links"
+                                ></span>
+                        </div>
+                        <ul class="links collapse in"
+                                id="xs-interfaces-links"
+                            >
+                                <li class="link">
+                                    <a href="../interfaces/ProfilUtilisateur.html" >ProfilUtilisateur</a>
+                                </li>
+                        </ul>
+                    </li>
+            
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                    </li>
+            
+                    <li class="chapter">
+                        <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                    </li>
+            
+                    <li class="divider"></li>
+                    <li class="copyright">
+                            Documentation generated using <a href="https://compodoc.github.io/compodoc/" target="_blank">
+                                        <img src="..//images/compodoc-vectorise.svg" class="img-responsive">
+                            </a>
+                    </li>
+            
+                </ul>
+            
+            </nav>
         </div>
 
         <div class="container-fluid main">
            <div class="row main">
                <div class="hidden-xs menu">
-                   <compodoc-menu mode="normal"></compodoc-menu>
+                   <nav>
+                   
+                       <ul class="list">
+                   
+                           <li class="title">
+                               <a href="../">angular-rni-app documentation</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                   
+                               <div id="book-search-input" role="search">
+                                   <input type="text" placeholder="Type to search">
+                               </div>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../"><span class="fa fa-home"></span>Getting started</a>
+                               <ul class="links">
+                                       <li class="link">
+                                           <a href="../" ><span class="fa fa-file-text-o"></span>README</a>
+                                       </li>
+                                       <li class="link">
+                                           <a 
+                                               
+                                                href="../overview.html" 
+                                                href="../overview.html" 
+                                               >
+                                               <span class="fa fa-th"></span>Overview
+                                           </a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="./modules.html" >
+                                   <span class="fa fa-archive"></span>
+                                   <span>Modules</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#modules-links"
+                                   ></span>
+                               </a>
+                               <ul class="links collapse in"
+                                       id="modules-links"
+                   >
+                                       <li class="link">
+                                           <a href="../modules/AdminModule.html" >AdminModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/AppModule.html" >AppModule</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../modules/PublicModule.html" >PublicModule</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-cogs"></span>
+                                   <span>Components</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#components-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="components-links"
+                   >
+                                       <li class="link">
+                                           <a href="../components/AppComponent.html" >AppComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/CarteComponent.html" >CarteComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/DashbordComponent.html" >DashbordComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/LoginComponent.html" >LoginComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/MapComponent.html" >MapComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/NavbarComponent.html" >NavbarComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/NavbarComponent.html" >NavbarComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/RegistrationComponent.html"  class="active" >RegistrationComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/SiteComponent.html" >SiteComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/SlideBarComponent.html" >SlideBarComponent</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-file-code-o"></span>
+                                   <span>Classes</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#classes-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="classes-links"
+                   >
+                                       <li class="link">
+                                           <a href="../classes/Mesure.html" >Mesure</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Site.html" >Site</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/SiteMesure.html" >SiteMesure</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/UniqueEmailValidators.html" >UniqueEmailValidators</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../classes/Ville.html" >Ville</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../routes.html" ><span class="fa fa-code-fork"></span>Routes</a>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-long-arrow-down"></span>
+                                   <span>Injectables</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#injectables-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="injectables-links"
+                   >
+                                       <li class="link">
+                                           <a href="../injectables/AuthService.html" >AuthService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/JwtInterceptor.html" >JwtInterceptor</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/RniService.html" >RniService</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../injectables/UniqueUtilisateurValidators.html" >UniqueUtilisateurValidators</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                           <li class="chapter">
+                               <div class="simple">
+                                   <span class="fa fa-info"></span>
+                                   <span>Interfaces</span>
+                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
+                                           data-target="#interfaces-links"
+                   ></span>
+                               </div>
+                               <ul class="links collapse in"
+                                       id="interfaces-links"
+                   >
+                                       <li class="link">
+                                           <a href="../interfaces/ProfilUtilisateur.html" >ProfilUtilisateur</a>
+                                       </li>
+                               </ul>
+                           </li>
+                   
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
+                           </li>
+                   
+                           <li class="chapter">
+                               <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
+                           </li>
+                   
+                           <li class="divider"></li>
+                           <li class="copyright">
+                                   Documentation generated using <a href="https://compodoc.github.io/compodoc/" target="_blank">
+                                               <img src="..//images/compodoc-vectorise.svg" class="img-responsive">
+                                   </a>
+                           </li>
+                   
+                       </ul>
+                   
+                   </nav>
                </div>
-               <!-- START CONTENT -->
                <div class="content component">
                    <div class="content-data">
 
 
-
-
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Components</li>
-  <li class="breadcrumb-item"
-  >
-  RegistrationComponent</li>
+  <li>Components</li>
+  <li>RegistrationComponent</li>
 </ol>
 
-<ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-            <a href="#info" class="nav-link active"
-                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
-        </li>
-        <li class="nav-item">
-            <a href="#source" class="nav-link"
-                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
-        </li>
-        <li class="nav-item">
-            <a href="#templateData" class="nav-link"
-                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
-        </li>
-        <li class="nav-item">
-            <a href="#styleData" class="nav-link"
-                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
-        </li>
-        <li class="nav-item">
-            <a href="#tree" class="nav-link"
-                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
-        </li>
-</ul>
 
-<div class="tab-content">
-    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#infos" id="infos-tab" role="tab" data-toggle="tab">Infos</a>
+        </li>
+        <li>
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab">Source</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade active in" id="infos"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -74,18 +443,9 @@
 
 
 
-
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                <code>OnInit</code>
-    </p>
-
-
-<section data-compodoc="block-metadata">
+<section>
     <h3>Metadata</h3>
-    <table class="table table-sm table-hover metadata">
+    <table class="table table-sm table-hover">
         <tbody>
 
 
@@ -100,7 +460,9 @@
             <tr>
                 <td class="col-md-3">providers</td>
                 <td class="col-md-9">
-                                <code><a href="../injectables/UniqueUtilisateurValidators.html" target="_self" >UniqueUtilisateurValidators</a></code>
+                    <code>
+                        UniqueUtilisateurValidators
+                    </code>
                 </td>
             </tr>
 
@@ -110,557 +472,228 @@
                 <td class="col-md-9"><code>app-registration</code></td>
             </tr>
 
-
-
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./registration.component.css</code></td>
+                <td class="col-md-9"><code>registration.component.css</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./registration.component.html</code></td>
+                <td class="col-md-9"><code>registration.component.html</code></td>
             </tr>
 
 
-
-
-
-
-
-
         </tbody>
     </table>
 </section>
 
-    <section data-compodoc="block-index">
-    <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#conforme" >conforme</a>
-                            </li>
-                            <li>
-                                <a href="#errorMessage" >errorMessage</a>
-                            </li>
-                            <li>
-                                <a href="#formStatus" >formStatus</a>
-                            </li>
-                            <li>
-                                <a href="#registrationFormGroup" >registrationFormGroup</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
-                            </li>
-                            <li>
-                                <a href="#registerUser" >registerUser</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
-
-
-
+    <section>
+        <h3 id="constructor">Constructor</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <h6><b>Accessors</b></h6>
+                            <code>constructor(fb: <a href="https://angular.io/docs/ts/latest/api/forms/index/FormBuilder-class.html" target="_blank" >FormBuilder</a>, authService: any, uniqueUtilisateurValidators: any, router: <a href="https://angular.io/docs/ts/latest/api/router/index/Router-class.html" target="_blank" >Router</a>)</code>
+                        </td>
+                    </tr>
+    
+                </tbody>
+            </table>
+    </section>
+
+    <section>
+        <h3 id="methods">Methods</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> registerUser</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>registerUser()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
+
+    <section>
+        <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> confirmPassword</b>
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <ul class="index-list">
-                                <li>
-                                    <a href="#username" >username</a>
-                                </li>
-                                <li>
-                                    <a href="#nom" >nom</a>
-                                </li>
-                                <li>
-                                    <a href="#prenom" >prenom</a>
-                                </li>
-                                <li>
-                                    <a href="#email" >email</a>
-                                </li>
-                                <li>
-                                    <a href="#password" >password</a>
-                                </li>
-                                <li>
-                                    <a href="#confirmPassword" >confirmPassword</a>
-                                </li>
-                            </ul>
+                            <code>confirmPassword:     <code>any</code>
+    </bcode>
                         </td>
                     </tr>
-        </tbody>
-    </table>
-</section>
-
-    <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(fb: FormBuilder, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, uniqueUtilisateurValidators: <a href="../injectables/UniqueUtilisateurValidators.html" target="_self">UniqueUtilisateurValidators</a>, router: Router)</code>
-                    </td>
-                </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> conforme</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>conforme:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> email</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>email:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> errorMessage</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>errorMessage:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> formStatus</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>formStatus:     <code>number</code>
+    </bcode>
+                        </td>
+                    </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/vue/registration/registration.component.ts:25</a></div>
+                                <i>Default value: </i><code>0</code>
                             </td>
                         </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>fb</td>
-                                                  
-                                                        <td>
-                                                                    <code>FormBuilder</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>authService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>uniqueUtilisateurValidators</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/UniqueUtilisateurValidators.html" target="_self" >UniqueUtilisateurValidators</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>router</td>
-                                                  
-                                                        <td>
-                                                                    <code>Router</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
-
-
-
-
-
-    <section data-compodoc="block-methods">
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/app/vue/registration/registration.component.ts:52</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="registerUser"></a>
-                    <span class="name">
-                        <span ><b>registerUser</b></span>
-                        <a href="#registerUser"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>registerUser()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/app/vue/registration/registration.component.ts:66</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
-    <section data-compodoc="block-properties">
-    
-    <h3 id="inputs">
-        Properties
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="conforme"></a>
-                    <span class="name">
-                        <span ><b>conforme</b></span>
-                        <a href="#conforme"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new Observable()</code>
-                    </td>
-                </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/vue/registration/registration.component.ts:77</a></div>
+                            <b> nom</b>
                         </td>
                     </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="errorMessage"></a>
-                    <span class="name">
-                        <span ><b>errorMessage</b></span>
-                        <a href="#errorMessage"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/vue/registration/registration.component.ts:23</a></div>
+                            <code>nom:     <code>any</code>
+    </bcode>
                         </td>
                     </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="formStatus"></a>
-                    <span class="name">
-                        <span ><b>formStatus</b></span>
-                        <a href="#formStatus"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>0</code>
-                    </td>
-                </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/vue/registration/registration.component.ts:25</a></div>
+                            <b> password</b>
                         </td>
                     </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="registrationFormGroup"></a>
-                    <span class="name">
-                        <span ><b>registrationFormGroup</b></span>
-                        <a href="#registrationFormGroup"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>this.fb.group({
-    username: this.fb.control(&#x27;&#x27;, {
-      asyncValidators: [this.uniqueUtilisateurValidators.validate.bind(this.uniqueUtilisateurValidators)],
-      validators: [Validators.required],
-      updateOn: &#x27;blur&#x27;
-    }),
-    nom: [&#x27;&#x27;,[Validators.required]],
-    prenom: [&#x27;&#x27;,[Validators.required]],
-    email: [&#x27;&#x27;],
-    password: this.fb.control(null,Validators.required),
-    confirmPassword: this.fb.control(null,
-      [
-        Validators.required,passwordMatchValidators(&#x27;password&#x27;),
-        
-      ]),
-    roleName: [&quot;INVITE&quot;],
-    genre: [&#x27;&#x27;]
-  }
-  )</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/vue/registration/registration.component.ts:33</a></div>
+                            <code>password:     <code>any</code>
+    </bcode>
                         </td>
                     </tr>
-
-
-        </tbody>
-    </table>
-</section>
-
-    <section data-compodoc="block-accessors">
-    <h3 id="accessors">
-        Accessors
-    </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="username"></a>
-                        <span class="name"><b>username</b><a href="#username"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>username()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/vue/registration/registration.component.ts:89</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="nom"></a>
-                        <span class="name"><b>nom</b><a href="#nom"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>nom()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/vue/registration/registration.component.ts:94</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="prenom"></a>
-                        <span class="name"><b>prenom</b><a href="#prenom"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>prenom()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/vue/registration/registration.component.ts:98</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="email"></a>
-                        <span class="name"><b>email</b><a href="#email"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>email()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/vue/registration/registration.component.ts:102</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="password"></a>
-                        <span class="name"><b>password</b><a href="#password"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>password()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/vue/registration/registration.component.ts:105</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="confirmPassword"></a>
-                        <span class="name"><b>confirmPassword</b><a href="#confirmPassword"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>confirmPassword()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/app/vue/registration/registration.component.ts:108</a></div>
-                                </td>
-                            </tr>
-
-            </tbody>
-        </table>
-</section>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> prenom</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>prenom:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> registrationFormGroup</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>registrationFormGroup:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> username</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>username:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 </div>
-
-
-    <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <div class="tab-pane fade tab-source-code" id="source">
+            <pre><code class="hljs javascript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { AbstractControl, FormBuilder, FormControl, FormGroup, NG_ASYNC_VALIDATORS, ValidationErrors, Validators } from &#x27;@angular/forms&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 import { Observable, map } from &#x27;rxjs&#x27;;
@@ -773,152 +806,8 @@ export class RegistrationComponent implements OnInit {
 }
 
 </code></pre>
-    </div>
-
-    <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;form class&#x3D;&quot;z-depth-3 container&quot; [formGroup]&#x3D;&quot;registrationFormGroup&quot; (ngSubmit)&#x3D;&quot;registerUser()&quot;&gt;
-  &lt;h5 class&#x3D;&quot;center&quot;&gt;Formulaire d&#x27;Inscription&lt;/h5&gt;
-  &lt;div class&#x3D;&quot;container&quot;&gt;
-    &lt;!---------------------------------------------------------------------------------------------&gt;
-    &lt;div class&#x3D;&quot;row&quot;&gt;
-      &lt;div class&#x3D;&quot;input-field col s12&quot;&gt;
-        &lt;input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;username&quot;&gt;
-        &lt;label&gt;Nom d&#x27;utilisateur :&lt;/label&gt;
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;col s12&quot;&gt;
-        &lt;span class&#x3D;&quot;pink-text text-darken-2&quot;
-          *ngIf&#x3D;&quot;username.errors &amp;&amp; (username.valid&#x3D;&#x3D;false) &amp;&amp;(username[&#x27;dirty&#x27;]|| username[&#x27;touched&#x27;])&quot;&gt;
-          &lt;span *ngIf&#x3D;&quot;username.errors![&#x27;usernameDuplicated&#x27;]&quot;&gt;
-            ce nom d&#x27;utilsateur est deja utilise
-          &lt;/span&gt;
-          &lt;span *ngIf&#x3D;&quot;username.errors![&#x27;required&#x27;]&quot;&gt;
-            nom d&#x27;utlisateur necessaire
-          &lt;/span&gt;
-        &lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;!---------------------------------------------------------------------------------------------------&gt;
-    &lt;div class&#x3D;&quot;row&quot;&gt;
-      &lt;div class&#x3D;&quot;input-field col s12&quot;&gt;
-        &lt;input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;nom&quot;&gt;
-        &lt;label&gt;Nom :&lt;/label&gt;
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;col s12&quot;&gt;
-        &lt;span class&#x3D;&quot;pink-text text-darken-2&quot; *ngIf&#x3D;&quot;nom.errors &amp;&amp; nom.invalid &amp;&amp;(nom[&#x27;dirty&#x27;]|| nom[&#x27;touched&#x27;])&quot;&gt;
-          &lt;span *ngIf&#x3D;&quot;nom.errors![&#x27;required&#x27;]&quot;&gt;nom necessaire&lt;/span&gt;
-        &lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;!---------------------------------------------------------------------------------------------------&gt;
-    &lt;div class&#x3D;&quot;row&quot;&gt;
-      &lt;div class&#x3D;&quot;input-field col s12&quot;&gt;
-        &lt;input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;prenom&quot;&gt;
-        &lt;label&gt;Prenom :&lt;/label&gt;
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;col s12&quot;&gt;
-        &lt;span class&#x3D;&quot;pink-text text-darken-2&quot; *ngIf&#x3D;&quot;prenom.errors &amp;&amp; prenom.invalid &amp;&amp;(prenom[&#x27;dirty&#x27;]|| prenom[&#x27;touched&#x27;])&quot;&gt;
-          &lt;span *ngIf&#x3D;&quot;prenom.errors![&#x27;required&#x27;]&quot;&gt;prenom necessaire&lt;/span&gt;
-        &lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;!---------------------------------------------------------------------------------------------------&gt;
-    &lt;div class&#x3D;&quot;row&quot;&gt;
-      &lt;div class&#x3D;&quot;input-field col s12&quot;&gt;
-        &lt;input type&#x3D;&quot;email&quot; formControlName&#x3D;&quot;email&quot;&gt;
-        &lt;label&gt;Email :&lt;/label&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;!---------------------------------------------------------------------------------------------------&gt;
-    &lt;div class&#x3D;&quot;row&quot;&gt;
-      &lt;div class&#x3D;&quot;input-field col s12&quot;&gt;
-        &lt;input type&#x3D;&quot;password&quot; formControlName&#x3D;&quot;password&quot;&gt;
-        &lt;label&gt;Password :&lt;/label&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;!---------------------------------------------------------------------------------------------------&gt;
-    &lt;div class&#x3D;&quot;row&quot;&gt;
-      &lt;div class&#x3D;&quot;input-field col s12&quot;&gt;
-        &lt;input type&#x3D;&quot;password&quot; formControlName&#x3D;&quot;confirmPassword&quot;&gt;
-        &lt;label&gt;Confirm Password :&lt;/label&gt;
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;col s12&quot;&gt;
-        &lt;span class&#x3D;&quot;pink-text text-darken-2&quot; *ngIf&#x3D;&quot;confirmPassword.errors &amp;&amp; confirmPassword.invalid &amp;&amp;(confirmPassword[&#x27;dirty&#x27;]|| confirmPassword[&#x27;touched&#x27;])&quot;&gt;
-          &lt;span *ngIf&#x3D;&quot;confirmPassword.errors![&#x27;required&#x27;]&quot;&gt;verification de la confirmite de votre mot de passe&lt;/span&gt;
-          &lt;span *ngIf&#x3D;&quot;confirmPassword.errors![&#x27;valuesNotMatch&#x27;]&quot;&gt;pas identique au mot de passe&lt;/span&gt;
-        &lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;!---------------------------------------------------------------------------------------------------&gt;
-    &lt;div&gt;
-      &lt;p&gt;
-        &lt;label&gt;
-          &lt;input formControlName&#x3D;&quot;genre&quot; type&#x3D;&quot;radio&quot; value&#x3D;&quot;HOMME&quot; checked /&gt;
-          &lt;span&gt;HOMME&lt;/span&gt;
-        &lt;/label&gt;
-      &lt;/p&gt;
-      &lt;p&gt;
-        &lt;label&gt;
-          &lt;input formControlName&#x3D;&quot;genre&quot; type&#x3D;&quot;radio&quot; value&#x3D;&quot;FEMME&quot; /&gt;
-          &lt;span&gt;FEMME&lt;/span&gt;
-        &lt;/label&gt;
-      &lt;/p&gt;
-    &lt;/div&gt;
-
-  &lt;/div&gt;
-  &lt;!---------------------------------------------------------------------------------------------------&gt;
-  &lt;div class&#x3D;&quot;center&quot;&gt;
-    &lt;button [disabled]&#x3D;&quot;!registrationFormGroup.valid&quot; type&#x3D;&quot;submit&quot;&gt;Register&lt;/button&gt;
-  &lt;/div&gt;
-
-
-&lt;/form&gt;</code></pre>
-    </div>
-
-    <div class="tab-pane fade " id="styleData">
-                <p class="comment">
-                    <code>./registration.component.css</code>
-                </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
-    </div>
-
-    <div class="tab-pane fade " id="tree">
-        <div id="tree-container"></div>
-        <div class="tree-legend">
-            <div class="title">
-                <b>Legend</b>
-            </div>
-            <div>
-                <div class="color htmlelement"></div><span>Html element</span>
-            </div>
-            <div>
-                <div class="color component"></div><span>Component</span>
-            </div>
-            <div>
-                <div class="color directive"></div><span>Html element with directive</span>
-            </div>
         </div>
     </div>
-
-    
-</div>
-
-<script src="../js/libs/vis.min.js"></script>
-<script src="../js/libs/htmlparser.js"></script>
-<script src="../js/libs/deep-iterator.js"></script>
-<script>
-        var COMPONENT_TEMPLATE = '<div><form class="z-depth-3 container" [formGroup]="registrationFormGroup" (ngSubmit)="registerUser()">  <h5 class="center">Formulaire d\'Inscription</h5>  <div class="container">    <!--------------------------------------------------------------------------------------------->    <div class="row">      <div class="input-field col s12">        <input type="text" formControlName="username">        <label>Nom d\'utilisateur :</label>      </div>      <div class="col s12">        <span class="pink-text text-darken-2"          *ngIf="username.errors && (username.valid==false) &&(username[\'dirty\']|| username[\'touched\'])">          <span *ngIf="username.errors![\'usernameDuplicated\']">            ce nom d\'utilsateur est deja utilise          </span>          <span *ngIf="username.errors![\'required\']">            nom d\'utlisateur necessaire          </span>        </span>      </div>    </div>    <!--------------------------------------------------------------------------------------------------->    <div class="row">      <div class="input-field col s12">        <input type="text" formControlName="nom">        <label>Nom :</label>      </div>      <div class="col s12">        <span class="pink-text text-darken-2" *ngIf="nom.errors && nom.invalid &&(nom[\'dirty\']|| nom[\'touched\'])">          <span *ngIf="nom.errors![\'required\']">nom necessaire</span>        </span>      </div>    </div>    <!--------------------------------------------------------------------------------------------------->    <div class="row">      <div class="input-field col s12">        <input type="text" formControlName="prenom">        <label>Prenom :</label>      </div>      <div class="col s12">        <span class="pink-text text-darken-2" *ngIf="prenom.errors && prenom.invalid &&(prenom[\'dirty\']|| prenom[\'touched\'])">          <span *ngIf="prenom.errors![\'required\']">prenom necessaire</span>        </span>      </div>    </div>    <!--------------------------------------------------------------------------------------------------->    <div class="row">      <div class="input-field col s12">        <input type="email" formControlName="email">        <label>Email :</label>      </div>    </div>    <!--------------------------------------------------------------------------------------------------->    <div class="row">      <div class="input-field col s12">        <input type="password" formControlName="password">        <label>Password :</label>      </div>    </div>    <!--------------------------------------------------------------------------------------------------->    <div class="row">      <div class="input-field col s12">        <input type="password" formControlName="confirmPassword">        <label>Confirm Password :</label>      </div>      <div class="col s12">        <span class="pink-text text-darken-2" *ngIf="confirmPassword.errors && confirmPassword.invalid &&(confirmPassword[\'dirty\']|| confirmPassword[\'touched\'])">          <span *ngIf="confirmPassword.errors![\'required\']">verification de la confirmite de votre mot de passe</span>          <span *ngIf="confirmPassword.errors![\'valuesNotMatch\']">pas identique au mot de passe</span>        </span>      </div>    </div>    <!--------------------------------------------------------------------------------------------------->    <div>      <p>        <label>          <input formControlName="genre" type="radio" value="HOMME" checked />          <span>HOMME</span>        </label>      </p>      <p>        <label>          <input formControlName="genre" type="radio" value="FEMME" />          <span>FEMME</span>        </label>      </p>    </div>  </div>  <!--------------------------------------------------------------------------------------------------->  <div class="center">    <button [disabled]="!registrationFormGroup.valid" type="submit">Register</button>  </div></form></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MapComponent', 'selector': 'app-map'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'SiteComponent', 'selector': 'app-site'}];
-    var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'RegistrationComponent'};
-</script>
-<script src="../js/tree.js"></script>
-
-
-
-
-
-
-
 
 
 
@@ -939,31 +828,8 @@ export class RegistrationComponent implements OnInit {
     </div>
 </div>
 </div>
-               <!-- END CONTENT -->
            </div>
        </div>
-
-          <label class="dark-mode-switch">
-               <input type="checkbox">
-               <span class="slider">
-                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-                    </svg>
-               </span>
-          </label>
-
-       <script>
-            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'RegistrationComponent.html';
-            var MAX_SEARCH_RESULTS = 15;
-       </script>
-
-       <script src="../js/libs/custom-elements.min.js"></script>
-       <script src="../js/libs/lit-html.js"></script>
-
-       <script src="../js/menu-wc.js" defer></script>
-       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 
@@ -974,17 +840,20 @@ export class RegistrationComponent implements OnInit {
 
        <script src="../js/compodoc.js"></script>
 
-       <script src="../js/tabs.js"></script>
-       <script src="../js/menu.js"></script>
-       <script src="../js/libs/clipboard.min.js"></script>
-       <script src="../js/libs/prism.js"></script>
-       <script src="../js/sourceCode.js"></script>
-          <script src="../js/search/search.js"></script>
-          <script src="../js/search/lunr.min.js"></script>
-          <script src="../js/search/search-lunr.js"></script>
-          <script src="../js/search/search_index.js"></script>
-       <script src="../js/lazy-load-graphs.js"></script>
+       <script src="../js/search/search.js"></script>
+       <script src="../js/search/lunr.min.js"></script>
+       <script src="../js/search/search-lunr.js"></script>
 
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/highlight.pack.js"></script>
+       <script src="../js/libs/highlightjs-line-numbers.min.js"></script>
+       <script src="../js/search/search_index.js"></script>
+       <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                hljs.initHighlightingOnLoad();
+                hljs.initLineNumbersOnLoad();
+            });
+       </script>
 
     </body>
 </html>

@@ -1,0 +1,117 @@
+.home h4 {
+    margin: 0;
+}
+
+.home {
+    position: relative;
+    height: 100vh;
+    left: 88px;
+    width: calc(100% - 88px);
+    background: var(--body-color);
+    transition: var(--trans-02);
+    margin: 10px;
+    padding: 10px;
+}
+
+.home .text {
+    color: var(--text-color);
+}
+
+.dash {
+    width: 500px;
+    margin: 0 0 35px 10px;
+   
+}
+
+
+.container-mesure{
+    
+    margin: 10px;
+}
+
+.select-an{
+    background: #1E88E5;
+    color: white;
+    height: 30px;
+    width: 90px;
+    border-radius: 3px;
+    border: none;
+    margin: 0 5px 5px 0;
+}
+
+.tableau {
+    margin-top: 10px;
+    padding: 10px;
+    height: 350px;
+    overflow: hidden;
+    overflow: scroll;
+    /* border-right: 1px solid #000; */
+    border-left: 1px solid #000;
+    border-top: 1px solid #000;
+    border-radius: 6px;
+}
+
+th,
+td {
+    width: 10em;
+}
+
+.carte {
+    height: 350px;
+    width: calc(100% - 50px);
+
+    border-radius: 1%;
+}
+
+.container-ville {
+    position: relative;
+    height: 60px;
+    width: 380px;
+    margin-top: 15px;
+    background: white;
+    display: flex;
+    align-items: center;
+    /* border-left: 5px solid #1565c0 ; */
+
+}
+
+.container-ville .ville {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 294px;
+    margin-left: 10px;
+    border-radius: 6px;
+    background: #1e88e5;
+    color: white;
+    cursor: pointer;
+}
+
+.action-ville {
+    position: absolute;
+    left: 2px;
+    width: 180px;
+}
+
+.container-ville .valeur-ville {
+    position: absolute;
+    right: 5px;
+    width: 189px;
+    justify-content: center;
+    width: calc(100%-224px);
+}
+
+#filtres{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+ .rni-file{
+     position: absolute;
+    right: 20px;
+    top: 15px;
+    
+}

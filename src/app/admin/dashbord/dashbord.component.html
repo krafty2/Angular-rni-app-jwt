@@ -1,0 +1,138 @@
+<app-slide-bar class="test"></app-slide-bar>
+
+<section class="home">
+    <div class="section-text dash">
+        <h4>Rni Tableau de bord</h4>
+        <p>Supervision des mesures</p>
+        <div>
+            <a class="waves-effect waves-light  pink darken-1 btn 
+            modal-trigger btnExcel col s2 offset-s4 pulse rni-file" href="#modal">
+                Charger fichier excel
+            </a>
+
+            <div id="modal" class="modal bottom-sheet">
+                <div class="modal-content center">
+                  <h4>Charger le fichier Rni</h4>
+                  <small>Seul le format .xlsx est pris en compte pour le moment</small>
+                </div>
+                <form class="formRniExcel" [formGroup]="excelImportForm" (ngSubmit)="onSubmit()">
+                  <div class="file-field input-field">
+                    <div class="btn">
+                      <span>Fichier</span>
+                      <!-- <input type="file" id="file" (change)="onFileSelected($event)" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" formControlName="file" multiple> -->
+                      <input type="file" id="file" (change)="onFileSelected($event)"
+                        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" formControlName="fileRni"
+                        multiple>
+                    </div>
+                    <div class="file-path-wrapper">
+                      <input class="file-path validate" type="text" placeholder="Charger le fichier excel">
+                    </div>
+                    <div *ngIf=" file?.invalid && file?.dirty">
+                      <div *ngIf="file?.errors?.['pattern']">
+                        <strong class="red-text text-accent-3">Vérifier la conformite de votre fichier</strong>
+                      </div>
+                      <div *ngIf="file?.errors?.['required']">
+                        <strong class="red-text text-accent-3">Vérifier la conformite de votre fichier</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <!--boutton de soumission-->
+                  <button class="btn waves-effect waves-light pink darken-1" [disabled]="!excelImportForm.valid" type="submit"
+                    name="action">Importer
+                    <i class="material-icons right">send</i>
+                  </button>
+                </form>
+              </div>
+        </div>
+    </div>
+
+    <div class="container-mesure section-text">
+        <div id="filtres">
+            <select class="browser-default select-an z-depth-1" name="annee" (change)="selectAnnee($event)">
+                <option value="" disabled selected>Annee</option>
+                <option *ngFor="let an of annee" value="{{an}}">{{an}}</option>
+            </select>
+            <select class="browser-default select-an z-depth-1" name="annee" (change)="selectRegion($event)">
+                <option value="" disabled selected>Region</option>
+                <option *ngFor="let region of regions" value="{{region}}">{{region}}</option>
+            </select>
+            <select class="browser-default select-an z-depth-1" [disabled]="!provinces" name="annee" (click)="selectProvince($event)">
+                <option value="" disabled selected>Province</option>
+                <option *ngFor="let province of provinces" value="{{province}}">{{province}}</option>
+            </select>
+            <select class="browser-default select-an z-depth-1" [disabled]="!localites" name="annee">
+                <option value="" disabled selected>Localite</option>
+                <option *ngFor="let localite of localites" value="{{localite}}">{{localite}}</option>
+            </select>
+        </div>
+        <div class="tableau">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Site</th>
+                        <th>Region</th>
+                        <th>Province</th>
+                        <th>Ville</th>
+                        <th>Date de mesures</th>
+                        <th>Moyenne Spatial</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let detail of detailsMesure">
+                        <td>{{detail.nomSite}}</td>
+                        <td>{{detail.region}}</td>
+                        <td>{{detail.province}}</td>
+                        <td>{{detail.localite}}</td>
+                        <td>{{detail.dateMesure|date:'shortDate':'fr-FR'}}</td>
+                        <td>{{detail.moyenneSpatiale}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- <div class="carte z-depth-2">
+        
+    </div> -->
+    <!-- <div class="container-ville z-depth-2">
+        <div class="ville z-depth-2">
+            Bobo-Dioulasso
+        </div>
+        <div class="valeur-ville">
+            <p>- Nombre de ville</p>
+            <p>- Nombre de mesures (annee 2023)</p>
+        </div>   
+    </div> -->
+    <!-- <div class="row">
+        <div class="col s2 m5" *ngFor="let ville of villes ">
+            <div class="container-ville z-depth-2 ">
+                <a class="blue-effect blue darken-1 btn-small z-depth-2 action-ville">{{ville.Ville}}</a>
+                <div class="valeur-ville">
+                    <p>- Nombre de site : {{ville.nbrSite}}</p>
+                    <p>- Nombre de mesure : {{ville.nbrMesure}}</p>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    <!-- <div class="container-ville z-depth-2">
+        <a class="blue-effect blue darken-1 btn-small z-depth-2 action-ville">Voir</a>
+        <div class="valeur-ville">
+            <p> Bobo-Dioulasso</p>
+            <p>- Nombre de sites</p>
+            <p>- Nombre de mesures (annee 2023)</p>
+        </div>
+    </div>
+
+    <div class="container-ville z-depth-2">
+        <a class="blue-effect blue darken-1 btn-small z-depth-2 action-ville">Voir</a>
+        <div class="valeur-ville">
+            <p style="font-weight: bold;"> Bobo-Dioulasso</p>
+            <p>- Nombre de sites</p>
+            <p>- Nombre de mesures (annee 2023)</p>
+        </div>
+    </div> -->
+</section>

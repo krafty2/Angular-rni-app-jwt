@@ -1,0 +1,227 @@
+
+
+/*================SVG=====================*/
+.sidebar .toogle .svg-toogle{
+    fill: var(--sidebar-color) !important;
+    height: 24px;
+    width: 24px;
+}
+
+ .menu-svg{
+    fill: var(--text-color);
+    height: 20px;
+    width: 20px;
+}
+/*===========Resuable css==============*/
+.sidebar .text{
+    font-size: 16px;
+    font-weight: 500;
+    color:var(--text-color);
+    transition: var(--trans-04);
+    white-space: nowrap;
+}
+
+.sidebar .image{
+    min-width: 60px;
+    margin-right:10px ;
+    display: flex;
+    align-items: center;   
+}
+/*============sidebar================*/
+.sidebar{
+    font-family: Open_Sans_Light;
+    position: fixed;
+    border-right: 1px solid #d81b60;
+    top:0;
+    left:0;
+    height: 100%;
+    width: 280px;
+    padding: 10px 14px;
+    background:var(--sidebar-color);
+    transition: var(--trans-02);
+    z-index: 100;
+}
+
+.sidebar.close{
+    width: 90px;
+}
+
+.sidebar.close header .toogle{
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.sidebar.close .text{
+    transition: var(--trans-02);
+    display: none;
+    opacity: 0;
+}
+
+.sidebar .section-text{
+    color: var(--section-text-color);
+}
+
+.sidebar li a .icons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    font-size: 20px;
+}
+
+.sidebar li a .text{
+    color: var(--text-color);
+}
+
+
+.sidebar li a:hover .menu-svg{
+    fill: var(--sidebar-color);
+}
+
+.sidebar li a:hover .text{
+    color: var(--sidebar-color);
+}
+
+.sidebar li a{
+    height: 50px;
+    margin-top: 10px;
+    list-style: none;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: var(--trans-02);
+}
+
+.sidebar li a:hover{
+    border-radius: 10px;
+    box-shadow: 1px 2px 5px #424242  ;
+    background: var(--primary-color);
+}
+
+.sidebar header{
+    position: relative;
+}
+
+.sidebar header .image-text{
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .image-text img{
+    width: 60px;
+    border-radius: 6px;
+}
+
+header .image-text .header-text{
+    display: flex;
+    flex-direction: column;
+}
+
+.header-text .name{
+    font-weight: 600;
+}
+
+.header-text .profession{
+    margin-top: -2px;
+}
+
+.sidebar header .toogle{
+    position: absolute;
+    top: 50%;
+    right: -25px;
+    transform: translateY(-50%);
+    height: 25px;
+    width: 25px;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--trans-02);
+}
+
+.sidebar .menu{
+    margin-top: 35px;
+}
+
+.bottom-content {
+    list-style: none;
+}
+
+.sidebar .menu-bar{
+    
+    height: calc(100% - 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-bar .mode{
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: var(--primary-color-light);
+    border-radius: 6px;
+}
+
+.menu-bar .mode .moon-sun{
+    height: 50px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.menu-bar .mode svg{
+    position: absolute;
+    transition: var(--trans-02);
+}
+
+.menu-bar .mode svg.sun{
+    opacity: 1;
+}
+
+.menu-bar .mode svg.moon{
+    opacity: 0;
+}
+
+
+.menu-bar .mode .switch-mode{
+    display: flex;
+    align-items: center;
+}
+
+.menu-bar .mode .toogle-switch{
+    position: absolute;
+    height: 40px;
+    right: 0;
+    min-width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: var(--primary-color-light);
+}
+
+.toogle-switch .switch{
+    position: relative;
+    height: 22px;
+    width: 44px;
+    background: var(--toogle-color);
+    border-radius: 25px;
+}
+
+.switch::before{
+    content: '';
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background: var(--sidebar-color);
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: var(--trans-03);
+}

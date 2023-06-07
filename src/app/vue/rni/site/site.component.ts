@@ -133,6 +133,11 @@ export class SiteComponent {
   }
 
   //Envoie de mesure pour mise a jour
+  /**
+   * 
+   * @param site 
+   * @param mesure 
+   */
   joindreRapport(site: Site, mesure: Mesure) {
     this.site = site;
     this.mesure = mesure;
@@ -145,6 +150,9 @@ export class SiteComponent {
     instance.close();
   }
 
+  /**
+   * 
+   */
   modal() {
     var elems = document.querySelectorAll('.modal');
     if (typeof elems !== undefined && elems !== null) {
