@@ -43,4 +43,10 @@ export class SlideBarComponent implements OnInit {
     });
   }
 
+  logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('userProfile');
+    window.location.href="/"
+  }
+
 }

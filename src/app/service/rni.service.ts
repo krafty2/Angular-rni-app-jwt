@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SiteMesure } from '../models/site-mesure';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, catchError, forkJoin, map, merge, of } from 'rxjs';
+import { Observable, catchError, debounceTime, forkJoin, map, merge, of } from 'rxjs';
 
 import { Router } from '@angular/router';
 import { Ville } from '../models/ville';
@@ -88,8 +88,8 @@ export class RniService {
    * 
    * @returns {Ville} retourne toute les ville
    */
-  lesVilles(): Observable<Ville> {
-    return this.httpClient.get<Ville>(`${this.villes}`);
+  lesVilles(): Observable<Object> {
+    return this.httpClient.get<Object>(`${this.villes}`);
   }
 
   //========================================travaux admin partie

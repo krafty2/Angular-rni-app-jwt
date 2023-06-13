@@ -7,26 +7,45 @@
     font-weight: normal;
 }
 
-*{  
+@font-face {
+    font-family: RubikDirt-Regular;
+    src: url(/assets/fonts/Rubik_Dirt/RubikDirt-Regular.ttf);
+    font-weight: normal;
+}
+@font-face {
+    font-family: RubikWetPaint-Regular;
+    src: url(/assets/fonts/Rubik_Wet_Paint/RubikWetPaint-Regular.ttf);
+}
+
+@font-face {
+    font-family: Roboto-Regular;
+    src: url(/assets/fonts/Roboto/Roboto-Regular.ttf);
+}
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root{
+:root {
     /*=============colors=====================*/
-    --body-color:#E0E0E0;
-    --sidebar-color:#fff;
-    --primary-color:#1976d2 ;
+    --body-color: #E0E0E0;
+    --sidebar-color: #fff;
+    --primary-color: #1976d2;
     --primary-color-light: #eceff1;
-    --toogle-color:#DDD;
-    --text-color:#707070;
-    --section-text-color:#000;
+    --toogle-color: #DDD;
+    --text-color: #707070;
+    --section-text-color: #000;
     /*============transition===============*/
-    --trans-02:all 0.2s ease;
-    --trans-03:all 0.3s ease;
-    --trans-04:all 0.4s ease;
-    --trans-05:all 0.5s ease;
+    --trans-02: all 0.2s ease;
+    --trans-03: all 0.3s ease;
+    --trans-04: all 0.4s ease;
+    --trans-05: all 0.5s ease;
+}
+
+button{
+    cursor: pointer;
 }
 
 .my-div-icon .my-text {
@@ -44,12 +63,12 @@
 }
 
 .icon .text {
-     /* background-image: radial-gradient(circle,#e64a19, #f4511e,#fbe9e7 );  */
+    /* background-image: radial-gradient(circle,#e64a19, #f4511e,#fbe9e7 );  */
     /* background-color: #4895ef; */
     /* background-image:  radial-gradient(circle, hsla(294, 100%, 55%, 1) 38%, hsla(197, 100%, 63%, 1) 46%, hsla(230, 100%, 74%, 1) 60%); */
     background-color: #FFA62B;
     text-align: center;
-   /*  line-height: 50px; */
+    /*  line-height: 50px; */
     font-size: 12px;
     /* padding: 16px; */
     /* padding: 0.65rem 0.48rem 0.65rem 0.48rem; */
@@ -58,35 +77,35 @@
     /* border-radius: 50%; */
 }
 
- .baliseLeaflet{
+.baliseLeaflet {
     /* visibility: hidden; */
     display: none;
 }
 
-.section-text{
+.section-text {
     color: var(--section-text-color);
 }
 
 
-body{
+body {
     height: 100vh;
     background: var(--body-color);
     transition: var(--trans-02);
 }
 
-body.dark{
+body.dark {
     --body-color: #212529;
-    --sidebar-color:#212529 ;
-    --primary-color:#fff ;
+    --sidebar-color: #212529;
+    --primary-color: #fff;
     --primary-color-light: #546e7a;
-    --toogle-color:#DDD;
-    --text-color:#fff;
-    --section-text-color:white;
+    --toogle-color: #DDD;
+    --text-color: #fff;
+    --section-text-color: white;
 }
 
 /*===============dark mode===============*/
 
-body.dark .switch::before{
+body.dark .switch::before {
     left: 23px;
 }
 
@@ -136,3 +155,37 @@ body.dark .sidebar .menu-bar .mode svg.sun{
     text-align: center;
 } */
 
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/*------------leaflet personnalisation--------------------------------------*/
+
+.ville-marker-style {
+    background: #0082e6;
+    border-radius: 50%;
+    width: 40px;
+    color: white;
+    height: 40px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.ville-marker-style :hover {
+    background: #d81b60;
+    border-radius: 50%;
+    width: 40px;
+    color: white;
+    height: 40px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}

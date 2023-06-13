@@ -1,0 +1,90 @@
+@font-face {
+    font-family: Roboto-Regular;
+    src: url(/assets/fonts/Roboto/Roboto-Regular.ttf);
+}
+
+.contient {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: #fafafa;
+}
+
+.element-centre {
+    position: absolute;
+    width: 700px;
+    height: 500px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 2%;
+}
+
+.box1 {
+    border-radius: 1%;
+    background-color: #424242  ;
+    width: 350px;
+    height: 500px;
+}
+
+h5 {
+    font-family: Roboto-Regular;
+    font-size: 26px;
+    position: absolute;
+    text-transform: uppercase;
+    margin: 0;
+    left: 67px;
+    top: 240px;
+    /* text-align: center; */
+    color: white;
+}
+
+.box2 {
+    position: absolute;
+    background: white;
+    width: 370px;
+    height: 360px;
+    top: 65px;
+    left: 330px;
+    border-radius: 2%;
+}
+
+.pas-de-compte {
+    margin: 10px;
+    text-align: center;
+}
+
+.decor {
+    margin: 5px 50px 0 60px;
+    width: 250px;
+    height: 10px;
+}
+
+/* label focus color
+input[type=text]:not(.browser-default):focus:not([readonly])+label{
+    color: #5e35b1  ;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]){
+    border-bottom: 1px solid #5e35b1  ;
+     box-shadow: 0 1px 0 0 #5e35b1  ;
+  } */
+
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width{
+    width: calc(100% - 35px);
+    
+  }
+
+.btn-style{
+    width: calc(100% - 35px);
+}

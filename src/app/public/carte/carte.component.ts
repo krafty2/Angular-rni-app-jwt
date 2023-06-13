@@ -8,7 +8,7 @@ import * as L from 'leaflet';
 import { Ville } from 'src/app/models/ville';
 import { formatDate } from '@angular/common';
 import * as saveAs from 'file-saver';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-carte',
@@ -27,9 +27,9 @@ export class CarteComponent implements OnInit {
   localite!: any;
   annee!: any;
 
-  siteMesure: SiteMesure[] = [];
-  lieu: Site = new Site;
-  mesure: Mesure = new Mesure;
+  siteMesure!: any;
+  lieu!: any;
+  mesure!: any;
   nomRapport!: string;
   idMesure!: number;
 
@@ -40,13 +40,26 @@ export class CarteComponent implements OnInit {
   role: boolean = false;
   villes: any;
 
+  annees: any;
+  regions: any;
+  provinces: any;
+  localites: any;
+
   constructor(private rniService: RniService, private router: Router) { }
-  ngOnInit(): void {
-    this.rniService.lesVilles().subscribe((results) => {
-      this.villes = results;
-      this.rniService.dataMap().subscribe(data => {
-        this.mapM(data);
-      });
+
+  ngOnInit() {
+
+    this.verify$.subscribe();
+
+    forkJoin([this.rniService.lesVilles(),
+    this.rniService.dataMap(),
+    this.rniService.annees(),
+    this.rniService.lesRegions()
+    ]).subscribe(([data1, data2, data3,data4]) => {
+      this.villes = data1;
+      this.mapM(data2);
+      this.annees = data3;
+      this.regions=data4;
     });
   }
 
@@ -116,9 +129,11 @@ export class CarteComponent implements OnInit {
 
     serchControl.addTo(this.map);
 
+    console.log(this.siteMesure)
     //affiche les villes sur la carte
-    this.villes.forEach((_ville: Ville) => {
-      let nbMesure = this.siteMesure.filter(el => el.ville === _ville.ville).length;
+    this.villes.forEach((_ville: any) => {
+      let nbMesure = this.siteMesure.filter(
+        (el: any) => el.localite === _ville.localite).length;
       if (nbMesure != 0) {
         let mark = this.markerVille(_ville.latitudeV, _ville.longitudeV, nbMesure);
         shelterVilleMarkers.addLayer(mark);
@@ -153,7 +168,7 @@ export class CarteComponent implements OnInit {
 
     //place les points sur la carte
 
-    this.siteMesure.forEach((_results) => {
+    this.siteMesure.forEach((_results: any) => {
       let div = this.divPopup(_results);
       this.mark = L.marker([_results.latitude, _results.longitude], { icon: iconMesure });
       let popup = this.mark.bindPopup(div);
@@ -207,7 +222,9 @@ export class CarteComponent implements OnInit {
    */
   htmlIconeVille(nb: number) {
     return `
-      <a class="btn-floating btn text pulse">${nb}</a>
+    <div class="mat-elevation-z2 ville-marker-style">
+    <a style="text-decoration: none;color: white;">${nb}</a>
+    </div>
     `;
   }
 
@@ -261,6 +278,18 @@ export class CarteComponent implements OnInit {
     return div;
   }
 
+  verify$ = new Observable(()=>{
+    let role = "INVITE";
+    let storage = localStorage.getItem('userProfile');
+    let userP;
+    if(storage){
+      userP = JSON.parse(storage);
+    }
+     if(userP.scope.includes(role)){
+      this.role = true
+     }
+  })
+
 
   /**
    * 
@@ -312,4 +341,48 @@ export class CarteComponent implements OnInit {
       test.style.color = 'orange';
     })
   });
+
+  selectAnnee(e: any) {
+    console.log(e);
+    this.annee=e;
+  }
+
+  selectRegion(e: any) {
+    this.localites = null;
+   
+    this.region=e;
+    //this.toutLesRegions$.subscribe(x=>console.log(x))
+    //console.log(this.searchTerm.value.region)
+    //this.provinces$.pipe(debounceTime(5000)).subscribe(x=>console.log(x))
+    this.rniService.lesProvinces(e).subscribe(x => {
+
+      this.provinces = x;
+    });
+  }
+
+  selectProvince(e: any) {
+    
+    this.province = e;
+    // this.rniService.lesLocalites(e.target.value).subscribe((data)=>{
+    //   this.localites=data;
+    //   console.log(this.localites)
+    // })
+
+    this.rniService.lesLocalites(e).subscribe((data) => {
+      this.localites = data;
+      console.log(this.localites)
+    })
+  }
+
+  selectLocalite(e:any){
+    this.localite=e;
+  }
+
+  searchTerm(){
+    console.log(this.annee + " " + this.region + " " + this.province + " " + this.localite);
+    if (this.region && this.province && this.localite && this.annee)
+      this.rniService.rechercheAvance1(this.annee, this.region, this.province, this.localite).subscribe((data: any) => {
+        this.mapM(data);
+      })
+  }
 }

@@ -1,0 +1,41 @@
+
+.section-style{
+    background: white;
+    
+    position: absolute;
+    width: 630px;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;   
+    border-radius: 2px;
+}
+
+.form-style{
+    margin-top: 60px;
+    padding: 10px;
+}
+
+.form-container mat-form-field + mat-form-field{
+    margin-left: 10px;
+}
+
+.form-container{
+    width: 100%;
+    
+}
+
+.input-style{
+    width: 300px;
+}
+
+.email-style{
+    width: 100%;
+}
+
+.btn-style{
+    border: none;
+    width: 100%;
+}

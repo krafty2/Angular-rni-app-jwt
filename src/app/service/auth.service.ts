@@ -56,6 +56,7 @@ export class AuthService {
 
     this.isLoggedIn = true;
     localStorage.setItem('userProfile',JSON.stringify(this.userProfile));
+    window.sessionStorage.setItem('user',JSON.stringify(this.userProfile))
   }
 
   public refreshToken(refreshToken:string){

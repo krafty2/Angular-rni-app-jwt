@@ -60,6 +60,10 @@
     color: var(--section-text-color);
 }
 
+.sidebar li{
+    list-style: none;
+}
+
 .sidebar li a .icons{
     display: flex;
     align-items: center;

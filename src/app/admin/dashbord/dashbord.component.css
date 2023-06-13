@@ -1,8 +1,5 @@
-.home h4 {
-    margin: 0;
-}
-
 .home {
+    font-family: Roboto-Regular;
     position: relative;
     height: 100vh;
     left: 88px;
@@ -13,6 +10,12 @@
     padding: 10px;
 }
 
+.home h4 {
+    margin: 0;
+    font-size: 34px;
+    margin: 0 0 15px 0;
+}
+
 .home .text {
     color: var(--text-color);
 }
@@ -20,20 +23,24 @@
 .dash {
     width: 500px;
     margin: 0 0 35px 10px;
-   
+
 }
 
 
-.container-mesure{
-    
+.container-mesure {
+
     margin: 10px;
 }
 
-.select-an{
-    background: #1E88E5;
-    color: white;
+/* option[value=""][disabled] {
+    display: none;
+  } */
+
+.select-an {
+    background: white;
+    color: #1E88E5;
     height: 30px;
-    width: 90px;
+    width: 110px;
     border-radius: 3px;
     border: none;
     margin: 0 5px 5px 0;
@@ -103,15 +110,182 @@ td {
     width: calc(100%-224px);
 }
 
-#filtres{
+#filtres {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
- .rni-file{
-     position: absolute;
+.tableTest {
+    overflow: scroll;
+    height: 200px;
+}
+
+.form-field-container mat-form-field+mat-form-field {
+    margin-left: 10px;
+}
+
+/*-------------fenetre modal-------------------------*/
+
+.rni-btn {
+    position: absolute;
     right: 20px;
     top: 15px;
-    
+}
+
+.modal-open {
+
+    font-size: 14px;
+    padding: 10px 16px;
+    background: #07A0C3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
+
+.modal-open:hover {
+    background: #DD1C1A;
+}
+
+.modal-header h4 {
+    margin: 0;
+    font-size: 34px;
+    margin: 0 0 15px 0;
+}
+
+.modal-header p {
+    font-size: 12px;
+    margin: 0 0 50px 0;
+}
+
+.btn {
+    border: none;
+    padding: 8px 14px;
+    border-radius: 2px;
+}
+
+.btn:disabled {
+    box-shadow: none;
+    color: #000;
+    background: #fafafa;
+    opacity: 0.8;
+}
+
+.btn-rni {
+    margin: 18px 0 10px 0;
+    background: #DD1C1A;
+    color: #fff;
+    width: 150px;
+    font-size: 14px;
+
+}
+
+.btn-input-file {
+    background: #01579b;
+    color: white;
+    padding: 14px 14px;
+    width: auto;
+    font-family: Roboto-Regular;
+    font-size: 16px;
+}
+
+.input-fileInput {
+    position: relative;
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
+    height: 44px;
+    margin-left: 5px;
+    margin-top: 35px;
+    width: calc(100% - 255px);
+    border: none;
+    border-bottom: 2px solid black;
+}
+
+.btn-input-file:hover {
+    background: #039be5;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #333333d3;
+    z-index: 101;
+    display: none;
+    animation: modal-open .60s;
+}
+
+.modal-content {
+    position: relative;
+    background: #fff;
+    margin-top: 100px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+
+    border-radius: 4px;
+    z-index: 4;
+}
+
+.modal-header {
+    font-weight: 500;
+    padding: 8px 24px;
+    font-size: 26px;
+}
+
+.modal-header .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    padding: 3px 8px;
+    border: 0;
+    outline: 0;
+    background: #fb8500;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 8px 24px;
+}
+
+.modal-footer {
+    position: relative;
+    padding: 8px 24px;
+    display: block;
+    border-top: 1px solid black;
+}
+
+.modal-footer .modal-close {
+    position: relative;
+    top: 0;
+    left: calc(100% - 65px);
+    padding: 14px 14px;
+    font-family: Roboto-Regular;
+    font-size: 16px;
+    width: auto;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    background: #880e4f;
+    color: #fff;
+    cursor: pointer;
+
+}
+
+@keyframes modal-open {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }

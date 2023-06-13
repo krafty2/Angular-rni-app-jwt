@@ -1162,7 +1162,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <code>siteMesure:     <code>any[]</code>
+                            <code>siteMesure:     <code>any</code>
     </bcode>
                         </td>
                     </tr>
@@ -1245,9 +1245,9 @@ export class CarteComponent implements OnInit {
   localite!: any;
   annee!: any;
 
-  siteMesure: SiteMesure[] &#x3D; [];
-  lieu: Site &#x3D; new Site;
-  mesure: Mesure &#x3D; new Mesure;
+  siteMesure: any;
+  lieu: any;
+  mesure: any;
   nomRapport!: string;
   idMesure!: number;
 
@@ -1261,6 +1261,7 @@ export class CarteComponent implements OnInit {
   constructor(private rniService: RniService, private router: Router) { }
   ngOnInit(): void {
     this.rniService.lesVilles().subscribe((results) &#x3D;&gt; {
+      console.log(results)
       this.villes &#x3D; results;
       this.rniService.dataMap().subscribe(data &#x3D;&gt; {
         this.mapM(data);
@@ -1277,8 +1278,6 @@ export class CarteComponent implements OnInit {
   mapM(data: any) {
 
     this.siteMesure &#x3D; data;
-
-
     /**
      * regroupe les groupes entre eux
      */
@@ -1335,12 +1334,13 @@ export class CarteComponent implements OnInit {
     serchControl.addTo(this.map);
 
     //affiche les villes sur la carte
-    this.villes.forEach((_ville: Ville) &#x3D;&gt; {
-      let nbMesure &#x3D; this.siteMesure.filter(el &#x3D;&gt; el.ville &#x3D;&#x3D;&#x3D; _ville.ville).length;
-      if (nbMesure !&#x3D; 0) {
+    this.villes.forEach((_ville: any) &#x3D;&gt; {
+      
+      let nbMesure &#x3D; this.siteMesure.filter((el:any) &#x3D;&gt; el.localite&#x3D;&#x3D;&#x3D;_ville.localite).length;
+      console.log(nbMesure)
         let mark &#x3D; this.markerVille(_ville.latitudeV, _ville.longitudeV, nbMesure);
         shelterVilleMarkers.addLayer(mark);
-      }
+      
     });
 
     this.map.addLayer(shelterVilleMarkers);
@@ -1371,7 +1371,7 @@ export class CarteComponent implements OnInit {
 
     //place les points sur la carte
 
-    this.siteMesure.forEach((_results) &#x3D;&gt; {
+    this.siteMesure.forEach((_results:any) &#x3D;&gt; {
       let div &#x3D; this.divPopup(_results);
       this.mark &#x3D; L.marker([_results.latitude, _results.longitude], { icon: iconMesure });
       let popup &#x3D; this.mark.bindPopup(div);
@@ -1455,7 +1455,7 @@ export class CarteComponent implements OnInit {
    * @param {result} un des resultats provenant de la requete recuperant toute les information concernant une mesure
    * @returns {div} creer pour generer le popup d&#x27;un marker de mesure
    */
-  divPopup(result: SiteMesure) {
+  divPopup(result: any) {
     let div &#x3D; L.DomUtil.create(&#x27;div&#x27;, &#x27;card-panel grey lighten-4&#x27;);
     div.innerHTML &#x3D; &#x60;
       &lt;span class&#x3D;&quot;baliseLeaflet&quot;&gt;*${result.idMesure}*&lt;/span&gt;
@@ -1463,7 +1463,7 @@ export class CarteComponent implements OnInit {
       &lt;strong class&#x3D;&quot;test&quot;&gt;Site : ${result.nomSite}&lt;/strong&gt;
       &lt;p&gt;Region : ${result.region}&lt;/p&gt;
       &lt;p&gt;Province : ${result.province}&lt;/p&gt;
-      &lt;p&gt;Localite : ${result.ville}&lt;/p&gt;
+      &lt;p&gt;Localite : ${result.localite}&lt;/p&gt;
       &lt;p&gt;Mesure réalise le : ${formatDate(result.dateMesure, &#x27;dd/MM/yyyy&#x27;, &#x27;en-US&#x27;)}&lt;/p&gt;
       &lt;p class&#x3D;&quot;light-blue darken-1 white-text z-depth-2 center&quot; style&#x3D;&quot;padding: 5px;&quot; &gt;Moyenne spatiale recupérée : ${result.moyenneSpatiale}  EV/m&lt;/p&gt;
 

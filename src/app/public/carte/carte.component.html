@@ -1,10 +1,50 @@
-
+<app-nav-bar></app-nav-bar>
 <section>
-    <section class=" bordure-div z-depth-2" id="map"></section>
+    <div class="form-field-container">
+        <div class="search-zone mat-elevation-z2" >
+            <div class="search-container">
+                <mat-form-field style="height: 70px;">
+                    <mat-label>Choisit une annee</mat-label>
+                    <mat-select (selectionChange)="selectAnnee($event.value)"> 
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let an of annees" value="{{an}}">{{an}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+    
+                <mat-form-field style="height: 70px;">
+                    <mat-label>Choisit une Region</mat-label>
+                    <mat-select name="region" (selectionChange)="selectRegion($event.value)">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let region of regions" value="{{region}}">{{region}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+    
+                <mat-form-field style="height: 70px;">
+                    <mat-label>Choisit une province</mat-label>
+                    <mat-select (selectionChange)="selectProvince($event.value)">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let province of provinces" value="{{province}}">{{province}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+    
+                <mat-form-field style="height: 70px;">
+                    <mat-label>Choisit une Localite</mat-label>
+                    <mat-select (selectionChange)="selectLocalite($event.value)">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let localite of localites" value="{{localite}}">{{localite}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+    
+                <button class="btn search-btn mat-elevation-z2" type="submit" (click)="searchTerm()">Rechercher</button>
+            </div>
+        </div>
+    </div>
+    <section class=" bordure-div " id="map"></section>
+    <!-------------------se trouve au niveau de la map mais sera supprime avec le----------------->
     <ng-template #searchForm>
         <section>
-            <input type="checkbox" id="check">
-            <label for="check" class="checkbtn z-depth-5"> <i class="Tiny material-icons"
+            <input type="checkbox" id="check-search">
+            <label for="check-search" class="check-btn-search z-depth-5"> <i class="Tiny material-icons"
                     style="color: black;background: white;">search</i></label>
             <form class="formulaireDisplay" id="leaflet-form" #search="ngForm" (ngSubmit)="zoneDeRecherche()">
                 <div class="white z-depth-3">
@@ -61,3 +101,10 @@
     </ng-template>
 
 </section>
+
+<div href="" style="background:#303f9f   ;
+border-radius:50%;
+width:40px;
+color: white;
+height:40px;
+align-items: center;display: flex;justify-content: center;"><a style="text-decoration: none;">200</a></div>

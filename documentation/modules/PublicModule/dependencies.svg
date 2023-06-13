@@ -24,10 +24,6 @@
 <title>cluster_PublicModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 903,-268 903,-70 8,-70"/>
 </g>
-<g id="clust6" class="cluster">
-<title>cluster_PublicModule_exports</title>
-<polygon fill="none" stroke="black" points="428,-208 428,-260 560,-260 560,-208 428,-208"/>
-</g>
 <g id="clust2" class="cluster">
 <title>cluster_PublicModule_declarations</title>
 <polygon fill="none" stroke="black" points="627,-78 627,-130 895,-130 895,-78 627,-78"/>
@@ -35,6 +31,10 @@
 <g id="clust5" class="cluster">
 <title>cluster_PublicModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 619,-130 619,-78 16,-78"/>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_PublicModule_exports</title>
+<polygon fill="none" stroke="black" points="428,-208 428,-260 560,-260 560,-208 428,-208"/>
 </g>
 <!-- NavbarComponent -->
 <g id="node1" class="node">

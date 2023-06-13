@@ -485,6 +485,7 @@ import { SlideBarComponent } from &#x27;./slide-bar/slide-bar.component&#x27;;
 import { DashbordComponent } from &#x27;./dashbord/dashbord.component&#x27;;
 import { Router, RouterModule, Routes } from &#x27;@angular/router&#x27;;
 import { PublicModule } from &#x27;../public/public.module&#x27;;
+import { FormsModule, ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
 
 
 
@@ -500,7 +501,9 @@ const adminRoutes: Routes &#x3D; [
   imports: [
     CommonModule,
     PublicModule,
-    RouterModule.forChild(adminRoutes)
+    RouterModule.forChild(adminRoutes),
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

@@ -1,0 +1,108 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+/*
+#0082e6; 
+*/
+div{
+    background: #37474f    ;
+    height: 70px;
+    width: 100%;
+   /*  box-shadow: 1px 2px 3px rgb(214, 214, 214); */
+    z-index: 100;
+}
+
+label.logo{
+    font-family: RubikWetPaint-Regular;
+    color: #fff;
+    font-size: 30px;
+    line-height: 70px;
+    padding: 0 70px;
+}
+
+div ul{
+    float: right;
+    margin-right: 20px;
+    right: 25px;
+}
+
+div ul li{
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 10px;
+}
+
+div li a{
+    font-family:RubikDirt-Regular;
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+div ul li a:hover{
+  color: #0082e6;
+}
+
+.checkbtn{
+    display: none;
+    font-size: 30px;
+    color: white;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+}
+
+#check{
+    display: none;
+}
+
+@media(max-width:952px){
+    label.logo{
+        font-size: 30px;
+        padding-left: 50px;
+    }
+
+    div ul li a{
+        font-size: 16px;
+    }
+}
+
+@media(max-width:858px){
+    .checkbtn{
+        display: block;
+    }
+
+    ul{
+        position: fixed;
+        width: 100%;
+        height: 90px;
+        background: #2c3e50;
+        top: 70px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+        z-index: 99;
+    }
+
+    div ul li{
+        display: inline-block;
+    }
+
+    div ul li a{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        font-size: 16px;
+    }
+
+    #check:checked~ul{
+        left: 0;
+        transition: all 0.1s ease;
+    }
+}

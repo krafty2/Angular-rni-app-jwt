@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/service/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,9 @@ export class LoginComponent {
   loginFormGroup! : FormGroup;
   idToken : any;
   errorMessage :any;
+
+  role:any;
+  admin:boolean=false;
 
   constructor(private fb:FormBuilder,private authService:AuthService,private router:Router){}
   ngOnInit(): void {
@@ -30,11 +34,28 @@ export class LoginComponent {
       next: response => {
         this.idToken = response;
         this.authService.authenticateUser(this.idToken);
-        this.router.navigateByUrl("/sites");
+        this.verify$.subscribe();
+        if(this.admin){
+          this.router.navigateByUrl("/dash");
+        } else{
+          this.router.navigateByUrl("/carte");
+        }
       },
       error :err => {
         this.errorMessage = err.error.errorMessage;
       }
     })
   }
+
+  verify$ = new Observable(()=>{
+    let role = "ADMIN";
+    let storage = localStorage.getItem('userProfile');
+    let userP;
+    if(storage){
+      userP = JSON.parse(storage);
+    }
+     if(userP.scope.includes(role)){
+      this.admin = true
+     }
+  })
 }

@@ -122,7 +122,8 @@ export class MapComponent implements OnInit {
 
     //affiche les villes sur la carte
     this.villes.forEach((_ville: Ville) => {
-      let nbMesure = this.siteMesure.filter(el => el.ville === _ville.ville).length;
+      let nbMesure = this.siteMesure.filter(
+        el => el.ville === _ville.ville).length;
       if (nbMesure != 0) {
         let mark = this.markerVille(_ville.latitudeV, _ville.longitudeV, nbMesure);
         shelterVilleMarkers.addLayer(mark);
