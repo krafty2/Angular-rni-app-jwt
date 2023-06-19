@@ -62,13 +62,10 @@
                                 id="xs-modules-links"
                             >
                                 <li class="link">
-                                    <a href="../modules/AdminModule.html" >AdminModule</a>
-                                </li>
-                                <li class="link">
                                     <a href="../modules/AppModule.html" >AppModule</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../modules/PublicModule.html" >PublicModule</a>
+                                    <a href="../modules/AppRoutingModule.html" >AppRoutingModule</a>
                                 </li>
                         </ul>
                     </li>
@@ -94,16 +91,22 @@
                                     <a href="../components/DashbordComponent.html" >DashbordComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/GestionSiteComponent.html" >GestionSiteComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/LoginComponent.html" >LoginComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/MapComponent.html" >MapComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/NavbarComponent.html" >NavbarComponent</a>
+                                    <a href="../components/NavBarComponent.html" >NavBarComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/NavbarComponent.html" >NavbarComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/RegisterComponent.html" >RegisterComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/RegistrationComponent.html" >RegistrationComponent</a>
@@ -189,7 +192,16 @@
                                 id="xs-interfaces-links"
                             >
                                 <li class="link">
+                                    <a href="../interfaces/PeriodicElement.html" >PeriodicElement</a>
+                                </li>
+                                <li class="link">
                                     <a href="../interfaces/ProfilUtilisateur.html" >ProfilUtilisateur</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/SitesDetail.html" >SitesDetail</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/SitesElement.html" >SitesElement</a>
                                 </li>
                         </ul>
                     </li>
@@ -262,13 +274,10 @@
                                        id="modules-links"
                    >
                                        <li class="link">
-                                           <a href="../modules/AdminModule.html" >AdminModule</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../modules/AppModule.html" >AppModule</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../modules/PublicModule.html" >PublicModule</a>
+                                           <a href="../modules/AppRoutingModule.html" >AppRoutingModule</a>
                                        </li>
                                </ul>
                            </li>
@@ -294,16 +303,22 @@
                                            <a href="../components/DashbordComponent.html" >DashbordComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/GestionSiteComponent.html" >GestionSiteComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/LoginComponent.html" >LoginComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/MapComponent.html" >MapComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/NavbarComponent.html" >NavbarComponent</a>
+                                           <a href="../components/NavBarComponent.html" >NavBarComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/NavbarComponent.html" >NavbarComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/RegisterComponent.html" >RegisterComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/RegistrationComponent.html" >RegistrationComponent</a>
@@ -389,7 +404,16 @@
                                        id="interfaces-links"
                    >
                                        <li class="link">
+                                           <a href="../interfaces/PeriodicElement.html" >PeriodicElement</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../interfaces/ProfilUtilisateur.html" >ProfilUtilisateur</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/SitesDetail.html" >SitesDetail</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/SitesElement.html" >SitesElement</a>
                                        </li>
                                </ul>
                            </li>
@@ -484,6 +508,33 @@
 
 
 
+    <section>
+        <h3 id="methods">Methods</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> logout</b>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+    <code>logout()</code>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description">
+                                    <b>Returns: </b>    <code>void</code>
+    
+                                </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
 
 </div>
         <div class="tab-pane fade tab-source-code" id="source">
@@ -530,6 +581,12 @@ export class SlideBarComponent implements OnInit {
     searchBtn?.addEventListener(&quot;click&quot;, () &#x3D;&gt; {
       sidebar?.classList.remove(&quot;close&quot;);
     });
+  }
+
+  logout(){
+    localStorage.removeItem(&#x27;token&#x27;);
+    localStorage.removeItem(&#x27;userProfile&#x27;);
+    window.location.href&#x3D;&quot;/&quot;
   }
 
 }

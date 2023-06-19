@@ -22,7 +22,18 @@ export class JwtInterceptor implements HttpInterceptor {
     if (token != null && !url.includes("/public")) {
       authReq = this.addTokenHeader(req, token);
     } 
-    return next.handle(authReq);
+    return next.handle(authReq).pipe(
+      catchError(
+        error=>{
+          if( error.status==401 && error instanceof HttpErrorResponse && !authReq.url.includes('/public')){
+            this.authService.clear()
+            window.location.href="/"
+          }
+           throw 'error in source. Details: ' ;
+        }
+       
+      )
+    );
   }
 
   // private handleRefreshToken(request: HttpRequest<any>, next: HttpHandler) {

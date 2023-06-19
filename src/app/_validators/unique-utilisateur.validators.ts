@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AbstractControl, AsyncValidator, ValidationErrors } from "@angular/forms";
 import { Observable, map } from "rxjs";
-import { AuthService } from "../service/auth.service";
+import { AuthService } from "../_service/auth.service";
 
 @Injectable()
 export class UniqueUtilisateurValidators implements AsyncValidator {

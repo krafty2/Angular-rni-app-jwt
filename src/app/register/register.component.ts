@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../service/auth.service';
-import { UniqueUtilisateurValidators } from '../validators/unique-utilisateur.validators';
+import { AuthService } from '../_service/auth.service';
+import { UniqueUtilisateurValidators } from '../_validators/unique-utilisateur.validators';
 import { Router } from '@angular/router';
-import { passwordMatchValidators } from '../validators/password.match.validators';
+import { passwordMatchValidators } from '../_validators/password.match.validators';
 import { Observable } from 'rxjs';
 
 @Component({

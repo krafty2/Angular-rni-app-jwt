@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { SiteMesure } from '../models/site-mesure';
+import { SiteMesure } from '../_models/site-mesure';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, catchError, debounceTime, forkJoin, map, merge, of } from 'rxjs';
 
 import { Router } from '@angular/router';
-import { Ville } from '../models/ville';
+import { Ville } from '../_models/ville';
 
 @Injectable({
   providedIn: 'root'
@@ -21,12 +21,17 @@ export class RniService {
   private mapRequestUrl = "http://localhost:8080/public/mapRni";
   private villes = "http://localhost:8080/public/villes";
 
-  private detailVilles = "http://localhost:8080/public/requestVille";
-  private detailsMesureAn = "http://localhost:8080/public/details-mesure";
-  private lesAnneesMesures = "http://localhost:8080/public/annees-mesure";
-  private regions = "http://localhost:8080/public/regions";
-  private provinces = "http://localhost:8080/public/provinces";
-  private localites = "http://localhost:8080/public/localites";
+  private rni="http://localhost:8080/rni";
+
+  private detailVilles = this.rni+"/requestVille";
+  private detailsMesureAn =this.rni+"/details-mesure";
+  private lesAnneesMesures =this.rni+ "/annees-mesure";
+  private regions =this.rni+ "/regions";
+  private provinces =this.rni + "/provinces";
+  private localites =this.rni + "/localites";
+  private detailSite=this.rni + "/sites";
+  private fichiersRni=this.rni + "/fichiers-rni";
+  private supprimerFichierRni=this.rni + "/delete-file"
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
@@ -51,8 +56,8 @@ export class RniService {
   }
 
   //affiche les details d'un lieu
-  trouverLieu(id: number): Observable<SiteMesure[]> {
-    return this.httpClient.get<SiteMesure[]>(`${this.detailSiteUrl}/${id}`);
+  trouverLieu(id: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.detailSiteUrl}/${id}`);
   }
 
   //affiche les details d'un lieu en fonction de la recherche effectue
@@ -101,19 +106,31 @@ export class RniService {
     return this.httpClient.get<any>(this.detailsMesureAn+"?annee="+annee);
   }
 
-  annees():Observable<any>{
+  req_annees():Observable<any>{
     return this.httpClient.get<any>(`${this.lesAnneesMesures}`);
   }
 
-  lesRegions():Observable<any>{
+  req_regions():Observable<any>{
     return this.httpClient.get<any>(this.regions);
   }
 
-  lesProvinces(region:string):Observable<any>{
+  req_provinces(region:string):Observable<any>{
     return this.httpClient.get<any>(this.provinces+"?region="+region);
   }
 
-  lesLocalites(province:string):Observable<any>{
+  req_localites(province:string):Observable<any>{
     return this.httpClient.get<any>(this.localites+"?province="+province)
+  }
+
+  req_sites():Observable<any>{
+    return this.httpClient.get<any>(this.detailSite);
+  }
+
+  req_fichiers_rni():Observable<any>{
+    return this.httpClient.get<any>(this.fichiersRni);
+  }
+
+  req_supp_fichiers_rni(id:number):Observable<any>{
+    return this.httpClient.delete<any>(this.supprimerFichierRni+"?idFile="+id)
   }
 }

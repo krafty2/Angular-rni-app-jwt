@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ProfilUtilisateur } from '../models/profil-utilisateur';
+import { ProfilUtilisateur } from '../_models/profil-utilisateur';
 import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -75,6 +75,11 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('userProfile');
     window.location.href="/"
+  }
+
+  clear(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('userProfile');
   }
 
   isAuthenticated() {

@@ -2,13 +2,13 @@ import { formatDate } from '@angular/common';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import * as L from 'leaflet';
-import { Mesure } from 'src/app/models/mesure';
-import { Site } from 'src/app/models/site';
-import { SiteMesure } from 'src/app/models/site-mesure';
-import { RniService } from 'src/app/service/rni.service';
+import { Mesure } from 'src/app/_models/mesure';
+import { Site } from 'src/app/_models/site';
+import { SiteMesure } from 'src/app/_models/site-mesure';
+import { RniService } from 'src/app/_service/rni.service';
 import { saveAs } from 'file-saver';
 import { Observable, forkJoin, merge, mergeAll } from 'rxjs';
-import { Ville } from 'src/app/models/ville';
+import { Ville } from 'src/app/_models/ville';
 import { Target } from '@angular/compiler';
 
 @Component({

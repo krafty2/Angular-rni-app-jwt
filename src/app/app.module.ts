@@ -10,7 +10,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './vue/navbar/navbar.component';
-import { JwtInterceptor } from './service/jwt-interceptor.interceptor';
+import { JwtInterceptor } from './_service/jwt-interceptor.interceptor';
 import { RegistrationComponent } from './vue/registration/registration.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -26,6 +26,9 @@ import { MatTableModule } from '@angular/material/table';
 import { CarteComponent } from './public/carte/carte.component';
 import { NavBarComponent } from './public/nav-bar/nav-bar.component';
 import {MatSelectModule} from '@angular/material/select';
+import { GestionSiteComponent } from './admin/gestion-site/gestion-site.component';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogModule} from '@angular/material/dialog';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,8 @@ import {MatSelectModule} from '@angular/material/select';
     LoginComponent,
     RegistrationComponent,
     RegisterComponent,
-    NavBarComponent
+    NavBarComponent,
+    GestionSiteComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,7 @@ import {MatSelectModule} from '@angular/material/select';
     NgxPaginationModule,
     BrowserAnimationsModule, MatPaginatorModule, MatGridListModule,
     MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule,
-    MatSelectModule
+    MatSelectModule,MatDialogModule,MatCardModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]

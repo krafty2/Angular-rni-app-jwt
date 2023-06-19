@@ -1,0 +1,172 @@
+<app-slide-bar></app-slide-bar>
+<section class="home">
+
+  <h4 style="margin-bottom: 25px;">Gestion de sites et mesures</h4>
+  <div class="rni-site-tab mat-elevation-z2">
+    <table mat-table [dataSource]="myDataArray" class="tab" matSort>
+      <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- nomSite Column -->
+      <ng-container matColumnDef="nomSite">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef mat-sort-header="nomSite"> Site </th>
+        <td mat-cell *matCellDef="let element"> {{element.nomSite}} </td>
+      </ng-container>
+
+      <!-- Region Column -->
+      <ng-container matColumnDef="region">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by region"> Region
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.region}} </td>
+      </ng-container>
+
+      <!-- Province Column -->
+      <ng-container matColumnDef="province">
+        <th mat-header-cell *matHeaderCellDef> Province
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.province}} </td>
+      </ng-container>
+      <!-- Localite Column -->
+      <ng-container matColumnDef="localite">
+        <th mat-header-cell *matHeaderCellDef> Localite
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.localite}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> action
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <button data-modal="modal1" (click)="openModal($event,element.idSite)"
+            class="rni-btn modal-open action-btn btn mat-elevation-z2">Afficher</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+
+    <!-------------------------#modal----------------------------->
+    <div id="modal1" class="modal">
+      <div class="modal-content mat-elevation-z8">
+
+        <div class="modal-header">
+          <h4>Site</h4>
+          <button class="icon modal-close">X</button>
+        </div>
+
+        <div class="modal-body detail-site">
+          <mat-card>
+            <mat-card-content>
+              <h3>Site: {{site.nomSite}}</h3>
+              <p>Mesure</p>
+              <table mat-table [dataSource]="dataMesureArray">
+                <!-- nomSite Column -->
+                <ng-container matColumnDef="longitude">
+                  <th mat-header-cell *matHeaderCellDef> Longitude </th>
+                  <td mat-cell *matCellDef="let element"> {{element.longitude}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="latitude">
+                  <th mat-header-cell *matHeaderCellDef> Latitude </th>
+                  <td mat-cell *matCellDef="let element"> {{element.latitude}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="date-mesure">
+                  <th mat-header-cell *matHeaderCellDef> D.mesure </th>
+                  <td mat-cell *matCellDef="let element"> {{element.dateMesure|date:'shortDate':'fr-FR'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="moyenne-spatiale">
+                  <th mat-header-cell *matHeaderCellDef> Vm </th>
+                  <td mat-cell *matCellDef="let element"> {{element.moyenneSpatiale}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="action">
+                  <th mat-header-cell *matHeaderCellDef> Action </th>
+                  <td mat-cell *matCellDef="let element"> <button data-modal="modal2" class="btn"
+                      (click)="modalRapport($event,element.idMesure)">ajouter rapport</button> </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="colums"></tr>
+                <tr mat-row *matRowDef="let row; columns: colums;"></tr>
+              </table>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="modal-footer">
+          <button class="link modal-close mat-elevation-z2">fermer</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-------------------------#modal 2----------------------------->
+    <div id="modal2" class="modal">
+      <div class="modal-content mat-elevation-z8">
+
+        <div class="modal-header">
+          <h2>{{site.nomSite}}</h2>
+          <button class="icon modal-close">X</button>
+        </div>
+
+        <div class="modal-body">
+          <mat-card>
+            <mat-card-content *ngFor="let mesure of mesure">
+              <p>
+                Veuillez joindre le rapport de la mesure realise
+                le {{mesure.dateMesure|date:'shortDate':'fr-FR'}}
+                pres de {{site.nomSite}}
+              </p>
+            </mat-card-content>
+          </mat-card>
+
+          <form class="formRniExcel" [formGroup]="rapportForm" (ngSubmit)="onSubmit2(mesure)">
+            <div>
+              <div style="width: auto;height: auto; z-index: 50;">
+                <button class="btn btn-input-file mat-elevation-z2" (click)="fileInput.click()">Fichier</button>
+                <input class="input-fileInput" (click)="fileInput.click()" readonly="false" type="text"
+                  value="{{nomFichier}}">
+                <!--boutton de soumission-->
+
+              </div>
+              <input hidden type="file" accept="application/pdf" id="rapport" formControlName="rapport" #fileInput
+                (change)="onFileSelected($event)">
+            </div>
+
+
+            <!--boutton de soumission-->
+            <button class="btn btn-rni mat-elevation-z2" type="submit" name="action">Importer
+            </button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="link modal-close mat-elevation-z2">fermer</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <h4 style="margin-top: 35px;margin-bottom: 25px;">Fichier Rni Charge</h4>
+
+ 
+
+  <div style="display: flex; margin: 10px 0; flex-wrap: wrap;" *ngIf="fichierRni else loading">
+    <div *ngFor="let fichier of fichierRni" class="mat-elevation-z4"
+      style="background: #fff; margin: 0 10px 10px 0; width: 25%;border-radius: 6px;padding: 10px;">
+      <p>Nom du fichier : {{fichier.nomFichier}}</p>
+      <p> Date de transfert : {{fichier.dateDeTransfert}}</p>
+      <button (click)="supprimerFichier(fichier.id)" class="btn mat-elevation-z2" style=" background: #1e88e5 ;color: #fff;">Supprimer Fichier</button>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <div>Aucun Fichier Rni Charge</div>
+   </ng-template>
+  <!-- <button data-modal="modal1"
+            class="rni-btn modal-open action-btn btn mat-elevation-z2">Afficher</button> -->
+</section>

@@ -1,13 +1,15 @@
 <app-slide-bar class="test"></app-slide-bar>
 
 <section class="home">
-    <div class="section-text dash">
-        <h4>Rni Tableau de bord</h4>
-        <p>Supervision des mesures</p>
+    <div class="graphique mat-elevation-z2">
         <div>
+            <h4>Rni Tableau de bord</h4>
+            <p>Supervision des mesures</p>
+
             <button data-modal="modal1" (click)="modal()" class="rni-btn modal-open mat-elevation-z2">
                 Charger fichier excel
             </button>
+
             <!-------------------------#modal----------------------------->
             <div id="modal1" class="modal">
                 <div class="modal-content mat-elevation-z8">
@@ -24,7 +26,7 @@
                                 <div style="width: auto;height: auto;">
                                     <button class="btn btn-input-file mat-elevation-z2"
                                         (click)="fileInput.click()">Fichier</button>
-                                    <input class="input-fileInput" type="text" value="{{nomFichier}}">
+                                    <input class="input-fileInput" (click)="fileInput.click()" type="text" value="{{nomFichier}}">
                                     <!--boutton de soumission-->
                                     <button class="btn btn-rni mat-elevation-z2" [disabled]="!excelImportForm.valid"
                                         type="submit" name="action">Importer
@@ -58,103 +60,10 @@
 
             </div>
         </div>
+        <canvas id="myChart"></canvas>
     </div>
 
-    <div class="container-mesure section-text">
-        <!-- <form id="filtres" [formGroup]="searchTerm">
-            <select class="browser-default select-an z-depth-1" (change)="selectAnnee($event)" formControlName="annee">
-                <option value="null" disabled selected>Annee</option>
-                <option *ngFor="let an of annee" value="{{an}}" selected>{{an}}</option>
-            </select>
-
-            <select class="browser-default select-an z-depth-1" formControlName="region"
-                (change)="selectRegion($event)">
-                <option value="null" disabled selected="selected">Region</option>
-                <option *ngFor="let region of regions" ngValue="{{region}}" selected>{{region}}</option>
-            </select>
-
-            <select class="browser-default select-an z-depth-1" formControlName="province">
-                <option value="null" disabled selected>Province</option>
-
-            </select>
-
-            <select class="browser-default select-an z-depth-1" [disabled]="!localites" formControlName="localite">
-                <option value="null" disabled selected>Localite</option>
-                <option *ngFor="let localite of localites" value="{{localite}}">{{localite}}</option>
-            </select>
-        </form> -->
-
-        <!-- <div class="tableau">
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Site</th>
-                        <th>Region</th>
-                        <th>Province</th>
-                        <th>Ville</th>
-                        <th>Date de mesures</th>
-                        <th>Moyenne Spatial</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr *ngFor="let detail of detailsMesure">
-                        <td>{{detail.nomSite}}</td>
-                        <td>{{detail.region}}</td>
-                        <td>{{detail.province}}</td>
-                        <td>{{detail.localite}}</td>
-                        <td>{{detail.dateMesure|date:'shortDate':'fr-FR'}}</td>
-                        <td>{{detail.moyenneSpatiale}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div> -->
-    </div>
-
-    <!-- <div class="carte z-depth-2">
-        
-    </div> -->
-    <!-- <div class="container-ville z-depth-2">
-        <div class="ville z-depth-2">
-            Bobo-Dioulasso
-        </div>
-        <div class="valeur-ville">
-            <p>- Nombre de ville</p>
-            <p>- Nombre de mesures (annee 2023)</p>
-        </div>   
-    </div> -->
-    <!-- <div class="row">
-        <div class="col s2 m5" *ngFor="let ville of villes ">
-            <div class="container-ville z-depth-2 ">
-                <a class="blue-effect blue darken-1 btn-small z-depth-2 action-ville">{{ville.Ville}}</a>
-                <div class="valeur-ville">
-                    <p>- Nombre de site : {{ville.nbrSite}}</p>
-                    <p>- Nombre de mesure : {{ville.nbrMesure}}</p>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-
-    <!-- <div class="container-ville z-depth-2">
-        <a class="blue-effect blue darken-1 btn-small z-depth-2 action-ville">Voir</a>
-        <div class="valeur-ville">
-            <p> Bobo-Dioulasso</p>
-            <p>- Nombre de sites</p>
-            <p>- Nombre de mesures (annee 2023)</p>
-        </div>
-    </div>
-
-    <div class="container-ville z-depth-2">
-        <a class="blue-effect blue darken-1 btn-small z-depth-2 action-ville">Voir</a>
-        <div class="valeur-ville">
-            <p style="font-weight: bold;"> Bobo-Dioulasso</p>
-            <p>- Nombre de sites</p>
-            <p>- Nombre de mesures (annee 2023)</p>
-        </div>
-    </div> -->
-    <div>
+    <div class="rni-tab-zone mat-elevation-z2">
         <div class="form-field-container">
             <mat-form-field>
                 <mat-label>Choisit une annee</mat-label>
@@ -188,52 +97,46 @@
                 </mat-select>
             </mat-form-field>
         </div>
-
-
-
-
-
-    </div>
-
-    <div>
+        <!--------------------------------------------------------------------------------------------------->
         <table mat-table [dataSource]="myDataArray" matSort (matSortChange)="announceSortChange($event)"
-            class="mat-elevation-z4" style="width: 250px;background: none;">
-
+            class="tab">
             <!--- Note that these columns can be defined in any order.
                   The actual rendered columns are set as a property on the row definition" -->
 
-            <!-- Name Column -->
+            <!-- nomSite Column -->
             <ng-container matColumnDef="nomSite">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header="nomSite"> Site </th>
                 <td mat-cell *matCellDef="let element"> {{element.nomSite}} </td>
             </ng-container>
 
-            <!-- Weight Column -->
+            <!-- Region Column -->
             <ng-container matColumnDef="region">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by region"> Region
                 </th>
                 <td mat-cell *matCellDef="let element"> {{element.region}} </td>
             </ng-container>
 
-            <!-- Symbol Column -->
+            <!-- Province Column -->
             <ng-container matColumnDef="province">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by province"> Province
                 </th>
                 <td mat-cell *matCellDef="let element"> {{element.province}} </td>
             </ng-container>
-
+            <!-- Localite Column -->
             <ng-container matColumnDef="localite">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by localite"> Localite
                 </th>
                 <td mat-cell *matCellDef="let element"> {{element.localite}} </td>
             </ng-container>
 
+            <!-- Date de mesure Column -->
             <ng-container matColumnDef="dateMesure">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by dateMesure"> Date
                     de mesure </th>
                 <td mat-cell *matCellDef="let element"> {{element.dateMesure|date:'shortDate':'fr-FR'}} </td>
             </ng-container>
 
+            <!-- Moyenne Spatiale Column -->
             <ng-container matColumnDef="moyenneSpatiale">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by moyenneSpatiale">
                     Moyenne Spatiale </th>
@@ -250,5 +153,5 @@
     </div>
 
     <!---------------------entrainement chart.js---------------------->
-    <canvas id="myChart"></canvas>
+
 </section>

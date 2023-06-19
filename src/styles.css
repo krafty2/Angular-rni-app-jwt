@@ -8,6 +8,11 @@
 }
 
 @font-face {
+    font-family: Almarai;
+    src: url(/assets/fonts/Almarai/Almarai-Regular.ttf);
+}
+
+@font-face {
     font-family: RubikDirt-Regular;
     src: url(/assets/fonts/Rubik_Dirt/RubikDirt-Regular.ttf);
     font-weight: normal;
@@ -189,3 +194,63 @@ body {
     display: flex;
     justify-content: center;
 }
+
+.card-panel{
+    opacity: 1;
+    border-radius: 2px;
+    background: #fff;
+    padding: 5px;
+    color: #000;
+    font-family: Open_Sans_Light;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .card-panel p{
+    margin: 0;
+    padding: 5px;
+    background: #001219;
+    
+    color: #fff;
+    border: 1px solid #fff;
+
+  }
+
+  .rni-site{
+    font-size: 18px;
+    font-weight: 500;
+    font-family: Roboto-Regular;
+    background: linear-gradient(
+        to right,
+        #424242  2%,
+        #fff 2%
+    ) ;
+    color: #011627;
+    padding: 5px;
+    margin-bottom: 15px;
+  }
+  /*
+  #FDFFFC,
+  #FF9F1C
+  #2a9d8f 
+  #fffffc 
+  */
+  .leaflet-popup-content-wrapper{
+    background: linear-gradient(
+        to right,
+        #00bbf9   35%,
+        #fff 35%
+    );
+    color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+  }
+
+  .leaflet-container a.leaflet-popup-close-button {
+    color: #000;
+  }
+
+  .leaflet-container a.leaflet-popup-close-button:hover{
+    color: #d81b60;
+  }
+

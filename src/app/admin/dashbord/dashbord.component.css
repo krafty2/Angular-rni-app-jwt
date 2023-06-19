@@ -10,10 +10,37 @@
     padding: 10px;
 }
 
-.home h4 {
-    margin: 0;
+h4 {
+    padding: 10px;
+    margin: auto;
     font-size: 34px;
+    font-weight: 800;
     margin: 0 0 15px 0;
+}
+
+p{
+    padding: 10px;
+}
+
+/*-----------chart.js-------------*/
+.graphique{
+    position: relative;
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+    border-radius: 6px;
+    /* left: 900px; */
+    background: #fff;
+    width: calc(100% - 350px);
+    height: 400px;
+    margin-bottom: 15px;
+}
+
+.rni-tab-zone{
+    padding: 10px;
+    background: #fff;
+    border-radius: 6px;
+    width: calc(100% - 50px);
 }
 
 .home .text {
@@ -46,16 +73,9 @@
     margin: 0 5px 5px 0;
 }
 
-.tableau {
-    margin-top: 10px;
-    padding: 10px;
-    height: 350px;
-    overflow: hidden;
-    overflow: scroll;
-    /* border-right: 1px solid #000; */
-    border-left: 1px solid #000;
-    border-top: 1px solid #000;
-    border-radius: 6px;
+.tab {
+    font-size: 14px;
+    font-weight: 600;
 }
 
 th,
@@ -128,9 +148,13 @@ td {
 /*-------------fenetre modal-------------------------*/
 
 .rni-btn {
-    position: absolute;
-    right: 20px;
-    top: 15px;
+    position: relative;
+    right: 0;
+    font-size: 16px;
+    top: 60%;
+    left: 5px;
+    text-align: center;
+    padding: 12px 14px;
 }
 
 .modal-open {
@@ -289,3 +313,4 @@ td {
         opacity: 1;
     }
 }
+

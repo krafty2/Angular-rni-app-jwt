@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, NG_ASYNC_VALIDATORS, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
-import { AuthService } from 'src/app/service/auth.service';
-import { passwordMatch } from 'src/app/validators/password-match.validators.directive';
-import { passwordMatchValidators } from 'src/app/validators/password.match.validators';
-import { valueMatchValidator } from 'src/app/validators/test.validators';
-import { UniqueUtilisateurValidators } from 'src/app/validators/unique-utilisateur.validators';
+import { AuthService } from 'src/app/_service/auth.service';
+import { passwordMatch } from 'src/app/_validators/password-match.validators.directive';
+import { passwordMatchValidators } from 'src/app/_validators/password.match.validators';
+import { valueMatchValidator } from 'src/app/_validators/test.validators';
+import { UniqueUtilisateurValidators } from 'src/app/_validators/unique-utilisateur.validators';
 
 @Component({
   selector: 'app-registration',

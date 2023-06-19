@@ -9,7 +9,7 @@ import { Chart, registerables } from 'chart.js';
 import { LinearScale } from 'chart.js/dist';
 
 import { Observable, debounceTime, forkJoin, map } from 'rxjs';
-import { RniService } from 'src/app/service/rni.service';
+import { RniService } from 'src/app/_service/rni.service';
 Chart.register(...registerables);
 
 declare var M: any;
@@ -24,7 +24,7 @@ export class DashbordComponent implements AfterViewInit {
   displayedColumns: string[] = ['nomSite', 'region', 'province', 'localite', 'dateMesure', 'moyenneSpatiale'];
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
-  @ViewChild(MatSort)
+  @ViewChild(MatSort,{static: false})
   sort!: MatSort;
 
   selected = 'option2';
@@ -68,7 +68,7 @@ export class DashbordComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     //this.myDataArray.paginator = this.paginator;
     this.chartExemple()
-    forkJoin([this.rniService.annees(), this.rniService.lesRegions()]).subscribe(
+    forkJoin([this.rniService.req_annees(), this.rniService.req_regions()]).subscribe(
       (([data1, data2]) => {
         this.annee = data1;
         this.rniService.detailsMesures(this.annee[0]).subscribe((data) => {
@@ -114,7 +114,7 @@ export class DashbordComponent implements AfterViewInit {
     //this.toutLesRegions$.subscribe(x=>console.log(x))
     //console.log(this.searchTerm.value.region)
     //this.provinces$.pipe(debounceTime(5000)).subscribe(x=>console.log(x))
-    this.rniService.lesProvinces(e).subscribe(x => {
+    this.rniService.req_provinces(e).subscribe(x => {
 
       this.provinces = x;
     });
@@ -127,7 +127,7 @@ export class DashbordComponent implements AfterViewInit {
     //   console.log(this.localites)
     // })
 
-    this.rniService.lesLocalites(e).subscribe((data) => {
+    this.rniService.req_localites(e).subscribe((data) => {
       this.localites = data;
       console.log(this.localites)
     })
@@ -223,24 +223,26 @@ export class DashbordComponent implements AfterViewInit {
 
   chartExemple(){
     const ctx = document.getElementById('myChart') as HTMLCanvasElement;
-
+    
     if(ctx){
       new Chart(ctx, {
-        type: 'line',
+        type: 'doughnut',
         data: {
-          labels: ['Ouaga', 'Bobo', 'koudougou', 'Ouahigouya', 'Ziniare', 'Tenkodogo'],
+          labels: ['Ouagadougou', 'Bobo-Dioulasso', 'Koudougou', 'Ouahigouya', 'Ziniare', 'Tenkodogo'],
           datasets: [{
             label: '# nombre de mesure',
             data: [93, 42, 24, 13, 14, 12],
             backgroundColor:[
-              "red","yellow","blue"
+              "#039be5 ","#546e7a","#43a047","#d81b60","#8e24aa","#00acc1"
             ],
-            
+            hoverOffset:5,
             borderWidth: 2
           }]
         },
         options: {
+        
           scales: {
+            
             y: {
               beginAtZero: true
             }

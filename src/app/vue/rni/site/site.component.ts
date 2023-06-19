@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Mesure } from 'src/app/models/mesure';
-import { Site } from 'src/app/models/site';
-import { SiteMesure } from 'src/app/models/site-mesure';
-import { RniService } from 'src/app/service/rni.service';
+import { Mesure } from 'src/app/_models/mesure';
+import { Site } from 'src/app/_models/site';
+import { SiteMesure } from 'src/app/_models/site-mesure';
+import { RniService } from 'src/app/_service/rni.service';
 
 declare var M: any
 @Component({

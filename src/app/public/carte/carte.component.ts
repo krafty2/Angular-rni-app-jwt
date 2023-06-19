@@ -1,11 +1,11 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Mesure } from 'src/app/models/mesure';
-import { Site } from 'src/app/models/site';
-import { SiteMesure } from 'src/app/models/site-mesure';
-import { RniService } from 'src/app/service/rni.service';
+import { Mesure } from 'src/app/_models/mesure';
+import { Site } from 'src/app/_models/site';
+import { SiteMesure } from 'src/app/_models/site-mesure';
+import { RniService } from 'src/app/_service/rni.service';
 import * as L from 'leaflet';
-import { Ville } from 'src/app/models/ville';
+import { Ville } from 'src/app/_models/ville';
 import { formatDate } from '@angular/common';
 import * as saveAs from 'file-saver';
 import { Observable, forkJoin } from 'rxjs';
@@ -53,8 +53,8 @@ export class CarteComponent implements OnInit {
 
     forkJoin([this.rniService.lesVilles(),
     this.rniService.dataMap(),
-    this.rniService.annees(),
-    this.rniService.lesRegions()
+    this.rniService.req_annees(),
+    this.rniService.req_regions()
     ]).subscribe(([data1, data2, data3,data4]) => {
       this.villes = data1;
       this.mapM(data2);
@@ -70,9 +70,8 @@ export class CarteComponent implements OnInit {
    * charge tout les elements de la carte
    */
   mapM(data: any) {
-
-    this.siteMesure = data;
-
+    console.log(data)
+    data.length!==0? this.siteMesure = data:this.siteMesure=undefined;
 
     /**
      * regroupe les groupes entre eux
@@ -171,7 +170,7 @@ export class CarteComponent implements OnInit {
     this.siteMesure.forEach((_results: any) => {
       let div = this.divPopup(_results);
       this.mark = L.marker([_results.latitude, _results.longitude], { icon: iconMesure });
-      let popup = this.mark.bindPopup(div);
+      let popup = this.mark.bindPopup(div,{maxWidth: 500,minWidth:400});
       shelterMarkers.addLayer(popup);
       //popup.addTo(this.map);
       this.mark.bindTooltip(`${_results.moyenneSpatiale}`, { permanent: false }).openTooltip();
@@ -254,17 +253,19 @@ export class CarteComponent implements OnInit {
    * @param {result} un des resultats provenant de la requete recuperant toute les information concernant une mesure
    * @returns {div} creer pour generer le popup d'un marker de mesure
    */
-  divPopup(result: SiteMesure) {
-    let div = L.DomUtil.create('div', 'card-panel grey lighten-4');
+  divPopup(result: any) {
+    let div = L.DomUtil.create('div', 'card-panel mat-elevation-z4');
     div.innerHTML = `
-      <span class="baliseLeaflet">*${result.idMesure}*</span>
+      
+      <span class="baliseLeaflet">*${result.idMesure}*</span> 
       <span class="baliseLeaflet">~${result.nomRapport}~</span>
-      <strong class="test">Site : ${result.nomSite}</strong>
+      
+      <p> Site : ${result.nomSite}</p>
       <p>Region : ${result.region}</p>
       <p>Province : ${result.province}</p>
-      <p>Localite : ${result.ville}</p>
+      <p>Localite : ${result.localite}</p>
       <p>Mesure réalise le : ${formatDate(result.dateMesure, 'dd/MM/yyyy', 'en-US')}</p>
-      <p class="light-blue darken-1 white-text z-depth-2 center" style="padding: 5px;" >Moyenne spatiale recupérée : ${result.moyenneSpatiale}  EV/m</p>
+      <p>Moyenne spatiale recupérée : ${result.moyenneSpatiale}  EV/m</p>
 
       <script>
         var test = document.getElementsByClassName('.test');
@@ -337,8 +338,8 @@ export class CarteComponent implements OnInit {
       console.log(this.nomRapport);
       this.idMesure = nb;
 
-      var test = document.querySelector('.test') as HTMLElement;
-      test.style.color = 'orange';
+      /* var test = document.querySelector('.test') as HTMLElement;
+      test.style.color = 'orange'; */
     })
   });
 
@@ -354,7 +355,7 @@ export class CarteComponent implements OnInit {
     //this.toutLesRegions$.subscribe(x=>console.log(x))
     //console.log(this.searchTerm.value.region)
     //this.provinces$.pipe(debounceTime(5000)).subscribe(x=>console.log(x))
-    this.rniService.lesProvinces(e).subscribe(x => {
+    this.rniService.req_provinces(e).subscribe(x => {
 
       this.provinces = x;
     });
@@ -368,7 +369,7 @@ export class CarteComponent implements OnInit {
     //   console.log(this.localites)
     // })
 
-    this.rniService.lesLocalites(e).subscribe((data) => {
+    this.rniService.req_localites(e).subscribe((data) => {
       this.localites = data;
       console.log(this.localites)
     })
@@ -382,6 +383,7 @@ export class CarteComponent implements OnInit {
     console.log(this.annee + " " + this.region + " " + this.province + " " + this.localite);
     if (this.region && this.province && this.localite && this.annee)
       this.rniService.rechercheAvance1(this.annee, this.region, this.province, this.localite).subscribe((data: any) => {
+        console.log(data)
         this.mapM(data);
       })
   }

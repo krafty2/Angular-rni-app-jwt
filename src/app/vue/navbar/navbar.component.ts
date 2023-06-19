@@ -1,7 +1,7 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/service/auth.service';
+import { AuthService } from 'src/app/_service/auth.service';
 
 declare var M:any;
 @Component({

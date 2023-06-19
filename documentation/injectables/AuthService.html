@@ -62,13 +62,10 @@
                                 id="xs-modules-links"
                             >
                                 <li class="link">
-                                    <a href="../modules/AdminModule.html" >AdminModule</a>
-                                </li>
-                                <li class="link">
                                     <a href="../modules/AppModule.html" >AppModule</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../modules/PublicModule.html" >PublicModule</a>
+                                    <a href="../modules/AppRoutingModule.html" >AppRoutingModule</a>
                                 </li>
                         </ul>
                     </li>
@@ -94,16 +91,22 @@
                                     <a href="../components/DashbordComponent.html" >DashbordComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/GestionSiteComponent.html" >GestionSiteComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/LoginComponent.html" >LoginComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/MapComponent.html" >MapComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/NavbarComponent.html" >NavbarComponent</a>
+                                    <a href="../components/NavBarComponent.html" >NavBarComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/NavbarComponent.html" >NavbarComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/RegisterComponent.html" >RegisterComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/RegistrationComponent.html" >RegistrationComponent</a>
@@ -189,7 +192,16 @@
                                 id="xs-interfaces-links"
                             >
                                 <li class="link">
+                                    <a href="../interfaces/PeriodicElement.html" >PeriodicElement</a>
+                                </li>
+                                <li class="link">
                                     <a href="../interfaces/ProfilUtilisateur.html" >ProfilUtilisateur</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/SitesDetail.html" >SitesDetail</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/SitesElement.html" >SitesElement</a>
                                 </li>
                         </ul>
                     </li>
@@ -262,13 +274,10 @@
                                        id="modules-links"
                    >
                                        <li class="link">
-                                           <a href="../modules/AdminModule.html" >AdminModule</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../modules/AppModule.html" >AppModule</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../modules/PublicModule.html" >PublicModule</a>
+                                           <a href="../modules/AppRoutingModule.html" >AppRoutingModule</a>
                                        </li>
                                </ul>
                            </li>
@@ -294,16 +303,22 @@
                                            <a href="../components/DashbordComponent.html" >DashbordComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/GestionSiteComponent.html" >GestionSiteComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/LoginComponent.html" >LoginComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/MapComponent.html" >MapComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/NavbarComponent.html" >NavbarComponent</a>
+                                           <a href="../components/NavBarComponent.html" >NavBarComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/NavbarComponent.html" >NavbarComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/RegisterComponent.html" >RegisterComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/RegistrationComponent.html" >RegistrationComponent</a>
@@ -389,7 +404,16 @@
                                        id="interfaces-links"
                    >
                                        <li class="link">
+                                           <a href="../interfaces/PeriodicElement.html" >PeriodicElement</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../interfaces/ProfilUtilisateur.html" >ProfilUtilisateur</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/SitesDetail.html" >SitesDetail</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/SitesElement.html" >SitesElement</a>
                                        </li>
                                </ul>
                            </li>
@@ -440,7 +464,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/service/auth.service.ts</code>
+            <code>src/app/_service/auth.service.ts</code>
         </p>
 
 
@@ -552,6 +576,30 @@
                             <tr>
                                 <td class="col-md-4">
             <code>logout()</code>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+                                        <div class="io-description">
+                                            <b>Returns: </b>    <code>void</code>
+            
+                                        </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-4">
+                                    <b> clear</b>
+                                </td>
+                            </tr>
+            
+                            <tr>
+                                <td class="col-md-4">
+            <code>clear()</code>
                                 </td>
                             </tr>
             
@@ -1018,7 +1066,7 @@
     <div class="tab-pane fade tab-source-code" id="source">
         <pre><code class="hljs javascript">import { HttpClient, HttpHeaders, HttpParams } from &#x27;@angular/common/http&#x27;;
 import { Injectable } from &#x27;@angular/core&#x27;;
-import { ProfilUtilisateur } from &#x27;../models/profil-utilisateur&#x27;;
+import { ProfilUtilisateur } from &#x27;../_models/profil-utilisateur&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
 import { JwtHelperService } from &#x27;@auth0/angular-jwt&#x27;;
 
@@ -1074,6 +1122,7 @@ export class AuthService {
 
     this.isLoggedIn &#x3D; true;
     localStorage.setItem(&#x27;userProfile&#x27;,JSON.stringify(this.userProfile));
+    window.sessionStorage.setItem(&#x27;user&#x27;,JSON.stringify(this.userProfile))
   }
 
   public refreshToken(refreshToken:string){
@@ -1092,6 +1141,11 @@ export class AuthService {
     localStorage.removeItem(&#x27;token&#x27;);
     localStorage.removeItem(&#x27;userProfile&#x27;);
     window.location.href&#x3D;&quot;/&quot;
+  }
+
+  clear(){
+    localStorage.removeItem(&#x27;token&#x27;);
+    localStorage.removeItem(&#x27;userProfile&#x27;);
   }
 
   isAuthenticated() {

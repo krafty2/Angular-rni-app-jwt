@@ -62,13 +62,10 @@
                                 id="xs-modules-links"
                             >
                                 <li class="link">
-                                    <a href="../modules/AdminModule.html" >AdminModule</a>
-                                </li>
-                                <li class="link">
                                     <a href="../modules/AppModule.html" >AppModule</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../modules/PublicModule.html" >PublicModule</a>
+                                    <a href="../modules/AppRoutingModule.html" >AppRoutingModule</a>
                                 </li>
                         </ul>
                     </li>
@@ -94,16 +91,22 @@
                                     <a href="../components/DashbordComponent.html" >DashbordComponent</a>
                                 </li>
                                 <li class="link">
+                                    <a href="../components/GestionSiteComponent.html" >GestionSiteComponent</a>
+                                </li>
+                                <li class="link">
                                     <a href="../components/LoginComponent.html"  class="active" >LoginComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/MapComponent.html" >MapComponent</a>
                                 </li>
                                 <li class="link">
-                                    <a href="../components/NavbarComponent.html" >NavbarComponent</a>
+                                    <a href="../components/NavBarComponent.html" >NavBarComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/NavbarComponent.html" >NavbarComponent</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../components/RegisterComponent.html" >RegisterComponent</a>
                                 </li>
                                 <li class="link">
                                     <a href="../components/RegistrationComponent.html" >RegistrationComponent</a>
@@ -189,7 +192,16 @@
                                 id="xs-interfaces-links"
                             >
                                 <li class="link">
+                                    <a href="../interfaces/PeriodicElement.html" >PeriodicElement</a>
+                                </li>
+                                <li class="link">
                                     <a href="../interfaces/ProfilUtilisateur.html" >ProfilUtilisateur</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/SitesDetail.html" >SitesDetail</a>
+                                </li>
+                                <li class="link">
+                                    <a href="../interfaces/SitesElement.html" >SitesElement</a>
                                 </li>
                         </ul>
                     </li>
@@ -262,13 +274,10 @@
                                        id="modules-links"
                    >
                                        <li class="link">
-                                           <a href="../modules/AdminModule.html" >AdminModule</a>
-                                       </li>
-                                       <li class="link">
                                            <a href="../modules/AppModule.html" >AppModule</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../modules/PublicModule.html" >PublicModule</a>
+                                           <a href="../modules/AppRoutingModule.html" >AppRoutingModule</a>
                                        </li>
                                </ul>
                            </li>
@@ -294,16 +303,22 @@
                                            <a href="../components/DashbordComponent.html" >DashbordComponent</a>
                                        </li>
                                        <li class="link">
+                                           <a href="../components/GestionSiteComponent.html" >GestionSiteComponent</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../components/LoginComponent.html"  class="active" >LoginComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/MapComponent.html" >MapComponent</a>
                                        </li>
                                        <li class="link">
-                                           <a href="../components/NavbarComponent.html" >NavbarComponent</a>
+                                           <a href="../components/NavBarComponent.html" >NavBarComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/NavbarComponent.html" >NavbarComponent</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../components/RegisterComponent.html" >RegisterComponent</a>
                                        </li>
                                        <li class="link">
                                            <a href="../components/RegistrationComponent.html" >RegistrationComponent</a>
@@ -389,7 +404,16 @@
                                        id="interfaces-links"
                    >
                                        <li class="link">
+                                           <a href="../interfaces/PeriodicElement.html" >PeriodicElement</a>
+                                       </li>
+                                       <li class="link">
                                            <a href="../interfaces/ProfilUtilisateur.html" >ProfilUtilisateur</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/SitesDetail.html" >SitesDetail</a>
+                                       </li>
+                                       <li class="link">
+                                           <a href="../interfaces/SitesElement.html" >SitesElement</a>
                                        </li>
                                </ul>
                            </li>
@@ -438,7 +462,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/vue/login/login.component.ts</code>
+    <code>src/app/login/login.component.ts</code>
 </p>
 
 
@@ -489,7 +513,7 @@
                 <tbody>
                     <tr>
                         <td class="col-md-4">
-                            <code>constructor(fb: <a href="https://angular.io/docs/ts/latest/api/forms/index/FormBuilder-class.html" target="_blank" >FormBuilder</a>, authService: any, router: <a href="https://angular.io/docs/ts/latest/api/router/index/Router-class.html" target="_blank" >Router</a>)</code>
+                            <code>constructor(fb: <a href="https://angular.io/docs/ts/latest/api/forms/index/FormBuilder-class.html" target="_blank" >FormBuilder</a>, authService: <a href="../injectables/AuthService.html" >AuthService</a>, router: <a href="https://angular.io/docs/ts/latest/api/router/index/Router-class.html" target="_blank" >Router</a>)</code>
                         </td>
                     </tr>
     
@@ -527,6 +551,26 @@
 
     <section>
         <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> admin</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>admin:     <code>boolean</code>
+    </bcode>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Default value: </i><code>false</code>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
             <table class="table table-sm table-bordered">
                 <tbody>
                     <tr>
@@ -587,13 +631,44 @@
                     </tr>
                 </tbody>
             </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> role</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>role:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <b> verify$</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <code>verify$:     <code>any</code>
+    </bcode>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
     </section>
 </div>
         <div class="tab-pane fade tab-source-code" id="source">
             <pre><code class="hljs javascript">import { Component } from &#x27;@angular/core&#x27;;
 import { FormBuilder, FormGroup } from &#x27;@angular/forms&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
-import { AuthService } from &#x27;src/app/service/auth.service&#x27;;
+import { AuthService } from &#x27;../_service/auth.service&#x27;;
+import { Router, UrlSegment } from &#x27;@angular/router&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
 
 @Component({
   selector: &#x27;app-login&#x27;,
@@ -605,6 +680,9 @@ export class LoginComponent {
   loginFormGroup! : FormGroup;
   idToken : any;
   errorMessage :any;
+
+  role:any;
+  admin:boolean&#x3D;false;
 
   constructor(private fb:FormBuilder,private authService:AuthService,private router:Router){}
   ngOnInit(): void {
@@ -622,13 +700,23 @@ export class LoginComponent {
       next: response &#x3D;&gt; {
         this.idToken &#x3D; response;
         this.authService.authenticateUser(this.idToken);
-        this.router.navigateByUrl(&quot;/sites&quot;);
+        this.verify$.subscribe();
+        this.admin?this.router.navigateByUrl(&quot;/dash&quot;):this.router.navigateByUrl(&quot;/carte&quot;);
       },
       error :err &#x3D;&gt; {
         this.errorMessage &#x3D; err.error.errorMessage;
       }
     })
   }
+
+  verify$ &#x3D; new Observable(()&#x3D;&gt;{
+    let role &#x3D; &quot;ADMIN&quot;;
+    let storage &#x3D; localStorage.getItem(&#x27;userProfile&#x27;);
+    let userP;
+    storage?userP&#x3D;JSON.parse(storage):userP&#x3D;null
+
+    userP.scope.includes(role)?this.admin&#x3D;true:this.admin&#x3D;false
+  })
 }
 </code></pre>
         </div>
