@@ -14,7 +14,8 @@ h4 {
     padding: 10px;
     margin: auto;
     font-size: 34px;
-    font-weight: 800;
+    font-family: RubikDirt-Regular;
+   /*  font-weight: 800; */
     margin: 0 0 15px 0;
 }
 
@@ -193,7 +194,7 @@ td {
 .btn:disabled {
     box-shadow: none;
     color: #000;
-    background: #fafafa;
+    background: #E5E4E2;
     opacity: 0.8;
 }
 
@@ -216,6 +217,7 @@ td {
 }
 
 .input-fileInput {
+    cursor: pointer;
     position: relative;
     font-size: 14px;
     color: #000;
@@ -223,9 +225,14 @@ td {
     height: 44px;
     margin-left: 5px;
     margin-top: 35px;
-    width: calc(100% - 255px);
+    width: calc(100% - 165px);
     border: none;
+    outline: none;
     border-bottom: 2px solid black;
+}
+
+.input-fileInput:hover{
+    outline: none;
 }
 
 .btn-input-file:hover {
@@ -248,7 +255,7 @@ td {
     position: relative;
     background: #fff;
     margin-top: 100px;
-    width: 50%;
+    width: 40%;
     margin-left: auto;
     margin-right: auto;
 

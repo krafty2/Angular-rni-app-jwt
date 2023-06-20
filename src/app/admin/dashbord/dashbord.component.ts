@@ -158,7 +158,7 @@ export class DashbordComponent implements AfterViewInit {
 
   onFileSelected(event: any) {
     this.fichier = <File>event.target.files[0];
-    this.nomFichier=this.fichier.name;
+    this.fichier? this.nomFichier=this.fichier.name:this.nomFichier='';
     const date = new Date(this.fichier.lastModified);
     console.log(date);
   }

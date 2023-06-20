@@ -7,9 +7,10 @@
 }
 /*
 #0082e6; 
+d90429
 */
-div{
-    background: #37474f    ;
+.nav-bar{
+    background: var(--primary-color)   ;
     height: 70px;
     width: 100%;
    /*  box-shadow: 1px 2px 3px rgb(214, 214, 214); */
@@ -17,9 +18,10 @@ div{
 }
 
 label.logo{
-    font-family: RubikWetPaint-Regular;
+    font-family: RubikDirt-Regular;
     color: #fff;
     font-size: 30px;
+    
     line-height: 70px;
     padding: 0 70px;
 }
@@ -37,14 +39,15 @@ div ul li{
 }
 
 div li a{
-    font-family:RubikDirt-Regular;
+    font-family:AlegreyaSans-Regular;
     color: #fff;
     font-size: 14px;
+    font-weight: 600;
     text-transform: uppercase;
 }
 
 div ul li a:hover{
-  color: #0082e6;
+  color: #000000;
 }
 
 .checkbtn{

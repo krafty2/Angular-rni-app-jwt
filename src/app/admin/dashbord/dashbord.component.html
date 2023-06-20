@@ -15,22 +15,18 @@
                 <div class="modal-content mat-elevation-z8">
 
                     <div class="modal-header">
-                        <h4>Charger le fichier Rni</h4>
-                        <p>Seul le format .xlsx est pris en compte pour le moment</p>
+                        <h2>Charger le fichier Rni</h2>
+                       
                         <button class="icon modal-close">X</button>
                     </div>
 
                     <div class="modal-body">
                         <form class="formRniExcel" [formGroup]="excelImportForm" (ngSubmit)="onSubmit()">
                             <div>
-                                <div style="width: auto;height: auto;">
+                                <div style="width: auto;height: auto; position: relative;left: 35px;">
                                     <button class="btn btn-input-file mat-elevation-z2"
                                         (click)="fileInput.click()">Fichier</button>
-                                    <input class="input-fileInput" (click)="fileInput.click()" type="text" value="{{nomFichier}}">
-                                    <!--boutton de soumission-->
-                                    <button class="btn btn-rni mat-elevation-z2" [disabled]="!excelImportForm.valid"
-                                        type="submit" name="action">Importer
-                                    </button>
+                                    <input class="input-fileInput" readonly (click)="fileInput.click()" type="text" value="{{nomFichier}}">
                                 </div>
                                 <input hidden type="file" id="file" #fileInput (change)="onFileSelected($event)"
                                     accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
@@ -48,7 +44,7 @@
                                 </div>
                             </div>
                             <!--boutton de soumission-->
-                            <button class="btn btn-rni mat-elevation-z2" [disabled]="!excelImportForm.valid"
+                            <button style="left: 35px;position: relative; width: calc(100% - 85px);" class="btn btn-rni mat-elevation-z2" [disabled]="!excelImportForm.valid"
                                 type="submit" name="action">Importer
                             </button>
                         </form>

@@ -27,6 +27,61 @@
     src: url(/assets/fonts/Roboto/Roboto-Regular.ttf);
 }
 
+@font-face{
+    font-family: BadScript-Regular;
+    src: url(assets/fonts/Bad_Script/BadScript-Regular.ttf);
+}
+
+@font-face {
+    font-family: Antic-Regular;
+    src: url(assets/fonts/Antic/Antic-Regular.ttf);
+}
+
+@font-face {
+    font-family: CinzelDecorative-Regular;
+    src: url(assets/fonts/Cinzel_Decorative/CinzelDecorative-Regular.ttf);
+}
+
+@font-face {
+    font-family: AlegreyaSans-Regular;
+    src: url(assets/fonts/Alegreya_Sans/AlegreyaSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: Aubrey-Regular;
+    src: url(assets/fonts/Aubrey/Aubrey-Regular.ttf);
+}
+
+@font-face {
+    font-family: AveriaLibre-Regular;
+    src: url(assets/fonts/Averia_Libre/AveriaLibre-Regular.ttf);
+}
+
+@font-face {
+    font-family: VT323-Regular;
+    src: url(assets/fonts/VT323/VT323-Regular.ttf);
+}
+
+@font-face {
+    font-family: AnnieUseYourTelescope-Regular;
+    src: url(assets/fonts/Annie_Use_Your_Telescope/AnnieUseYourTelescope-Regular.ttf);
+}
+
+@font-face {
+    font-family: ComicNeue-Regular;
+    src: url(assets/fonts/Comic_Neue/ComicNeue-Regular.ttf);
+}
+
+@font-face {
+    font-family: Battambang-Regular;
+    src: url(assets/fonts/Battambang/Battambang-Regular.ttf);
+}
+
+@font-face {
+    font-family: HinaMincho-Regular;
+    src: url(assets/fonts/Hina_Mincho/HinaMincho-Regular.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -37,10 +92,10 @@
     /*=============colors=====================*/
     --body-color: #E0E0E0;
     --sidebar-color: #fff;
-    --primary-color: #1976d2;
+    --primary-color: #00bbf9;
     --primary-color-light: #eceff1;
     --toogle-color: #DDD;
-    --text-color: #707070;
+    --text-color: #00bbf9;
     --section-text-color: #000;
     /*============transition===============*/
     --trans-02: all 0.2s ease;
@@ -197,21 +252,28 @@ body {
 
 .card-panel{
     opacity: 1;
+    margin-top: 30px;
     border-radius: 2px;
     background: #fff;
-    padding: 5px;
+    padding: 2px;
     color: #000;
     font-family: Open_Sans_Light;
     font-size: 16px;
     font-weight: 500;
+    border: 6px #80FF00;
+    border-style: none none solid none;
   }
 
   .card-panel p{
+    
+    font-family: Antic-Regular;
     margin: 0;
     padding: 5px;
-    background: #001219;
+    background: #40826D;
     
-    color: #fff;
+    font-size:medium;
+    font-weight: 500;;
+    color: #ffffff;
     border: 1px solid #fff;
 
   }
@@ -237,9 +299,9 @@ body {
   */
   .leaflet-popup-content-wrapper{
     background: linear-gradient(
-        to right,
-        #00bbf9   35%,
-        #fff 35%
+        to bottom,
+        #293241 10%,
+        #FEFEFA 10%
     );
     color: #fff;
     border-radius: 4px;
@@ -247,10 +309,10 @@ body {
   }
 
   .leaflet-container a.leaflet-popup-close-button {
-    color: #000;
+    color: #ffffff;
   }
 
   .leaflet-container a.leaflet-popup-close-button:hover{
-    color: #d81b60;
+    color: #000;
   }
 
