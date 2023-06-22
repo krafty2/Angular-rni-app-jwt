@@ -7,6 +7,7 @@ section{
   
   .formRniExcel{
     margin: 0 30rem 0 30rem;
+    width: 350px;
   }
   button{
     margin-bottom: 2rem;

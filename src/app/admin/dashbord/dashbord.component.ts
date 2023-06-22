@@ -24,7 +24,7 @@ export class DashbordComponent implements AfterViewInit {
   displayedColumns: string[] = ['nomSite', 'region', 'province', 'localite', 'dateMesure', 'moyenneSpatiale'];
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
-  @ViewChild(MatSort,{static: false})
+  @ViewChild(MatSort, { static: false })
   sort!: MatSort;
 
   selected = 'option2';
@@ -34,7 +34,7 @@ export class DashbordComponent implements AfterViewInit {
   detailsMesure!: PeriodicElement[];
 
   fichier!: File;
-  nomFichier!:string;
+  nomFichier!: string;
 
 
   testSelect = new FormControl()
@@ -55,14 +55,16 @@ export class DashbordComponent implements AfterViewInit {
   provinces: any;
   lesregions$!: Observable<string>;
 
+  fichierRni: any;
+
 
   constructor(
     private rniService: RniService,
     private router: Router,
     private fb: FormBuilder,
     private _liveAnnouncer: LiveAnnouncer
-  ) { 
-    
+  ) {
+
   }
 
   ngAfterViewInit(): void {
@@ -151,37 +153,37 @@ export class DashbordComponent implements AfterViewInit {
         console.log("le fichier n'est pas autorise");
       }
     console.log(this.excelImportForm.value);
-    
+
   }
 
   get file() { return this.excelImportForm.get('file'); }
 
   onFileSelected(event: any) {
     this.fichier = <File>event.target.files[0];
-    this.fichier? this.nomFichier=this.fichier.name:this.nomFichier='';
+    this.fichier ? this.nomFichier = this.fichier.name : this.nomFichier = '';
     const date = new Date(this.fichier.lastModified);
     console.log(date);
   }
 
   modal() {
-    
-    //autre methode
-    //     const frameZones = Array.from(document.querySelectorAll('path.frame-zone'));
-    // frameZones.forEach((...) => {});
+
+    this.rniService.req_fichiers_rni().subscribe(
+      (data)=>{
+        this.fichierRni=data;
+      }
+    )
 
     //------------------open modal
     let modalBtns = document.querySelectorAll(".modal-open")
-
     modalBtns.forEach((element) => {
-     
-      console.log(element)
-      element.addEventListener("click",()=>{
+      console.log(element);
+      element.addEventListener("click", () => {
         console.log('hello' + element)
         let modal = element.getAttribute("data-modal");
         let affiche;
-        if(modal){
+        if (modal) {
           affiche = document.getElementById(modal) as HTMLElement;
-          affiche.style.display="block";
+          affiche.style.display = "block";
         }
       })
     });
@@ -189,24 +191,24 @@ export class DashbordComponent implements AfterViewInit {
     //------------------------close modal
     let closeBtns = document.querySelectorAll(".modal-close");
 
-    closeBtns.forEach((element)=>{
-      element.addEventListener("click",()=>{
-        if(element.closest(".modal")){
+    closeBtns.forEach((element) => {
+      element.addEventListener("click", () => {
+        if (element.closest(".modal")) {
           console.log(element.closest(".modal"));
           let modal = element.closest(".modal") as HTMLElement;
-          modal.style.display='none';
+          modal.style.display = 'none';
         }
-       
+
       })
     });
 
     //------------------close modal with windows click
-   //     window.addEventListener("click",(e)=>{ window.addEventListener("click",()=>{
-      window.onclick=(e:any)=>{
-        if(e.target.className==="modal"){
-          e.target.style.display='none';
-        }
+    //     window.addEventListener("click",(e)=>{ window.addEventListener("click",()=>{
+    window.onclick = (e: any) => {
+      if (e.target.className === "modal") {
+        e.target.style.display = 'none';
       }
+    }
   }
 
   announceSortChange(sortState: any) {
@@ -221,10 +223,10 @@ export class DashbordComponent implements AfterViewInit {
     }
   }
 
-  chartExemple(){
+  chartExemple() {
     const ctx = document.getElementById('myChart') as HTMLCanvasElement;
-    
-    if(ctx){
+
+    if (ctx) {
       new Chart(ctx, {
         type: 'doughnut',
         data: {
@@ -232,17 +234,17 @@ export class DashbordComponent implements AfterViewInit {
           datasets: [{
             label: '# nombre de mesure',
             data: [93, 42, 24, 13, 14, 12],
-            backgroundColor:[
-              "#039be5 ","#546e7a","#43a047","#d81b60","#8e24aa","#00acc1"
+            backgroundColor: [
+              "#039be5 ", "#546e7a", "#43a047", "#d81b60", "#8e24aa", "#00acc1"
             ],
-            hoverOffset:5,
+            hoverOffset: 5,
             borderWidth: 2
           }]
         },
         options: {
-        
+
           scales: {
-            
+
             y: {
               beginAtZero: true
             }
@@ -250,7 +252,7 @@ export class DashbordComponent implements AfterViewInit {
         }
       });
     }
-  
+
   }
 }
 

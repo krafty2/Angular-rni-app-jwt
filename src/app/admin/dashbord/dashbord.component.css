@@ -14,17 +14,15 @@ h4 {
     padding: 10px;
     margin: auto;
     font-size: 34px;
+    font-weight: normal;
     font-family: RubikDirt-Regular;
-   /*  font-weight: 800; */
+    /*  font-weight: 800; */
     margin: 0 0 15px 0;
-}
-
-p{
-    padding: 10px;
+    
 }
 
 /*-----------chart.js-------------*/
-.graphique{
+.graphique {
     position: relative;
     display: flex;
     padding: 10px;
@@ -37,7 +35,7 @@ p{
     margin-bottom: 15px;
 }
 
-.rni-tab-zone{
+.rni-tab-zone {
     padding: 10px;
     background: #fff;
     border-radius: 6px;
@@ -187,7 +185,7 @@ td {
 
 .btn {
     border: none;
-    padding: 8px 14px;
+    
     border-radius: 2px;
 }
 
@@ -199,44 +197,55 @@ td {
 }
 
 .btn-rni {
+    font-family: Roboto-Regular;
     margin: 18px 0 10px 0;
     background: #DD1C1A;
     color: #fff;
-    width: 150px;
+    width: 100%;
+    padding: 8px 14px;
     font-size: 14px;
 
 }
 
 .btn-input-file {
-    background: #01579b;
+    background: #01796F;
     color: white;
-    padding: 14px 14px;
-    width: auto;
+    border-radius: 4px;
+    width: 200px;
     font-family: Roboto-Regular;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: normal;
 }
 
 .input-fileInput {
+    font-family: Roboto-Regular;
     cursor: pointer;
     position: relative;
     font-size: 14px;
     color: #000;
-    font-weight: 500;
+    font-weight: normal;
     height: 44px;
     margin-left: 5px;
-    margin-top: 35px;
-    width: calc(100% - 165px);
+  
+    width: 100%;
     border: none;
     outline: none;
     border-bottom: 2px solid black;
 }
 
-.input-fileInput:hover{
+.input-fileInput:hover {
     outline: none;
 }
 
 .btn-input-file:hover {
     background: #039be5;
+}
+
+.fichier-charge{
+    padding: 6px;
+    margin: 5px;
+    font-weight: normal;
+    background: #E5E4E2;
 }
 
 .modal {
@@ -245,21 +254,28 @@ td {
     left: 0;
     right: 0;
     bottom: 0;
+    padding: 0;
     background: #333333d3;
     z-index: 101;
     display: none;
     animation: modal-open .60s;
 }
 
-.modal-content {
-    position: relative;
-    background: #fff;
-    margin-top: 100px;
-    width: 40%;
-    margin-left: auto;
-    margin-right: auto;
 
-    border-radius: 4px;
+
+.modal-content {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 10%;
+    background-color: #ffffff;
+    padding: 0;
+    margin: auto;
+    width: 55%;
+    max-height: 70%;
+    margin: auto;
+    overflow-y: auto;
+    border-radius: 2px;
     z-index: 4;
 }
 
@@ -267,6 +283,13 @@ td {
     font-weight: 500;
     padding: 8px 24px;
     font-size: 26px;
+}
+
+.modal-header .titre {
+    margin: 0;
+    font-size: large;
+    font-family: ComicNeue-Regular;
+    font-weight: 500;
 }
 
 .modal-header .modal-close {
@@ -284,31 +307,37 @@ td {
 }
 
 .modal-body {
-    padding: 8px 24px;
+    padding: 34px;
 }
 
-.modal-footer {
-    position: relative;
-    padding: 8px 24px;
-    display: block;
-    border-top: 1px solid black;
+.modal .modal-footer {
+    position: absolute;
+    background-color: #fafafa;
+    padding: 4px 6px;
+    height: 56px;
+    width: 100%;
+    text-align: right;
 }
 
 .modal-footer .modal-close {
-    position: relative;
-    top: 0;
-    left: calc(100% - 65px);
-    padding: 14px 14px;
-    font-family: Roboto-Regular;
-    font-size: 16px;
+
+    padding: 10px 10px;
+    font-family: ComicNeue-Regular;
+    font-size: medium;
+    font-weight: normal;
     width: auto;
     border-radius: 4px;
     border: none;
     outline: none;
-    background: #880e4f;
-    color: #fff;
+    background: #F2F3F4;
     cursor: pointer;
+    margin-right: 2rem;
+}
 
+
+
+.formRniExcel {
+    width: auto;
 }
 
 @keyframes modal-open {
@@ -320,4 +349,3 @@ td {
         opacity: 1;
     }
 }
-

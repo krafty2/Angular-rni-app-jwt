@@ -15,12 +15,12 @@ import { HasRoleGuard } from './_guard/has-role.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'carte', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent,title:"IRT - Page de connexion" },
   { path: 'registration', component: RegistrationComponent },
   { path: 'map', component: MapComponent },
-  { path: 'dash', component: DashbordComponent ,canActivate:[AuthorizationGuard,HasRoleGuard],data:{roles:["ADMIN"]}},
-  { path: 'register', component: RegisterComponent },
-  { path: 'carte', component: CarteComponent },
+  { path: 'dash',title:"IRT - Tableau de bord" ,component: DashbordComponent ,canActivate:[AuthorizationGuard,HasRoleGuard],data:{roles:["ADMIN"]}},
+  { path: 'register', component: RegisterComponent,title:"Creation de nouveau compte"},
+  { path: 'carte', component: CarteComponent, title:"IRT - Carte" },
   { path: 'details-site', component: GestionSiteComponent,canActivate:[AuthorizationGuard,HasRoleGuard],data:{roles:["ADMIN"]} },
   { path: 'sites', component: SiteComponent, canActivate: [AuthorizationGuard, HasRoleGuard], data: { roles: ["ADMIN"] } }
 ];

@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="toogle">
-            <svg class="svg-toogle" viewBox="0 0 24 24">
+            <svg (click)="toogle()" class="svg-toogle" viewBox="0 0 24 24">
                 <path d="M0 0h24v24H0z" fill="none" />
                 <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
             </svg>
@@ -97,7 +97,7 @@
             </ul>
         </div>
         <div class="bottom-content">
-            <li class="dec">
+            <li class="deconnexion-container">
                 <a style="cursor: pointer;" (click)="logout()">
                     <div class="icons">
                         <svg class="menu-svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24">
@@ -115,7 +115,7 @@
                 </a>
             </li>
 
-            <div class="mode">
+            <div class="mode" >
                 <div class="switch-mode">
                     <div class="moon-sun">
                         <svg class="menu-svg sun" enable-background="new 0 0 24 24" viewBox="0 0 24 24">
@@ -131,7 +131,7 @@
                     <span class="mode-text text">Light mode</span>
                 </div>
 
-                <div class="toogle-switch">
+                <div class="toogle-switch" (click)="mode()">
                     <span class="switch"></span>
                 </div>
             </div>

@@ -254,19 +254,21 @@ export class CarteComponent implements OnInit {
    * @returns {div} creer pour generer le popup d'un marker de mesure
    */
   divPopup(result: any) {
-    let div = L.DomUtil.create('div', 'card-panel mat-elevation-z4');
+    let div = L.DomUtil.create('div', 'card-panel ');
     div.innerHTML = `
       
       <span class="baliseLeaflet">*${result.idMesure}*</span> 
       <span class="baliseLeaflet">~${result.nomRapport}~</span>
-      
-      <p> Site : ${result.nomSite}</p>
-      <p>Region : ${result.region}</p>
-      <p>Province : ${result.province}</p>
-      <p>Localite : ${result.localite}</p>
-      <p>Mesure réalise le : ${formatDate(result.dateMesure, 'dd/MM/yyyy', 'en-US')}</p>
-      <p>Moyenne spatiale recupérée : ${result.moyenneSpatiale}  EV/m</p>
-
+      <h3 class="rni-titre ">Visualiser les données de la zone de mesure</h3>
+      <div class="rni-info ">
+      <p> <strong>Site - </strong> ${result.nomSite}</p>
+      <p> <strong>Region - </strong> ${result.region}</p>
+      <p> <strong>Province - </strong> ${result.province}</p>
+      <p> <strong>Localite - </strong> ${result.localite}</p>
+      <p> <strong>Mesure réalise le - </strong> ${formatDate(result.dateMesure, 'dd/MM/yyyy', 'en-US')}</p>
+      <p> <strong>Moyenne spatiale recupérée - </strong> ${result.moyenneSpatiale}  EV/m</p>
+      </div>
+    
       <script>
         var test = document.getElementsByClassName('.test');
         test.style.color = 'orange';

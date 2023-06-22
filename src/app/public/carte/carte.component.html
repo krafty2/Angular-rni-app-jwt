@@ -1,7 +1,7 @@
 <app-nav-bar></app-nav-bar>
 <section>
     <div class="form-field-container">
-        <div class="search-zone mat-elevation-z2" >
+        <div class="search-zone" >
             <div class="search-container">
                 <mat-form-field style="height: 70px;">
                     <mat-label>Choisit une annee</mat-label>
@@ -48,7 +48,11 @@
     <div *ngIf="siteMesure else loading">
         
     </div>
-    <section  class=" bordure-div " id="map"></section>
+    <section class="carte-browser">
+        <div class=" bordure-div " id="map">
+
+        </div>
+    </section>
     <!-------------------se trouve au niveau de la map mais sera supprime avec le----------------->
     <ng-template #searchForm>
         <section>

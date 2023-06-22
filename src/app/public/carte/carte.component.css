@@ -33,9 +33,7 @@
   padding: 50px;
 }
 
-.search-container {
-  background-color: white;
-}
+
 
 .checkbtn {
   cursor: pointer;
@@ -96,16 +94,25 @@ i {
 }
 
 /*----------------------*/
+
+.carte-browser{
+  display: flex;
+}
+
 .search-zone {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
+ /*  background: #fff; */
   width: calc(100% - 35px);
   margin-top: 25px;
   margin-right: 20px;
   margin-left: 20px;
   border-radius: 4px;
+}
+
+.search-container {
+ /*  background-color: white; */
 }
 
 .search-container {

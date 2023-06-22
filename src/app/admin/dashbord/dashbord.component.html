@@ -1,4 +1,4 @@
-<app-slide-bar class="test"></app-slide-bar>
+<app-slide-bar></app-slide-bar>
 
 <section class="home">
     <div class="graphique mat-elevation-z2">
@@ -13,20 +13,18 @@
             <!-------------------------#modal----------------------------->
             <div id="modal1" class="modal">
                 <div class="modal-content mat-elevation-z8">
+                    <div class="modal-body ">
 
-                    <div class="modal-header">
-                        <h2>Charger le fichier Rni</h2>
-                       
-                        <button class="icon modal-close">X</button>
-                    </div>
+                        <h2 class="titre">FICHIER RNI</h2>
+                        <p>Selection le fichier a charge</p>
 
-                    <div class="modal-body">
-                        <form class="formRniExcel" [formGroup]="excelImportForm" (ngSubmit)="onSubmit()">
+                        <form class="" [formGroup]="excelImportForm" (ngSubmit)="onSubmit()">
                             <div>
-                                <div style="width: auto;height: auto; position: relative;left: 35px;">
+                                <div style="display: flex;  flex-direction: row;">
                                     <button class="btn btn-input-file mat-elevation-z2"
-                                        (click)="fileInput.click()">Fichier</button>
-                                    <input class="input-fileInput" readonly (click)="fileInput.click()" type="text" value="{{nomFichier}}">
+                                        (click)="fileInput.click()">Choisir un fichier</button>
+                                    <input class="input-fileInput" readonly (click)="fileInput.click()" type="text"
+                                        value="{{nomFichier}}">
                                 </div>
                                 <input hidden type="file" id="file" #fileInput (change)="onFileSelected($event)"
                                     accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
@@ -44,13 +42,21 @@
                                 </div>
                             </div>
                             <!--boutton de soumission-->
-                            <button style="left: 35px;position: relative; width: calc(100% - 85px);" class="btn btn-rni mat-elevation-z2" [disabled]="!excelImportForm.valid"
+                            <button aria-label="Save document" class="btn btn-rni mat-elevation-z2" [disabled]="!excelImportForm.valid"
                                 type="submit" name="action">Importer
                             </button>
                         </form>
+
+                        <h2>Liste des fichiers rni charges</h2>
+
+                        <div *ngFor="let fichier of fichierRni">
+                            <p class="fichier-charge mat-elevation-z1">Le fichier du nom de <strong>"{{fichier.nomFichier}}"</strong> a été chargé le <strong>{{fichier.dateDeTransfert}}</strong> </p>
+                        </div>
+
                     </div>
+
                     <div class="modal-footer">
-                        <button class="link modal-close mat-elevation-z2">fermer</button>
+                        <button class="link modal-close mat-elevation-z2">Fermer</button>
                     </div>
                 </div>
 
@@ -94,8 +100,7 @@
             </mat-form-field>
         </div>
         <!--------------------------------------------------------------------------------------------------->
-        <table mat-table [dataSource]="myDataArray" matSort (matSortChange)="announceSortChange($event)"
-            class="tab">
+        <table mat-table [dataSource]="myDataArray" matSort (matSortChange)="announceSortChange($event)" class="tab">
             <!--- Note that these columns can be defined in any order.
                   The actual rendered columns are set as a property on the row definition" -->
 

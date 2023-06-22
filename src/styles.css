@@ -62,15 +62,6 @@
     src: url(assets/fonts/VT323/VT323-Regular.ttf);
 }
 
-@font-face {
-    font-family: AnnieUseYourTelescope-Regular;
-    src: url(assets/fonts/Annie_Use_Your_Telescope/AnnieUseYourTelescope-Regular.ttf);
-}
-
-@font-face {
-    font-family: ComicNeue-Regular;
-    src: url(assets/fonts/Comic_Neue/ComicNeue-Regular.ttf);
-}
 
 @font-face {
     font-family: Battambang-Regular;
@@ -78,9 +69,15 @@
 }
 
 @font-face {
-    font-family: HinaMincho-Regular;
-    src: url(assets/fonts/Hina_Mincho/HinaMincho-Regular.ttf);
+    font-family: DaysOne-Regular;
+    src: url(assets/fonts/Days_One/DaysOne-Regular.ttf);
 }
+
+@font-face {
+    font-family: Carattere-Regular;
+    src: url(assets/fonts/Carattere/Carattere-Regular.ttf);
+}
+
 
 * {
     margin: 0;
@@ -91,11 +88,11 @@
 :root {
     /*=============colors=====================*/
     --body-color: #E0E0E0;
-    --sidebar-color: #fff;
+    --sidebar-color: #ffffff;
     --primary-color: #00bbf9;
     --primary-color-light: #eceff1;
     --toogle-color: #DDD;
-    --text-color: #00bbf9;
+    --text-color: #26619C;
     --section-text-color: #000;
     /*============transition===============*/
     --trans-02: all 0.2s ease;
@@ -255,30 +252,47 @@ body {
     margin-top: 30px;
     border-radius: 2px;
     background: #fff;
-    padding: 2px;
+    
     color: #000;
     font-family: Open_Sans_Light;
     font-size: 16px;
     font-weight: 500;
-    border: 6px #80FF00;
-    border-style: none none solid none;
+    /* border: 6px #ffcf00; */
+    /* border-style: none none solid none; */
   }
 
   .card-panel p{
-    
-    font-family: Antic-Regular;
-    margin: 0;
+    font-family: AlegreyaSans-Regular;
+    margin: 0px;
     padding: 5px;
-    background: #40826D;
-    
-    font-size:medium;
-    font-weight: 500;;
-    color: #ffffff;
-    border: 1px solid #fff;
+    font-size:14px;
+    font-weight: normal;;
+    border-radius: 2px;
+    border: none;
 
   }
 
-  .rni-site{
+  .rni-info{
+    
+    background: #F5F5F5;
+    padding: 6px;
+   /*  border: 2px black;
+    border-style: solid none solid none; */
+    margin: 0;
+  }
+
+  .rni-titre{
+    font-family: AlegreyaSans-Regular;
+   /*  background: #E8CD48; */
+    margin: 0;
+    text-align: left;
+    color: black;
+    /* padding: 2px; */
+   /*  border: 2px black;
+    border-style: solid none solid none; */
+  }
+
+  /* .rni-site{
     font-size: 18px;
     font-weight: 500;
     font-family: Roboto-Regular;
@@ -290,7 +304,7 @@ body {
     color: #011627;
     padding: 5px;
     margin-bottom: 15px;
-  }
+  } */
   /*
   #FDFFFC,
   #FF9F1C
