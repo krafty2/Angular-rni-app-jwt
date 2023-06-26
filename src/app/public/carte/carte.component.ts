@@ -8,7 +8,7 @@ import * as L from 'leaflet';
 import { Ville } from 'src/app/_models/ville';
 import { formatDate } from '@angular/common';
 import * as saveAs from 'file-saver';
-import { Observable, forkJoin } from 'rxjs';
+import { BehaviorSubject, Observable, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-carte',
@@ -61,6 +61,9 @@ export class CarteComponent implements OnInit {
       this.annees = data3;
       this.regions=data4;
     });
+
+    let count = new BehaviorSubject(2);
+    console.log(count.value)
   }
 
 

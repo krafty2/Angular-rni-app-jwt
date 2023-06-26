@@ -1,6 +1,7 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -19,6 +20,8 @@ declare var M: any;
   styleUrls: ['./dashbord.component.css'],
 })
 export class DashbordComponent implements AfterViewInit {
+  test:string= 'hello';
+  test2:string='test';
 
   myDataArray: any;
   displayedColumns: string[] = ['nomSite', 'region', 'province', 'localite', 'dateMesure', 'moyenneSpatiale'];
@@ -26,6 +29,9 @@ export class DashbordComponent implements AfterViewInit {
   paginator!: MatPaginator;
   @ViewChild(MatSort, { static: false })
   sort!: MatSort;
+
+  @ViewChild(MatAccordion)
+  accordion!: MatAccordion;
 
   selected = 'option2';
   localites: any;
@@ -50,7 +56,7 @@ export class DashbordComponent implements AfterViewInit {
     province: new FormControl(),
     localite: new FormControl()
   })
-  test: any;
+  
   regions: any;
   provinces: any;
   lesregions$!: Observable<string>;

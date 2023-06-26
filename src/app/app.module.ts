@@ -29,35 +29,39 @@ import {MatSelectModule} from '@angular/material/select';
 import { GestionSiteComponent } from './admin/gestion-site/gestion-site.component';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
+import { TestComponent } from "./admin/test/test.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MapComponent,
-    CarteComponent,
-    SiteComponent,
-    NavBarComponent,
-    NavbarComponent,
-    DashbordComponent,
-    SlideBarComponent,
-    LoginComponent,
-    RegistrationComponent,
-    RegisterComponent,
-    NavBarComponent,
-    GestionSiteComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    NgxPaginationModule,
-    BrowserAnimationsModule, MatPaginatorModule, MatGridListModule,
-    MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule,
-    MatSelectModule,MatDialogModule,MatCardModule
-  ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        MapComponent,
+        CarteComponent,
+        SiteComponent,
+        NavBarComponent,
+        NavbarComponent,
+        DashbordComponent,
+        SlideBarComponent,
+        LoginComponent,
+        RegistrationComponent,
+        RegisterComponent,
+        NavBarComponent,
+        GestionSiteComponent
+    ],
+    providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        NgxPaginationModule,
+        BrowserAnimationsModule, MatPaginatorModule, MatGridListModule,
+        MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule,
+        MatSelectModule, MatDialogModule, MatCardModule, MatIconModule, MatExpansionModule,
+        TestComponent
+    ]
 })
 export class AppModule { }

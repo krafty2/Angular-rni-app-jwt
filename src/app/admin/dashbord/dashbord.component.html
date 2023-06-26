@@ -42,15 +42,18 @@
                                 </div>
                             </div>
                             <!--boutton de soumission-->
-                            <button aria-label="Save document" class="btn btn-rni mat-elevation-z2" [disabled]="!excelImportForm.valid"
-                                type="submit" name="action">Importer
+                            <button aria-label="Save document" class="btn btn-rni mat-elevation-z2"
+                                [disabled]="!excelImportForm.valid" type="submit" name="action">Importer
                             </button>
                         </form>
 
                         <h2>Liste des fichiers rni charges</h2>
 
                         <div *ngFor="let fichier of fichierRni">
-                            <p class="fichier-charge mat-elevation-z1">Le fichier du nom de <strong>"{{fichier.nomFichier}}"</strong> a été chargé le <strong>{{fichier.dateDeTransfert}}</strong> </p>
+                            <p class="fichier-charge mat-elevation-z1">Le fichier du nom de
+                                <strong>"{{fichier.nomFichier}}"</strong> a été chargé le
+                                <strong>{{fichier.dateDeTransfert}}</strong>
+                            </p>
                         </div>
 
                     </div>
@@ -65,94 +68,153 @@
         <canvas id="myChart"></canvas>
     </div>
 
-    <div class="rni-tab-zone mat-elevation-z2">
-        <div class="form-field-container">
-            <mat-form-field>
-                <mat-label>Choisit une annee</mat-label>
-                <mat-select>
-                    <mat-option>None</mat-option>
-                    <mat-option *ngFor="let an of annee" value="{{an}}">{{an}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Choisit une Region</mat-label>
-                <mat-select name="region" (selectionChange)="selectRegion($event.value)">
-                    <mat-option>None</mat-option>
-                    <mat-option *ngFor="let region of regions" value="{{region}}">{{region}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Choisit une province</mat-label>
-                <mat-select (selectionChange)="selectProvince($event.value)">
-                    <mat-option>None</mat-option>
-                    <mat-option *ngFor="let province of provinces" value="{{province}}">{{province}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Choisit une Localite</mat-label>
-                <mat-select [(value)]="selected">
-                    <mat-option>None</mat-option>
-                    <mat-option *ngFor="let localite of localites" value="{{localite}}">{{localite}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <!--------------------------------------------------------------------------------------------------->
-        <table mat-table [dataSource]="myDataArray" matSort (matSortChange)="announceSortChange($event)" class="tab">
-            <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
-
-            <!-- nomSite Column -->
-            <ng-container matColumnDef="nomSite">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header="nomSite"> Site </th>
-                <td mat-cell *matCellDef="let element"> {{element.nomSite}} </td>
-            </ng-container>
-
-            <!-- Region Column -->
-            <ng-container matColumnDef="region">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by region"> Region
-                </th>
-                <td mat-cell *matCellDef="let element"> {{element.region}} </td>
-            </ng-container>
-
-            <!-- Province Column -->
-            <ng-container matColumnDef="province">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by province"> Province
-                </th>
-                <td mat-cell *matCellDef="let element"> {{element.province}} </td>
-            </ng-container>
-            <!-- Localite Column -->
-            <ng-container matColumnDef="localite">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by localite"> Localite
-                </th>
-                <td mat-cell *matCellDef="let element"> {{element.localite}} </td>
-            </ng-container>
-
-            <!-- Date de mesure Column -->
-            <ng-container matColumnDef="dateMesure">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by dateMesure"> Date
-                    de mesure </th>
-                <td mat-cell *matCellDef="let element"> {{element.dateMesure|date:'shortDate':'fr-FR'}} </td>
-            </ng-container>
-
-            <!-- Moyenne Spatiale Column -->
-            <ng-container matColumnDef="moyenneSpatiale">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by moyenneSpatiale">
-                    Moyenne Spatiale </th>
-                <td mat-cell *matCellDef="let element"> {{element.moyenneSpatiale}} </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-            aria-label="Select page of periodic elements">
-        </mat-paginator>
-    </div>
+    
 
     <!---------------------entrainement chart.js---------------------->
+
+    <div class="example-action-buttons">
+        <button mat-button (click)="accordion.openAll()">Expand All</button>
+        <button mat-button (click)="accordion.closeAll()">Collapse All</button>
+    </div>
+
+    <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Personal data
+                </mat-panel-title>
+                <mat-panel-description>
+                    Type your name and age
+                    <mat-icon>account_circle</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div class="rni-tab-zone mat-elevation-z2">
+                <div class="form-field-container">
+                    <mat-form-field>
+                        <mat-label>Choisit une annee</mat-label>
+                        <mat-select>
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let an of annee" value="{{an}}">{{an}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+        
+                    <mat-form-field>
+                        <mat-label>Choisit une Region</mat-label>
+                        <mat-select name="region" (selectionChange)="selectRegion($event.value)">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let region of regions" value="{{region}}">{{region}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+        
+                    <mat-form-field>
+                        <mat-label>Choisit une province</mat-label>
+                        <mat-select (selectionChange)="selectProvince($event.value)">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let province of provinces" value="{{province}}">{{province}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+        
+                    <mat-form-field>
+                        <mat-label>Choisit une Localite</mat-label>
+                        <mat-select [(value)]="selected">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let localite of localites" value="{{localite}}">{{localite}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <!--------------------------------------------------------------------------------------------------->
+                <table mat-table [dataSource]="myDataArray" matSort (matSortChange)="announceSortChange($event)" class="tab">
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+        
+                    <!-- nomSite Column -->
+                    <ng-container matColumnDef="nomSite">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header="nomSite"> Site </th>
+                        <td mat-cell *matCellDef="let element"> {{element.nomSite}} </td>
+                    </ng-container>
+        
+                    <!-- Region Column -->
+                    <ng-container matColumnDef="region">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by region"> Region
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{element.region}} </td>
+                    </ng-container>
+        
+                    <!-- Province Column -->
+                    <ng-container matColumnDef="province">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by province"> Province
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{element.province}} </td>
+                    </ng-container>
+                    <!-- Localite Column -->
+                    <ng-container matColumnDef="localite">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by localite"> Localite
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{element.localite}} </td>
+                    </ng-container>
+        
+                    <!-- Date de mesure Column -->
+                    <ng-container matColumnDef="dateMesure">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by dateMesure"> Date
+                            de mesure </th>
+                        <td mat-cell *matCellDef="let element"> {{element.dateMesure|date:'shortDate':'fr-FR'}} </td>
+                    </ng-container>
+        
+                    <!-- Moyenne Spatiale Column -->
+                    <ng-container matColumnDef="moyenneSpatiale">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by moyenneSpatiale">
+                            Moyenne Spatiale </th>
+                        <td mat-cell *matCellDef="let element"> {{element.moyenneSpatiale}} </td>
+                    </ng-container>
+        
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+        
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                    aria-label="Select page of periodic elements">
+                </mat-paginator>
+            </div>
+
+        </mat-expansion-panel>
+        <h2>Mesure</h2>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Destination
+                </mat-panel-title>
+                <mat-panel-description>
+                    Type the country name
+                    <mat-icon>map</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-form-field>
+                <mat-label>Country</mat-label>
+                <input matInput>
+            </mat-form-field>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Day of the trip
+                </mat-panel-title>
+                <mat-panel-description>
+                    Inform the date you wish to travel
+                    <mat-icon>date_range</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-form-field>
+                <mat-label>Date</mat-label>
+                <input matInput readonly>
+            </mat-form-field>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <app-test [item]="test"></app-test>
+    <app-test [item]="test2"></app-test>
 
 </section>

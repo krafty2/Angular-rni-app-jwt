@@ -7,14 +7,13 @@
   box-sizing: border-box;
 }
 
-#map {
+#map { 
+ /*  border: 1px solid black; */
   height: 550px;
-  width: calc(100% - 35px);
-  margin-top: 25px;
-  margin-right: 20px;
-  margin-left: 20px;
+  width: 70%;
   z-index: 0;
   border-radius: 4px;
+  margin: 2px;
 }
 
 #check-search {
@@ -96,7 +95,17 @@ i {
 /*----------------------*/
 
 .carte-browser{
+  width: 99%;
   display: flex;
+  flex-direction: row;
+  margin: 4px;
+
+}
+
+.essentiel{
+  /* background: #FFFFFF; */
+  width: 30%;
+  margin: 2px;
 }
 
 .search-zone {
@@ -113,6 +122,17 @@ i {
 
 .search-container {
  /*  background-color: white; */
+}
+
+.zone-recherche{
+  background: #fff;
+  padding: 10px 0;
+  border-radius: 4px;
+}
+
+.zone-recherche  mat-form-field{
+  
+  margin-left: 14px;
 }
 
 .search-container {
@@ -135,11 +155,14 @@ i {
 }
 
 .search-btn {
-  position: absolute;
-  margin-left: 15px;
-  margin-top: 14px;
+  position: relative;
+  /* position: absolute; */
+ /*  margin-left: 15px;
+  margin-right: 15px; */
+ /*  margin-top: 14px; */
+ margin: 0 15px;
   background: #fff;
-  width: auto;
+  width: 93%;
 }
 
 .search-btn:hover {

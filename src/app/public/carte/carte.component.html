@@ -1,7 +1,7 @@
 <app-nav-bar></app-nav-bar>
 <section>
     <div class="form-field-container">
-        <div class="search-zone" >
+        <!-- <div class="search-zone" >
             <div class="search-container">
                 <mat-form-field style="height: 70px;">
                     <mat-label>Choisit une annee</mat-label>
@@ -37,7 +37,7 @@
     
                 <button class="btn search-btn mat-elevation-z2" type="submit" (click)="searchTerm()">Rechercher</button>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <ng-template #loading>
@@ -49,8 +49,47 @@
         
     </div>
     <section class="carte-browser">
-        <div class=" bordure-div " id="map">
+        <div class="mat-elevation-z2" id="map">
 
+        </div>
+
+        <div class="essentiel">
+            <h3 style="margin-left: 0;">Rechercher des points de mesures dans les critères</h3>
+            <div class="zone-recherche mat-elevation-z2">
+                <mat-form-field style="height: 70px;width: 45%;">
+                    <mat-label style="font-size: 12px;">Choisit une annee</mat-label>
+                    <mat-select (selectionChange)="selectAnnee($event.value)"> 
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let an of annees" value="{{an}}">{{an}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+    
+                <mat-form-field style="height: 70px;width: 45%;">
+                    <mat-label style="font-size: 12px;">Choisit une Region</mat-label>
+                    <mat-select name="region" (selectionChange)="selectRegion($event.value)">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let region of regions" value="{{region}}">{{region}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field style="height: 70px;width: 45%;">
+                    <mat-label style="font-size: 12px;">Choisit une province</mat-label>
+                    <mat-select (selectionChange)="selectProvince($event.value)">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let province of provinces" value="{{province}}">{{province}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+    
+                <mat-form-field style="height: 70px;width: 45%;">
+                    <mat-label style="font-size: 12px;">Choisit une Localite</mat-label>
+                    <mat-select (selectionChange)="selectLocalite($event.value)">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let localite of localites" value="{{localite}}">{{localite}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <button class="btn search-btn mat-elevation-z2" type="submit" (click)="searchTerm()">Rechercher</button>
+            </div>
         </div>
     </section>
     <!-------------------se trouve au niveau de la map mais sera supprime avec le----------------->
