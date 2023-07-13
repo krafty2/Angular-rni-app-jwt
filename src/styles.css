@@ -79,21 +79,31 @@
 }
 
 
+@font-face {
+    font-family: BreeSerif-Regular;
+    src: url(assets/fonts/Bree_Serif/BreeSerif-Regular.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
 }
 
 :root {
     /*=============colors=====================*/
-    --body-color: #E0E0E0;
+    --body-color: #f8f9fa;
     --sidebar-color: #ffffff;
     --primary-color: #00bbf9;
     --primary-color-light: #eceff1;
     --toogle-color: #DDD;
-    --text-color: #26619C;
+    --text-color: #78909c   ;
+    --nav-text-logo-color:#00bbf9;
+    --nav-text-color:#212529;
     --section-text-color: #000;
+    --main-color: #29fd53;
     /*============transition===============*/
     --trans-02: all 0.2s ease;
     --trans-03: all 0.3s ease;
@@ -103,6 +113,17 @@
 
 button{
     cursor: pointer;
+    outline: none;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+button:disabled{
+    box-shadow: none;
+    color: #000;
+    background: #E5E4E2;
+    opacity: 0.8;
 }
 
 .my-div-icon .my-text {
@@ -329,4 +350,201 @@ body {
   .leaflet-container a.leaflet-popup-close-button:hover{
     color: #000;
   }
+
+  /*
+    modal
+  */
+
+
+  .rni-btn {
+    position: relative;
+    right: 0;
+    font-size: 16px;
+    height: 40px;
+    left: 5px;
+    text-align: center;
+    
+}
+
+.modal-open {
+
+    font-size: 14px;
+    padding: 10px 16px;
+    background: #07A0C3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
+
+.modal-open:hover {
+    background: #DD1C1A;
+}
+
+.modal-header h4 {
+    margin: 0;
+    font-size: 34px;
+    margin: 0 0 15px 0;
+}
+
+.modal-header p {
+    font-size: 12px;
+    margin: 0 0 50px 0;
+}
+
+.btn {
+    border: none;
+    
+    border-radius: 2px;
+}
+
+.btn:disabled {
+    box-shadow: none;
+    color: #000;
+    background: #E5E4E2;
+    opacity: 0.8;
+}
+
+.btn-rni {
+    font-family: Roboto-Regular;
+    margin: 18px 0 10px 0;
+    background: #DD1C1A;
+    color: #fff;
+    width: 100%;
+    padding: 8px 14px;
+    font-size: 14px;
+
+}
+
+.input-fileInput {
+    font-family: Roboto-Regular;
+    cursor: pointer;
+    position: relative;
+    font-size: 14px;
+    color: #000;
+    font-weight: normal;
+    height: 44px;
+    margin-left: 5px;
+  
+    width: 100%;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+}
+
+.input-fileInput:hover {
+    outline: none;
+}
+
+
+
+.fichier-charge{
+    padding: 6px;
+    margin: 5px;
+    font-weight: normal;
+    background: #E5E4E2;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0;
+    background: #333333d3;
+    z-index: 101;
+    display: none;
+    animation: modal-open .60s;
+}
+
+
+
+.modal-content {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 10%;
+    background-color: #ffffff;
+    padding: 0;
+    margin: auto;
+    width: 55%;
+    max-height: 70%;
+    margin: auto;
+    overflow-y: auto;
+    border-radius: 2px;
+    z-index: 4;
+}
+
+.modal-header {
+    font-weight: 500;
+    padding: 8px 24px;
+    font-size: 26px;
+}
+
+.modal-header .titre {
+    margin: 0;
+    font-size: large;
+    font-family: ComicNeue-Regular;
+    font-weight: 500;
+}
+
+.modal-header .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    padding: 3px 8px;
+    border: 0;
+    outline: 0;
+    background: #fb8500;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 34px;
+}
+
+.modal .modal-footer {
+    position: absolute;
+    background-color: #fafafa;
+    padding: 4px 6px;
+    height: 56px;
+    width: 100%;
+    text-align: right;
+}
+
+.modal-footer .modal-close {
+
+    padding: 10px 10px;
+    font-family: ComicNeue-Regular;
+    font-size: medium;
+    font-weight: normal;
+    width: auto;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    background: #F2F3F4;
+    cursor: pointer;
+    margin-right: 2rem;
+}
+
+
+
+.formRniExcel {
+    width: auto;
+}
+
+@keyframes modal-open {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
 

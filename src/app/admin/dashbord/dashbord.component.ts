@@ -8,6 +8,12 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Chart, registerables } from 'chart.js';
 import { LinearScale } from 'chart.js/dist';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarModule,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 import { Observable, debounceTime, forkJoin, map } from 'rxjs';
 import { RniService } from 'src/app/_service/rni.service';
@@ -20,8 +26,7 @@ declare var M: any;
   styleUrls: ['./dashbord.component.css'],
 })
 export class DashbordComponent implements AfterViewInit {
-  test:string= 'hello';
-  test2:string='test';
+ 
 
   myDataArray: any;
   displayedColumns: string[] = ['nomSite', 'region', 'province', 'localite', 'dateMesure', 'moyenneSpatiale'];
@@ -33,114 +38,65 @@ export class DashbordComponent implements AfterViewInit {
   @ViewChild(MatAccordion)
   accordion!: MatAccordion;
 
-  selected = 'option2';
-  localites: any;
-  villes: any;
-  annee = [2023, 2021, 2019];
-  detailsMesure!: PeriodicElement[];
+  annees = [];
+  anneeRecente!: number;
 
   fichier!: File;
   nomFichier!: string;
 
-
-  testSelect = new FormControl()
-  lesProvinces$: Observable<string> = this.testSelect.valueChanges;
+  ajoutRapport:boolean=false;
 
   excelImportForm = new FormGroup({
     fileRni: new FormControl('', [Validators.required, Validators.pattern(/\.xlsx$/)])
   });
 
-  searchTerm = new FormGroup({
-    annee: new FormControl(),
-    region: new FormControl(),
-    province: new FormControl(),
-    localite: new FormControl()
-  })
-  
-  regions: any;
-  provinces: any;
-  lesregions$!: Observable<string>;
-
   fichierRni: any;
 
+  test:any;
+
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   constructor(
     private rniService: RniService,
     private router: Router,
     private fb: FormBuilder,
-    private _liveAnnouncer: LiveAnnouncer
+    private _liveAnnouncer: LiveAnnouncer,
+    private _snackBar: MatSnackBar
   ) {
 
   }
 
+
   ngAfterViewInit(): void {
+    
     //this.myDataArray.paginator = this.paginator;
     this.chartExemple()
     forkJoin([this.rniService.req_annees(), this.rniService.req_regions()]).subscribe(
       (([data1, data2]) => {
-        this.annee = data1;
-        this.rniService.detailsMesures(this.annee[0]).subscribe((data) => {
-          this.detailsMesure = data
-          this.myDataArray = new MatTableDataSource(this.detailsMesure);
-          this.myDataArray.sort = this.sort;
-          this.myDataArray.paginator = this.paginator;
-
-        })
-        this.regions = data2
-        console.log(this.regions)
+        this.annees = data1;
+        this.anneeRecente = this.annees[0];
       })
     );
     this.modal();
 
-    this.toutLesRegions$.subscribe(x => console.log(x))
-
-    //this.provinces$.pipe(debounceTime(5000)).subscribe(x=>console.log(x))
-    //this.lesregions$.subscribe(x=>console.log(x))
-  }
-
-  toutLesRegions$ = new Observable(
-    (observer) => {
-      return this.searchTerm.value.region
-    }
-  )
-
-
-
-  selectAnnee(e: any) {
-    console.log(e.target.value);
-    this.rniService.detailsMesures(e.target.value).subscribe((data) => {
-      this.detailsMesure = data;
-      this.myDataArray = new MatTableDataSource(this.detailsMesure);
-      this.myDataArray.sort = this.sort;
-      this.myDataArray.paginator = this.paginator;
-    })
-  }
-
-  selectRegion(e: any) {
-    this.localites = null;
-    console.log(e)
-    //this.toutLesRegions$.subscribe(x=>console.log(x))
-    //console.log(this.searchTerm.value.region)
-    //this.provinces$.pipe(debounceTime(5000)).subscribe(x=>console.log(x))
-    this.rniService.req_provinces(e).subscribe(x => {
-
-      this.provinces = x;
-    });
-  }
-
-  selectProvince(e: any) {
-    console.log(e)
-    // this.rniService.lesLocalites(e.target.value).subscribe((data)=>{
-    //   this.localites=data;
-    //   console.log(this.localites)
-    // })
-
-    this.rniService.req_localites(e).subscribe((data) => {
-      this.localites = data;
-      console.log(this.localites)
-    })
+   
 
   }
+
+  openSnackBar(message: string, action: string) {
+    let snackBarRef = this._snackBar.open(message, action,{verticalPosition:this.verticalPosition});
+    snackBarRef.onAction().subscribe(
+      ()=>{
+        console.log('mon snackbar a reussi');
+      }
+    )
+  }
+
+  addItem(newItem: number) {
+    this.test=newItem;
+    console.log(this.test)
+  }
+
 
   onSubmit() {
     let extension = ["xlsx"];
@@ -174,8 +130,8 @@ export class DashbordComponent implements AfterViewInit {
   modal() {
 
     this.rniService.req_fichiers_rni().subscribe(
-      (data)=>{
-        this.fichierRni=data;
+      (data) => {
+        this.fichierRni = data;
       }
     )
 
@@ -229,6 +185,18 @@ export class DashbordComponent implements AfterViewInit {
     }
   }
 
+  supprimerFichier(id: number) {
+    console.log(id)
+    this.rniService.req_supp_fichiers_rni(id).subscribe(
+      (data) => {
+        console.log(data);
+        location.reload();
+      }
+    )
+  }
+
+ 
+
   chartExemple() {
     const ctx = document.getElementById('myChart') as HTMLCanvasElement;
 
@@ -262,22 +230,3 @@ export class DashbordComponent implements AfterViewInit {
   }
 }
 
-export interface PeriodicElement {
-  idSite: number;
-  nomSite: string;
-  idLocalite: number;
-  region: string;
-  province: string;
-  localite: string;
-  idMesure: number;
-  longitude: number;
-  latitude: number;
-  prioritaire: string;
-  dateMesure: Date;
-  moyenneSpatiale: number;
-  largeBande: string;
-  bandeEtroite: string;
-  commentaire: string;
-  nomRapport: string;
-
-}

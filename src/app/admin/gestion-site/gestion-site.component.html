@@ -1,7 +1,7 @@
-<app-slide-bar></app-slide-bar>
-<section class="home">
 
-  <h4 style="margin-bottom: 25px;">Gestion de sites et mesures</h4>
+<section >
+
+  <h4 class="gest-titre" >Gestion de sites et mesures</h4>
   <div class="rni-site-tab mat-elevation-z2">
     <table mat-table [dataSource]="myDataArray" class="tab" matSort>
       <!--- Note that these columns can be defined in any order.
@@ -37,7 +37,7 @@
         <th mat-header-cell *matHeaderCellDef> action
         </th>
         <td mat-cell *matCellDef="let element">
-          <button data-modal="modal1" (click)="openModal($event,element.idSite)"
+          <button data-modal="modal2" (click)="openModal($event,element.idSite)"
             class="rni-btn modal-open action-btn btn mat-elevation-z2">Afficher</button>
         </td>
       </ng-container>
@@ -50,7 +50,7 @@
     </mat-paginator>
 
     <!-------------------------#modal----------------------------->
-    <div id="modal1" class="modal">
+    <div id="modal2" class="modal">
       <div class="modal-content mat-elevation-z8">
 
         <div class="modal-header">
@@ -87,7 +87,7 @@
 
                 <ng-container matColumnDef="action">
                   <th mat-header-cell *matHeaderCellDef> Action </th>
-                  <td mat-cell *matCellDef="let element"> <button data-modal="modal2" class="btn"
+                  <td mat-cell *matCellDef="let element"> <button data-modal="modal3" class="btn"
                       (click)="modalRapport($event,element.idMesure)">ajouter rapport</button> </td>
                 </ng-container>
 
@@ -105,7 +105,7 @@
     </div>
 
     <!-------------------------#modal 2----------------------------->
-    <div id="modal2" class="modal">
+    <div id="modal3" class="modal">
       <div class="modal-content mat-elevation-z8">
 
         <div class="modal-header">
@@ -150,23 +150,6 @@
 
     </div>
   </div>
-
-  <h4 style="margin-top: 35px;margin-bottom: 25px;">Fichier Rni Charge</h4>
-
- 
-
-  <div style="display: flex; margin: 10px 0; flex-wrap: wrap;" *ngIf="fichierRni else loading">
-    <div *ngFor="let fichier of fichierRni" class="mat-elevation-z4"
-      style="background: #fff; margin: 0 10px 10px 0; width: 25%;border-radius: 6px;padding: 10px;font-family: Antic-Regular;font-size: medium;font-weight: 600;">
-      <p>Nom du fichier : {{fichier.nomFichier}}</p>
-      <p> Date de transfert : {{fichier.dateDeTransfert}}</p>
-      <button (click)="supprimerFichier(fichier.id)" class="btn mat-elevation-z2" style=" background: #1e88e5 ;color: #fff;">Supprimer Fichier</button>
-    </div>
-  </div>
-
-  <ng-template #loading>
-    <div>Aucun Fichier Rni Charge...</div>
-   </ng-template>
   <!-- <button data-modal="modal1"
             class="rni-btn modal-open action-btn btn mat-elevation-z2">Afficher</button> -->
 </section>

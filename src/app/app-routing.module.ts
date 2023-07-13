@@ -12,6 +12,8 @@ import { CarteComponent } from './public/carte/carte.component';
 import { GestionSiteComponent } from './admin/gestion-site/gestion-site.component';
 import { AuthorizationGuard } from './_guard/authorization.guard';
 import { HasRoleGuard } from './_guard/has-role.guard';
+import { FichierRniComponent } from './admin/fichier-rni/fichier-rni.component';
+import { RapportComponent } from './admin/rapport/rapport.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'carte', pathMatch: 'full' },
@@ -22,7 +24,9 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent,title:"Creation de nouveau compte"},
   { path: 'carte', component: CarteComponent, title:"IRT - Carte" },
   { path: 'details-site', component: GestionSiteComponent,canActivate:[AuthorizationGuard,HasRoleGuard],data:{roles:["ADMIN"]} },
-  { path: 'sites', component: SiteComponent, canActivate: [AuthorizationGuard, HasRoleGuard], data: { roles: ["ADMIN"] } }
+  { path: 'sites', component: SiteComponent, canActivate: [AuthorizationGuard, HasRoleGuard], data: { roles: ["ADMIN"] } },
+  {path:'fichier',component:FichierRniComponent},
+  {path:'rapports/:annee',component:RapportComponent}
 ];
 
 @NgModule({

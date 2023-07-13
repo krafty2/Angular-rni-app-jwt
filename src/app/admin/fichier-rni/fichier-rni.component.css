@@ -1,0 +1,64 @@
+.rapport-btn {
+    font-size: small;
+    font-weight: normal;
+    background: #9EB9D4;
+}
+
+.rapport-btn:hover {
+    background: #6CB4EE;
+}
+
+/*
+*modal
+*/
+.element-container {
+    background: #465775;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.element-detail {
+    margin: 0;
+}
+
+.btn-input-file {
+    background: #01796F;
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.btn-input-file:hover {
+    background: #00A86B;
+}
+
+/*
+    css zone de recherche
+*/
+
+.essentiel{
+    margin-bottom: 10px;
+    padding: 8px;
+}
+
+.zone-recherche{
+    padding: 0;
+   
+    width: 60%;
+}
+
+.zone-recherche mat-form-field+mat-form-field{
+    margin-left: 10px;
+}
+
+.search-btn{
+    width: 58%;
+}
+
+.search-btn:hover{
+    background: white;
+}

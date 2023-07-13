@@ -32,6 +32,12 @@ import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
 import { TestComponent } from "./admin/test/test.component";
+import { FichierRniComponent } from './admin/fichier-rni/fichier-rni.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { RapportComponent } from './admin/rapport/rapport.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
     declarations: [
@@ -47,7 +53,9 @@ import { TestComponent } from "./admin/test/test.component";
         RegistrationComponent,
         RegisterComponent,
         NavBarComponent,
-        GestionSiteComponent
+        GestionSiteComponent,
+        FichierRniComponent,
+        RapportComponent
     ],
     providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
     bootstrap: [AppComponent],
@@ -61,7 +69,7 @@ import { TestComponent } from "./admin/test/test.component";
         BrowserAnimationsModule, MatPaginatorModule, MatGridListModule,
         MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule,
         MatSelectModule, MatDialogModule, MatCardModule, MatIconModule, MatExpansionModule,
-        TestComponent
+        TestComponent,MatCheckboxModule,MatProgressBarModule,MatSnackBarModule,MatMenuModule
     ]
 })
 export class AppModule { }

@@ -117,20 +117,6 @@ export class CarteComponent implements OnInit {
 
     L.control.layers(baseMaps).addTo(this.map);
 
-    //permet de crayer un nouveau control(methode de leaflet) qui va permettre
-    //par la suite de pouvoir inserer notre formulaire dans la carte
-    let serchControl = new L.Control({ position: 'topleft' });
-
-    serchControl.onAdd = () => {
-      let div = L.DomUtil.create('div', 'leaflet-form');
-      L.DomEvent.disableClickPropagation(div);
-      let template = this.searchForm.createEmbeddedView(null);
-      div.appendChild(template.rootNodes[0]);
-      return div;
-    }
-
-    serchControl.addTo(this.map);
-
     console.log(this.siteMesure)
     //affiche les villes sur la carte
     this.villes.forEach((_ville: any) => {

@@ -3,8 +3,10 @@
 /*================SVG=====================*/
 .sidebar .toogle .svg-toogle{
     fill: var(--sidebar-color) !important;
-    height: 24px;
-    width: 24px;
+    height: 22px;
+    width: 22px;
+    
+    font-weight: 300;
 }
 
  .menu-svg{

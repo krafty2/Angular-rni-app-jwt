@@ -163,18 +163,6 @@ export class GestionSiteComponent implements AfterViewInit {
     }
   }
 
-  supprimerFichier(id:number){
-    console.log(id)
-    this.rniService.req_supp_fichiers_rni(id).subscribe(
-      (data)=>{
-        console.log(data);
-        location.reload();
-      }
-    )
-  }
-
-
-
   /* modal(e: any, _id_site: number) {
 
     let modalBtns = document.querySelectorAll(".modal-open") as NodeListOf<HTMLElement>;

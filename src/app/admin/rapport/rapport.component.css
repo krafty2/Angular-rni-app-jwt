@@ -1,0 +1,11 @@
+.home {
+    font-family: Roboto-Regular;
+    position: relative;
+    height: 100vh;
+    left: 88px;
+    width: 90%;
+    background: var(--body-color);
+    transition: var(--trans-02);
+    margin: 10px;
+    padding: 10px;
+}

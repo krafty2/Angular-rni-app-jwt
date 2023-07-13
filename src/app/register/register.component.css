@@ -1,20 +1,22 @@
 
 .section-style{
     background: white;
+    padding: 10px;
     
     position: absolute;
-    width: 630px;
-    height: 100vh;
-    top: 0;
-    bottom: 0;
+    width:600px;
     left: 0;
     right: 0;
-    margin: auto;   
-    border-radius: 2px;
+    margin: 0 auto;
+}
+
+.titre-nouveau-compte{
+    color: var(--nav-text-logo-color);
+    margin: 35px auto;
 }
 
 .form-style{
-    margin-top: 60px;
+    
     padding: 10px;
 }
 
@@ -28,7 +30,7 @@
 }
 
 .input-style{
-    width: 300px;
+    width: 100%;
 }
 
 .email-style{
@@ -38,4 +40,8 @@
 .btn-style{
     border: none;
     width: 100%;
+}
+
+.compte{
+    margin: 35px;
 }

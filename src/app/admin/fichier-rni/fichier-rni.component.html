@@ -1,0 +1,160 @@
+<h2 style="margin: 5px 0;">Liste des mesures réalisées pour l’année {{annee}}</h2>
+<mat-expansion-panel [expanded]="expand" style="border-left: 4px solid #00bbf9 ;border-right: 4px solid #00bbf9 ;">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Rni
+        </mat-panel-title>
+        <mat-panel-description>
+            Annee {{annee}}
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <!--------------body expansion -->
+
+    <section>
+
+        <div *ngIf="ajoutRapport">
+            <h4>Selectionner pour ajouter rapport :</h4>
+            <p><mat-checkbox (click)="toggle()">rapport</mat-checkbox></p>
+        </div>
+
+        <div class="essentiel mat-elevation-z2">
+            <div style="display: flex;justify-content: space-between;align-items: center;">
+                <h3 style="margin-left: 0;">Rechercher des points de mesures dans les critères</h3>
+                <button class="mat-elevation-z2" *ngIf="!ajoutRapport" (click)="gestionRapport()" style="background: #01796F;color: white;">Rapport</button>
+            </div>
+
+            <div class="zone-recherche ">
+
+                <mat-form-field>
+                    <mat-label style="font-size: 12px;">Choisit une Region</mat-label>
+                    <mat-select name="region" (selectionChange)="selectRegion($event.value)">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let region of regions" value="{{region}}">{{region}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label style="font-size: 12px;">Choisit une province</mat-label>
+                    <mat-select (selectionChange)="selectProvince($event.value)">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let province of provinces" value="{{province}}">{{province}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label style="font-size: 12px;">Choisit une Localite</mat-label>
+                    <mat-select (selectionChange)="selectLocalite($event.value)">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let localite of localites" value="{{localite}}">{{localite}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+            </div>
+
+            <button class="btn search-btn mat-elevation-z2" type="submit" (click)="searchTerm()">Rechercher</button>
+        </div>
+
+        <div class="rni-tab-zone mat-elevation-z2">
+            <!--------------------------------------------------------------------------------------------------->
+            <table mat-table [dataSource]="myDataArray" class="tab">
+                <!--- Note that these columns can be defined in any order.
+                              The actual rendered columns are set as a property on the row definition" -->
+
+                <!-- nomSite Column -->
+                <ng-container matColumnDef="nomSite">
+                    <th mat-header-cell *matHeaderCellDef> Site </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nomSite}} </td>
+                </ng-container>
+
+                <!-- Region Column -->
+                <ng-container matColumnDef="region">
+                    <th mat-header-cell *matHeaderCellDef>
+                        Region
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{element.region}} </td>
+                </ng-container>
+
+                <!-- Province Column -->
+                <ng-container matColumnDef="province">
+                    <th mat-header-cell *matHeaderCellDef>
+                        Province
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{element.province}} </td>
+                </ng-container>
+                <!-- Localite Column -->
+                <ng-container matColumnDef="localite">
+                    <th mat-header-cell *matHeaderCellDef>
+                        Localite
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{element.localite}} </td>
+                </ng-container>
+
+                <!-- Date de mesure Column -->
+                <ng-container matColumnDef="dateMesure">
+                    <th mat-header-cell *matHeaderCellDef> Date
+                        de mesure </th>
+                    <td mat-cell *matCellDef="let element"> {{element.dateMesure|date:'shortDate':'fr-FR'}} </td>
+                </ng-container>
+
+                <!-- Moyenne Spatiale Column -->
+                <ng-container matColumnDef="moyenneSpatiale">
+                    <th mat-header-cell *matHeaderCellDef>EV/m</th>
+                    <td mat-cell *matCellDef="let element"> {{element.moyenneSpatiale}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="action" *ngIf="visible">
+                    <th mat-header-cell *matHeaderCellDef>action</th>
+                    <td mat-cell *matCellDef="let element"> <button data-modal="modal2"
+                            (click)="openModal($event,element)" class="rapport-btn">Ajouter rapport</button> </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+    </section>
+
+</mat-expansion-panel>
+
+<!-------------------------#modal----------------------------->
+<div id="modal2" class="modal">
+    <div class="modal-content mat-elevation-z8">
+        <div class="modal-body " *ngIf="detailMesure">
+
+            <h2 class="titre">Rapport de mesure - {{detailMesure.dateMesure|date:'shortDate':'fr-FR'}}</h2>
+            <div class="mat-elevation-z2 element-container">
+                <p class="element-detail">Site : {{detailMesure.nomSite}}</p>
+                <p class="element-detail">Localite : {{detailMesure.localite}}</p>
+            </div>
+
+
+            <p>Selection le rapport</p>
+
+            <form class="" [formGroup]="rapportForm" (ngSubmit)="transfererRapport()">
+                <div>
+                    <div style="display: flex;  flex-direction: row;">
+                        <button class="btn btn-input-file mat-elevation-z2" (click)="fileInput.click()">Rapport</button>
+                        <input class="input-fileInput" readonly (click)="fileInput.click()" type="text"
+                            value="{{nomFichier}}">
+                    </div>
+                    <input hidden type="file" #fileInput (change)="onFileSelected($event)" accept="application/pdf"
+                        id="rapport" formControlName="rapport">
+                </div>
+                <!--boutton de soumission-->
+                <button aria-label="Save document" class="btn btn-rni mat-elevation-z2" [disabled]="!rapportForm.valid"
+                    type="submit" name="action">Importer
+                </button>
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <button class="link modal-close mat-elevation-z2">Fermer</button>
+        </div>
+    </div>
+
+</div>
